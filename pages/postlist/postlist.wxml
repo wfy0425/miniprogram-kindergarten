@@ -1,0 +1,15 @@
+<block wx:for="{{postlist}}" wx:key="_id">
+    <van-card bindtap="onItemClick" data-postid='{{item._id}}'
+    desc="{{item.author_name}}"
+    title="{{item.content}}"
+    thumb="{{ imageURL }}"
+    >
+    <view slot="footer">
+    <text class='extra_info watch_count'>{{item.watch_count}}人浏览</text>
+    </view>
+  </van-card>
+  </block>
+<!--TODO 如何使用MinUI提供的组件库-->
+<image class="moment_img new_post" bindtap="newPost" src='../../images/newPost.png'></image>
+<!-- 需要使用 button 来授权登录 -->
+
