@@ -22,6 +22,8 @@
             </view>
         </view>
     </view>
+    <van-button type="warning" bind:click='deletePost'>删除帖子</van-button>
+    <van-button type="warning" bind:click='modifyContent'>修改内容</van-button>
     <view style='background: red' wx:if='{{false}}'>数据展示区：浏览数，关注数，评论数等等</view>
     <view class='all_comment' style='background: #EDEDED' wx:if='{{imagesLoaded}}'>
         <text class='all_comment_text'>全部评论</text>

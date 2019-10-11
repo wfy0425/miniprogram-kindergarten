@@ -40,12 +40,33 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
 					"name": "pages/postdetail/postdetail",
 					"pathName": "pages/postdetail/postdetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/students/index/index",
+					"pathName": "pages/students/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/parents/index/index",
+					"pathName": "pages/parents/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/parents/account/account",
+					"pathName": "pages/parents/account/account",
 					"scene": null
 				}
 			]

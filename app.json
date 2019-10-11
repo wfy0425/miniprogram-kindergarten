@@ -1,26 +1,47 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/students/index/index",
+    "pages/parents/index/index",
+    "pages/parents/account/account",
     "pages/postlist/postlist",
     "pages/logs/logs",
     "pages/publish/publish",
     "pages/postdetail/postdetail",
-    "pages/authorize/authorize"
+    "pages/authorize/authorize",
+    "pages/user/user"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#00BFFF",
-    "navigationBarTitleText": "吃瓜群众",
-    "navigationBarTextStyle": "white"
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "欧乐皇家日托",
+    "navigationBarTextStyle": "black"
   },
-  "tabBar--暂时不需要": {
-    "selectedColor": "#00BFFF",
+  "usingComponents": {
+    "van-tabbar": "/vant/tabbar/index",
+    "van-tabbar-item": "/vant/tabbar-item/index"
+  },
+  "tabBar": {
+    "selectedColor": "#82d9d0",
     "list": [
       {
-        "pagePath": "pages/postlist/postlist",
-        "text": "发现"
+        "pagePath": "pages/index/index",
+        "text": "主页"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/students/index/index",
+        "text": "学生主页"
+      },
+      {
+        "pagePath": "pages/parents/index/index",
+        "text": "父母主页"
+      },
+      {
+        "pagePath": "pages/postlist/postlist",
+        "text": "论坛"
+      },
+      {
+        "pagePath": "pages/user/user",
         "text": "我的"
       }
     ]

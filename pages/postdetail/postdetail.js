@@ -95,7 +95,8 @@ Page({
     })
     this.setData({
       postid: options.postid
-    })
+    }
+    )
 
     // 获取评论
     this.refreshComment(options.postid)
@@ -213,6 +214,104 @@ Page({
       },
       success: function (res) {
         
+        wx.hideLoading()
+        // this that 很迷
+        that.refreshComment(that.data.postid)
+        that.setData({
+          comment_value: ''
+        })
+      }
+    })
+
+  },
+
+  deletePost: function () {
+    wx.showLoading({
+      title: '删除中',
+    })
+    console.log(this.data.postid)
+    wx.cloud.callFunction({
+      // 云函数名称 
+      name: 'delete_post',
+      data: {
+        postid: this.data.postid
+        // openid: app.globalData.openId,
+      },
+
+      success: res => {
+        console.log(this.data.detail._id)
+        wx.showToast({
+          title: '[云函数] [delete_post] 删除成功！！',
+        })
+        console.log('[云函数] [delete_post] 删除成功！！ ', res)
+
+        wx.hideLoading();
+      },
+      fail: err => {
+        wx.showToast({
+          title: '[云函数] [delete_post] 调用失败' + err,
+        })
+        console.error('[云函数] [delete_post] 调用失败', err)
+      }
+    })
+    wx.cloud.callFunction({
+      // 云函数名称 
+      name: 'delete_comment',
+      data: {
+        postid: this.data.postid
+        // openid: app.globalData.openId,
+      },
+
+      success: res => {
+        // console.log(this.data.detail._id)
+        // wx.showToast({
+        //   title: '[云函数] [delete_comment] 删除成功！！',
+        // })
+        // console.log('[云函数] [delete_comment] 删除成功！！ ', res)
+        // 强制刷新，这个传参很粗暴
+        var pages = getCurrentPages();             //  获取页面栈
+        var prevPage = pages[pages.length - 2];    // 上一个页面
+        prevPage.setData({
+          update: true
+        })
+        wx.hideLoading()
+        wx.navigateBack({
+          delta: 1
+        })
+      },
+      fail: err => {
+        wx.showToast({
+          title: '[云函数] [delete_comment] 调用失败' + err,
+        })
+        console.error('[云函数] [delete_comment] 调用失败', err)
+      }
+    })
+  },
+
+  modifyContent: function () {
+    var that = this
+    if (this.data.comment.length < 1) {
+      wx.showToast({
+        image: '../../images/warn.png',
+        title: '评论不能为空',
+      })
+      return
+    }
+    wx.showLoading({
+      title: '发布中',
+    })
+    wx.cloud.callFunction({
+      // 云函数名称 
+      name: 'add_comment',
+      data: {
+        postid: this.data.detail._id,
+        openid: app.globalData.openId,
+        name: app.globalData.wechatNickName,
+        avatarUrl: app.globalData.wechatAvatarUrl,
+        content: this.data.comment
+      },
+      success: function (res) {
+
         wx.hideLoading()
         // this that 很迷
         that.refreshComment(that.data.postid)

@@ -1,4 +1,7 @@
 //app.js
+wx.cloud.init({
+  env: 'cloud-learn-g7rvr'
+})
 const util = require('./utils/util.js');  
 App({
   onLaunch: function () {

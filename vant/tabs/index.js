@@ -1,5 +1,6 @@
 import { VantComponent } from '../common/component';
 import { touch } from '../mixins/touch';
+import { nextTick } from '../common/utils';
 VantComponent({
     mixins: [touch],
     classes: ['nav-class', 'tab-class', 'tab-active-class', 'line-class'],
@@ -71,7 +72,7 @@ VantComponent({
     },
     watch: {
         swipeThreshold() {
-            this.set({
+            this.setData({
                 scrollable: this.child.length > this.data.swipeThreshold
             });
         },
@@ -95,12 +96,13 @@ VantComponent({
         });
     },
     destroyed() {
+        // @ts-ignore
         this.createIntersectionObserver().disconnect();
     },
     methods: {
         updateTabs(tabs) {
             tabs = tabs || this.data.tabs;
-            this.set({
+            this.setData({
                 tabs,
                 scrollable: tabs.length > this.data.swipeThreshold
             });
@@ -125,7 +127,7 @@ VantComponent({
         setActive(active) {
             if (active !== this.data.active) {
                 this.trigger('change', active);
-                this.set({ active });
+                this.setData({ active });
                 this.setActiveTab();
             }
         },
@@ -145,7 +147,7 @@ VantComponent({
                 const transition = skipTransition
                     ? ''
                     : `transition-duration: ${duration}s; -webkit-transition-duration: ${duration}s;`;
-                this.set({
+                this.setData({
                     lineStyle: `
             ${height}
             width: ${width}px;
@@ -163,18 +165,18 @@ VantComponent({
                 return '';
             this.getRect('.van-tabs__content').then((rect) => {
                 const { width } = rect;
-                this.set({
+                this.setData({
                     trackStyle: `
-            width: ${width * this.child.length}px;
-            left: ${-1 * active * width}px;
-            transition: left ${duration}s;
-            display: -webkit-box;
-            display: flex;
-          `
+              width: ${width * this.child.length}px;
+              left: ${-1 * active * width}px;
+              transition: left ${duration}s;
+              display: -webkit-box;
+              display: flex;
+            `
                 });
-                const props = { width, animated };
+                const data = { width, animated };
                 this.child.forEach((item) => {
-                    item.set(props);
+                    item.setData(data);
                 });
             });
         },
@@ -187,10 +189,10 @@ VantComponent({
                     data.inited = true;
                 }
                 if (data.active !== item.data.active) {
-                    item.set(data);
+                    item.setData(data);
                 }
             });
-            this.set({}, () => {
+            nextTick(() => {
                 this.setLine();
                 this.setTrack();
                 this.scrollIntoView();
@@ -210,7 +212,7 @@ VantComponent({
                 const offsetLeft = tabRects
                     .slice(0, active)
                     .reduce((prev, curr) => prev + curr.width, 0);
-                this.set({
+                this.setData({
                     scrollLeft: offsetLeft - (navRect.width - tabRect.width) / 2
                 });
             });
@@ -260,10 +262,9 @@ VantComponent({
                 default:
                     wrapStyle = '';
             }
-            // cut down `set`
-            if (wrapStyle === this.data.wrapStyle)
-                return;
-            this.set({ wrapStyle });
+            if (wrapStyle !== this.data.wrapStyle) {
+                this.setData({ wrapStyle });
+            }
         },
         observerContentScroll() {
             if (!this.data.sticky) {
@@ -271,7 +272,9 @@ VantComponent({
             }
             const { offsetTop } = this.data;
             const { windowHeight } = wx.getSystemInfoSync();
+            // @ts-ignore
             this.createIntersectionObserver().disconnect();
+            // @ts-ignore
             this.createIntersectionObserver()
                 .relativeToViewport({ top: -(this.navHeight + offsetTop) })
                 .observe('.van-tabs', (res) => {
@@ -286,6 +289,7 @@ VantComponent({
                 });
                 this.setPosition(position);
             });
+            // @ts-ignore
             this.createIntersectionObserver()
                 .relativeToViewport({ bottom: -(windowHeight - 1 - offsetTop) })
                 .observe('.van-tabs', (res) => {
