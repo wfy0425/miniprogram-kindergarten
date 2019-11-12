@@ -1,0 +1,16 @@
+
+pages{
+  width: 100%;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    width: 690rpx;
+    margin: auto;
+}
+
+.tips{
+  color: gray;
+  margin-top: 40rpx;
+}

@@ -1,0 +1,29 @@
+<view class="services_container">
+  <view class='box'>
+  <!-- <i-input  bind:change='inputName' maxlength="15" title="账号" autofocus placeholder="请输入账号" />
+<i-input  bind:change='inputPassword' maxlength="15" title="密码" autofocus placeholder="请输入密码" /> -->
+<van-cell-group>
+  <van-field
+    bind:input='inputName'
+    required
+    clearable
+    label="用户名"
+    icon="question-o"
+    placeholder="请输入用户名"
+    bind:click-icon="onClickUsernameIcon"
+  />
+
+  <van-field
+    bind:input='inputPassword'
+    type="password"
+    label="密码"
+    placeholder="请输入密码"
+    required
+    border="{{ false }}"
+  />
+</van-cell-group>
+<van-button bindtap='login' type="primary">登录</van-button>
+<van-button bindtap='register' type="info">注册</van-button>
+
+  </view>
+</view>

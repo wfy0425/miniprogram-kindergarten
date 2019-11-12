@@ -24,7 +24,7 @@
       <van-grid-item icon="chat-o" text="育儿问答" />
       <van-grid-item icon="video-o" text="家长课程" />
       <van-grid-item icon="service-o" text="联系老师" />
-      <van-grid-item icon="user-circle-o" text="账户管理" link-type="navigateTo" url="/pages/parents/account/account" />
+      <van-grid-item icon="user-circle-o" text="账户管理" bind:click='onAccount' />
     </van-grid>
 <view class="van-hairline--top"></view>
     <view class='photo'>

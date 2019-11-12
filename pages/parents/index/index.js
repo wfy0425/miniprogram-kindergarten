@@ -1,3 +1,4 @@
+let app = getApp();
 // pages/parents/index/index.js
 Page({
 
@@ -122,6 +123,22 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  onAccount: function (event) {
+    console.log(app.globalData.currentUserName);
+    if (app.globalData.currentUserName){
+      wx.navigateTo({
+        url: '/pages/parents/account/account',
+      })
+    }else{
+      //not login in
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }
+  },
+
+
   //展开
   //原本没有upStatus这个字段，所以默认值为false
   upDown(event) {
