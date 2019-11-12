@@ -3,19 +3,6 @@ pages{
   width: 100%;
 }
 
-.logo-banner {
-  width: 100%;
-  padding: 35rpx 0 30rpx;
-  display:flex;                    
-  justify-content: center;   
-  border-top:20rpx solid #82d9d0;
-}
-.logo-banner image {
-  width: 60%;
-
-
-  
-}
 
 .box {
     display: flex;
