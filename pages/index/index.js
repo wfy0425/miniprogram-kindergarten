@@ -5,68 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgUrls: [
-      'https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=b5e4c905865494ee982209191df4e0e1/c2cec3fdfc03924590b2a9b58d94a4c27d1e2500.jpg',
-      'https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg',
-      'https://ss1.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=92afee66fd36afc3110c39658318eb85/908fa0ec08fa513db777cf78376d55fbb3fbd9b3.jpg'
-    ],
-    isLoadedAll: false,
-    musicIndex: null,
-    videoIndex: null,
-    currentTabsIndex: 0,
-    pageIndex: 1,
-    videoList: [
-      {
-        'coverimg': "https://goss.veer.com/creative/vcg/veer/800water/veer-146156021.jpg",
-        'description': "这是第一个示例，这是第一个示例，这是第一个示例，这是第一个示例。这是第一个示例，这是第一个示例，这是第一个示例，这是第一个示例。",
-        'id': "41",
-        'resource_add': "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400",
-        'title': " 第三期 Beatles 02",
-        'type': "1"
-      },
-      {
-        'coverimg': "https://goss.veer.com/creative/vcg/veer/800water/veer-146156021.jpg",
-        'description': "",
-        'id': "42",
-        'resource_add': "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400",
-        'title': " 第三期 Beatles 02",
-        'type': "1"
-      },
-      {
-        'coverimg': "https://goss.veer.com/creative/vcg/veer/800water/veer-146156021.jpg",
-        'description': "",
-        'id': "43",
-        'resource_add': "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400",
-        'title': " 第三期 Beatles 02",
-        'type': "1"
-      },
-      {
-        'coverimg': "https://goss.veer.com/creative/vcg/veer/800water/veer-146156021.jpg",
-        'description': "",
-        'id': "44",
-        'resource_add': "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400",
-        'title': " 第三期 Beatles 02",
-        'type': "1"
-      },
-    ],
-    audioList: [
-      {
-        'coverimg': "https://goss.veer.com/creative/vcg/veer/800water/veer-146156021.jpg",
-        'description': "这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，",
-        'id': "50",
-        'resource_add': "http://zhangmenshiting.qianqian.com/data2/music/6c2983881c95968fbb0f4fd334c5d526/599527734/599527734.mp3?xcode=7c9d9130f46d992ba0cc505dc0621a48",
-        'title': "音频1",
-        'type': "1"
-      },
-      {
-        'coverimg': "https://goss.veer.com/creative/vcg/veer/800water/veer-146156021.jpg",
-        'description': "这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，这是第1个示例音频，",
-        'id': "51",
-        'resource_add': "http://zhangmenshiting.qianqian.com/data2/music/6c2983881c95968fbb0f4fd334c5d526/599527734/599527734.mp3?xcode=7c9d9130f46d992ba0cc505dc0621a48",
-        'title': "音频2",
-        'type': "1"
-      }
-    ]
+    logoUrl: '../../images/logo.svg',
+    bannerUrl: '../../images/banner.svg'
   },
 
   /**
@@ -124,6 +64,27 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  parents: function (event) {
+    console.log(event)
+    wx.navigateTo({
+      url: '/pages/parents/index/index',
+    })
+  },
+
+  students: function (event) {
+    console.log(event)
+    wx.navigateTo({
+      url: '/pages/students/index/index',
+    })
+  },
+  info: function (event) {
+    console.log(event)
+    wx.navigateTo({
+      url: '/pages/aboutus/aboutus',
+    })
+  },
+
 	//tap切换
 	onTabsItemTap: function (event) {
     var index = event.currentTarget.dataset['index'];

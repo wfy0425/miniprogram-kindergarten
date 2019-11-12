@@ -9,7 +9,8 @@
     "pages/publish/publish",
     "pages/postdetail/postdetail",
     "pages/authorize/authorize",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/aboutus/aboutus"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,31 +22,7 @@
     "van-tabbar": "/vant/tabbar/index",
     "van-tabbar-item": "/vant/tabbar-item/index"
   },
-  "tabBar": {
-    "selectedColor": "#82d9d0",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "主页"
-      },
-      {
-        "pagePath": "pages/students/index/index",
-        "text": "学生主页"
-      },
-      {
-        "pagePath": "pages/parents/index/index",
-        "text": "父母主页"
-      },
-      {
-        "pagePath": "pages/postlist/postlist",
-        "text": "论坛"
-      },
-      {
-        "pagePath": "pages/user/user",
-        "text": "我的"
-      }
-    ]
-  },
+
   "cloud": true,
   "sitemapLocation": "sitemap.json"
 }
