@@ -1,11 +1,10 @@
 <view class="services_container">
   <view class='box'>
-  <i-input  bind:change='inputName' maxlength="15" title="账号" autofocus placeholder="请输入账号" />
-<i-input  bind:change='inputPassword' maxlength="15" title="密码" autofocus placeholder="请输入密码" />
+  <!-- <i-input  bind:change='inputName' maxlength="15" title="账号" autofocus placeholder="请输入账号" />
+<i-input  bind:change='inputPassword' maxlength="15" title="密码" autofocus placeholder="请输入密码" /> -->
 <van-cell-group>
   <van-field
-    value="{{ username }}"
-    bind:change='inputName'
+    bind:input='inputName'
     required
     clearable
     label="用户名"
@@ -15,8 +14,7 @@
   />
 
   <van-field
-    value="{{ password }}"
-    bind:change='inputPassword'
+    bind:input='inputPassword'
     type="password"
     label="密码"
     placeholder="请输入密码"

@@ -40,15 +40,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": -1,
 			"list": [
-				{
-					"id": -1,
-					"name": "pages/postdetail/postdetail",
-					"pathName": "pages/postdetail/postdetail",
-					"query": "",
-					"scene": null
-				},
 				{
 					"id": -1,
 					"name": "pages/students/index/index",
@@ -67,6 +60,7 @@
 					"id": -1,
 					"name": "pages/parents/account/account",
 					"pathName": "pages/parents/account/account",
+					"query": "",
 					"scene": null
 				}
 			]

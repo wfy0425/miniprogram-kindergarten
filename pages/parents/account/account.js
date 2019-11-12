@@ -15,15 +15,15 @@ Page({
     password:""
   },
   //输入用户名
-  inputName: function (event) {
+  inputName: function (value) {
     this.setData({
-      username: event.detail
+      username: value.detail
     })
   },
   //输入密码
-  inputPassword(event) {
+  inputPassword: function (value) {
     this.setData({
-      password: event.detail
+      password: value.detail
     })
   },
   /**
@@ -84,38 +84,50 @@ Page({
   //登陆
   login() {
     let that = this;
+    console.log(this)
     //登陆获取用户信息
     admin.get({
       success: (res) => {
         let user = res.data;
-        // console.log(res.data);
+        let userExist = false;
+        console.log(user);
+        console.log(that.data);
         for (let i = 0; i < user.length; i++) {  //遍历数据库对象集合
-          if (username === user[i].name) { //用户名存在
-            if (password !== user[i].password) {  //判断密码是否正确
+          console.log(user[i]);
+          if (that.data.username === user[i].name) { //用户名存在
+            console.log("用户名存在");
+            userExist = true;
+            if (that.data.password !== user[i].password) {  //判断密码是否正确
+              console.log('密码错误！！')
               wx.showToast({
-                title: '密码错误！！',
-                icon: 'success',
+                title: '密码错误',
+                icon: 'fail',
                 duration: 2500
               })
             } else {
               console.log('登陆成功！')
               wx.showToast({
-                title: '登陆成功！！',
+                title: '登陆成功',
                 icon: 'success',
                 duration: 2500
               })
+              app.globalData.currentUserName = that.data.username;
+              console.log(user[i]);
               wx.switchTab({   //跳转首页
-                url: '/pages/shopcart/shopcart',  //这里的URL是你登录完成后跳转的界面
+                url: '/pages/parents/index/index',  //这里的URL是你登录完成后跳转的界面
               })
             }
-          } else {   //不存在
-            wx.showToast({
-              title: '无此用户名！！',
-              icon: 'success',
-              duration: 2500
-            })
           }
         }
+         if(!userExist) {   //不存在
+        console.log('用户名不存在！')
+            wx.showToast({
+              title: '用户名不存在！',
+          icon: 'success',
+          duration: 2500
+        })
+
+      }
       }
     })
   },
@@ -129,7 +141,7 @@ Page({
         let admins = res.data;  //获取到的对象数组数据
         //  console.log(admins);
         for (let i = 0; i < admins.length; i++) {  //遍历数据库对象集合
-          if (username === admins[i].username) { //用户名存在
+          if (that.data.username === admins[i].username) { //用户名存在
             flag = true;
             //   break;
           }
@@ -141,7 +153,7 @@ Page({
             duration: 2500
           })
         } else {  //未注册
-          that.saveuserinfo()
+          that.saveuserinfo(that)
         }
       }
     })
@@ -149,12 +161,12 @@ Page({
 
 
   //注册用户信息
-  saveuserinfo() {
+  saveuserinfo(that) {
     // let that = this;
     admin.add({  //添加数据
       data: {
-        username: username,
-        password: password
+        username: that.data.username,
+        password: that.data.password
       }
     }).then(res => {
       console.log('注册成功！')

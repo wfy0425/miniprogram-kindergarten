@@ -1,11 +1,11 @@
 <!--pages/parents/index/index.wxml-->
 <!-- <van-notice-bar mode="link" text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。" /> -->
 <view class="services_container">
-  <view class="logo-banner">
+  <view class="logo-banner" >
     <image mode='widthFix' src="{{bannerUrl}}"></image>
   </view>
+  <view class="van-hairline--top"></view>
   <view class='box'>
-
     <swiper class="banner" autoplay="autoplay" interval="2500" duration="500" indicator-dots="true">
       <block wx:for="{{imgUrls}}" wx:key="{{item}}">
         <swiper-item>
@@ -26,7 +26,7 @@
       <van-grid-item icon="service-o" text="联系老师" />
       <van-grid-item icon="user-circle-o" text="账户管理" link-type="navigateTo" url="/pages/parents/account/account" />
     </van-grid>
-
+<view class="van-hairline--top"></view>
     <view class='photo'>
       <block wx:for="{{photoList}}" wx:key="{{item}}">
         <view class='photo-item'>
