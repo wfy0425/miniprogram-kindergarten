@@ -16,6 +16,15 @@
       </block>
     </swiper>
 
+    <view class='text'>
+      <block wx:for="{{textArray}}" wx:key="{{item}}">
+        <view class="text-box">
+          <view class='text-tittle'>{{item.tittle}}</view>
+          <text class='text-text'>{{item.text}}</text>
+        </view>
+      </block>
+    </view>
+
     <view class='photo'>
       <block wx:for="{{photoList}}" wx:key="{{item}}">
         <view class='photo-item'>

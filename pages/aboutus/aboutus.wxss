@@ -2,7 +2,6 @@
 pages{
   width: 100%;
 }
-
 .box {
     display: flex;
     flex-direction: column;
@@ -26,6 +25,35 @@ pages{
   width: 100%;
   
 
+}
+
+.text{
+  position: relative;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    padding: 0 0 75px;
+}
+.text block{
+  padding: 30px;
+    overflow: hidden;
+}
+.text-box{
+      margin-bottom: 24px;
+    padding: 24px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 8px 12px #ebedf0;
+}
+.text-tittle{
+      margin-bottom: 12px;
+    font-weight: 500;
+    font-size: 17px;
+}
+.text-text{
+    color: #34495e;
+    font-size: 14px;
+    line-height: 26px;
 }
 
 .photo {
