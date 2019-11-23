@@ -4,7 +4,7 @@ const cloud = require('wx-server-sdk')
 
 cloud.init()
 const db = cloud.database({
-  env: "cloud-learn-g7rvr"
+  env: "cloud-zhiai-8dv2t"
 })
 const _ = db.command
 // 云函数入口函数

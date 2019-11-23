@@ -8,7 +8,7 @@ cloud.init()
  * 一种方法是在小程序端传入环境参数，可以把环境集中在小程序的globalData中管理
  */
 const db = cloud.database({
-  env: "cloud-learn-g7rvr"
+  env: "cloud-zhiai-8dv2t"
 })
 
 // 云函数入口函数

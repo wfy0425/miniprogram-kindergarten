@@ -1,6 +1,6 @@
 //app.js
 wx.cloud.init({
-  env: 'cloud-learn-g7rvr'
+  env: 'cloud-zhiai-8dv2t'
 })
 const util = require('./utils/util.js');  
 App({
