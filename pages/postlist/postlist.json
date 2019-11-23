@@ -1,7 +1,0 @@
-{
-    "enablePullDownRefresh": true,
-    "backgroundTextStyle": "light",
-    "usingComponents": {
-      "van-card": "../../vant/card/index"
-    }
-}

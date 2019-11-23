@@ -5,12 +5,7 @@
     "pages/parents/index/index",
     "pages/login/login",
     "pages/parents/account/account",
-    "pages/postlist/postlist",
-    "pages/logs/logs",
-    "pages/publish/publish",
-    "pages/postdetail/postdetail",
     "pages/authorize/authorize",
-    "pages/user/user",
     "pages/aboutus/aboutus"
   ],
   "window": {
