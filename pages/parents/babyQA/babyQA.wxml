@@ -5,35 +5,15 @@
     <image mode='widthFix' src="{{bannerUrl}}"></image>
   </view>
   <view class="van-hairline--top"></view>
-  <view class='box'>
-    <swiper class="banner" autoplay="autoplay" interval="2500" duration="500" indicator-dots="true">
-      <block wx:for="{{imgUrls}}" wx:key="{{item}}">
-        <swiper-item>
-          <view class="slide-image">
-            <image mode='widthFix' src="{{item}}" />
-          </view>
-        </swiper-item>
-      </block>
-    </swiper>
-
-    <van-grid border="{{ false }}" column-num="5" >
-      <van-grid-item icon="friends-o" text="了解稚爱" link-type="navigateTo" url="/pages/aboutus/aboutus"/>
-      <van-grid-item icon="desktop-o" text="家长课堂" link-type="navigateTo" url="/pages/parents/class/class"/>
-      <van-grid-item icon="chat-o" text="育儿问答"/>
-      <van-grid-item icon="service-o" text="联系我们"/>
-      <van-grid-item icon="user-circle-o" text="账户管理" bind:click='onAccount' />
-    </van-grid>
-<view class="van-hairline--top"></view>
-    <view class='photo'>
-      <block wx:for="{{photoList}}" wx:key="{{item}}">
-        <view class='photo-item'>
-          <view class="photo-image">
+    <view class='blocks'>
+      <block wx:for="{{articleList}}" wx:key="{{item}}">
+        <view class='blocks-item'>
+          <view class="blocks-image">
             <image mode='widthFix' src="{{item.url}}" />
           </view>
-          <view class='photo-desc'>{{item.description}}</view>
+           <view class='blocks-tittle'>{{item.tittle}}</view>
+          <view class='blocks-desc'>{{item.description}}</view>
         </view>
       </block>
     </view>
-    
-  </view>
 </view>
