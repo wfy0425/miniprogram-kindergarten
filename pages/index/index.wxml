@@ -5,7 +5,7 @@
   <view class="van-hairline--top"></view>
   <view class='box'>
 <van-button round color="#82d9d0" plain size="large" bindtap='parents'>我是家长</van-button>
-<van-button round color="#82d9d0" plain size="large" bindtap='students'>我是学生</van-button>
-<van-button round color="#82d9d0" size="large" bindtap='info'>了解我们</van-button>
+<van-button round color="#82d9d0" plain size="large" bindtap='parents'>我是园丁</van-button>
+<van-button round color="#82d9d0" plain size="large" bindtap='students'>稚爱教育馆</van-button>
 </view>
 </view>

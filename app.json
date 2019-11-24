@@ -5,13 +5,16 @@
     "pages/parents/index/index",
     "pages/login/login",
     "pages/parents/account/account",
+    "pages/parents/class/class",
+    "pages/parents/babyQA/babyQA",
+    "pages/parents/contactus/contactus",
     "pages/authorize/authorize",
     "pages/aboutus/aboutus"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#FFFFFF",
-    "navigationBarTitleText": "欧乐皇家日托",
+    "navigationBarTitleText": "稚爱幼儿园",
     "navigationBarTextStyle": "black"
   },
   "usingComponents": {

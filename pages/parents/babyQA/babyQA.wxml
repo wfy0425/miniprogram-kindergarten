@@ -19,8 +19,8 @@
     <van-grid border="{{ false }}" column-num="5" >
       <van-grid-item icon="friends-o" text="了解稚爱" link-type="navigateTo" url="/pages/aboutus/aboutus"/>
       <van-grid-item icon="desktop-o" text="家长课堂" link-type="navigateTo" url="/pages/parents/class/class"/>
-      <van-grid-item icon="chat-o" text="育儿问答" link-type="navigateTo" url="/pages/parents/babyQA/babyQA"/>
-      <van-grid-item icon="service-o" text="联系我们" link-type="navigateTo" url="/pages/parents/contactus/contactus"/>
+      <van-grid-item icon="chat-o" text="育儿问答"/>
+      <van-grid-item icon="service-o" text="联系我们"/>
       <van-grid-item icon="user-circle-o" text="账户管理" bind:click='onAccount' />
     </van-grid>
 <view class="van-hairline--top"></view>

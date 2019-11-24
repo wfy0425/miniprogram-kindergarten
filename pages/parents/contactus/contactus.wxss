@@ -1,0 +1,139 @@
+/* pages/parents/index/index.wxss */
+pages{
+  width: 100%;
+}
+
+
+.box {
+    display: flex;
+    flex-direction: column;
+    width: 690rpx;
+    margin: auto;
+}
+
+.banner {
+  padding: 20rpx 0;
+  /* border-bottom: solid 1px #efefef; */
+  width: 100%;
+height: 600rpx;
+}
+
+.slide-image image {
+  height: 400rpx;
+  width: 100%;
+}
+
+.photo {
+  display:flex; 
+  flex-direction: column;
+  align-items: center;   
+  width: 100%;
+}
+.photo-item {
+  flex-direction: column;
+  width: 100%;
+  display:flex; 
+  align-items: center;   
+  padding: 20rpx 0;
+  /* border-bottom: solid 1px #efefef; */
+}
+.photo-image{
+  width: 100%;
+  display:flex;                    
+  justify-content: center;   
+}
+.photo-image image {
+  width: 100%;
+}
+.photo-desc {
+    font-family: PingFangSC-Regular;
+    font-size: 26rpx;
+    color: #666;
+    margin-top: 10rpx;
+}
+
+.video {
+    display: flex;
+    flex-direction: column;
+}
+
+.video-item {
+    padding: 40rpx 0;
+    /* border-bottom: solid 1px #efefef; */
+}
+.wrapper{
+	    width: 690rpx;
+    height: 400rpx;
+	position: relative;
+}
+.video-video {
+    width: 690rpx;
+    height: 400rpx;
+}
+.video-video2 {
+    width: 690rpx;
+    height: 400rpx;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 99;
+}
+.videoPlay{
+	position: absolute;
+    width: 60rpx;
+    height: 60rpx;
+    top: 50%;
+    left: 50%;
+    margin: -30rpx 0 0 -30rpx;
+	z-index: 100;
+}
+
+.video-name {
+    margin-top: 10rpx;
+    font-family: PingFangSC-Medium;
+    font-size: 34rpx;
+    color: #333;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+
+.video-desc {
+    font-family: PingFangSC-Regular;
+    font-size: 26rpx;
+    color: #666;
+    margin-top: 10rpx;
+    /* display: -webkit-box; */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.video-bottom {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.video-btn {
+    margin-top: 20rpx;
+    width: 103rpx;
+    height: 39rpx;
+    border: solid 1px #d2d2d2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-btn image {
+    width: 19rpx;
+    height: 12rpx;
+    margin-right: 10rpx;
+}
+
+.video-btn text {
+    font-family: PingFangSC-Regular;
+    font-size: 22rpx;
+    color: #999;
+}
