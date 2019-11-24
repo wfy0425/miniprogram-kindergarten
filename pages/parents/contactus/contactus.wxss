@@ -71,6 +71,6 @@ pages {
 .blocks-desc {
     color: #34495e;
     padding-left: 20rpx;
-    font-size: 30rpx;
+    font-size: 28rpx;
     line-height: 52rpx;
 }

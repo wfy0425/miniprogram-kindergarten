@@ -1,9 +1,9 @@
 /* pages/parents/index/index.wxss */
-pages{
-  width: 100%;
-  background-color: #f0f3f6;
-}
 
+pages {
+    width: 100%;
+    background-color: #f0f3f6;
+}
 
 .box {
     display: flex;
@@ -13,54 +13,55 @@ pages{
 }
 
 .banner {
-  padding: 20rpx 0;
-  /* border-bottom: solid 1px #efefef; */
-  width: 100%;
-height: 600rpx;
+    padding: 20rpx 0;
+    /* border-bottom: solid 1px #efefef; */
+    width: 100%;
+    height: 600rpx;
 }
 
-
-
 .blocks {
-  display: flex;
+    display: flex;
     flex-direction: column;
     width: 690rpx;
     margin: auto;
-  position: relative;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
+    position: relative;
     flex: 1;
-    padding: 0 0 75px;
+    padding: 0 0 75rpx;
 }
-.blocks block{
-  padding: 30px;
+
+.blocks block {
+    padding: 60rpx;
     overflow: hidden;
 }
+
 .blocks-item {
-    margin-bottom: 24px;
-    padding: 24px;
+    margin-bottom: 48rpx;
+    padding: 48rpx;
     background-color: #fff;
     border-radius: 12rpx;
-    box-shadow: 0 8px 12px #ebedf0;
+    box-shadow: 0 16rpx 24rpx #ebedf0;
 }
-.blocks-image{
-  width: 100%;
-  display:flex; 
-                     
-  justify-content: center;   
+
+.blocks-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
+
 .blocks-image image {
-  width: 100%;
-  border-radius: 12rpx;
-  margin-bottom: 12px;
+    width: 100%;
+    border-radius: 12rpx;
+    margin-bottom: 24rpx;
 }
-.blocks-tittle{
-    margin-bottom: 12px;
+
+.blocks-tittle {
+    margin-bottom: 24rpx;
     font-weight: 500;
-    font-size: 17px;
+    font-size: 40rpx;
 }
+
 .blocks-desc {
-color: #34495e;
-    font-size: 14px;
-    line-height: 26px;
+    color: #34495e;
+    font-size: 28rpx;
+    line-height: 52rpx;
 }
