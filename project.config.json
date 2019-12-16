@@ -39,6 +39,10 @@
 			"currentL": -1,
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": 6,
 			"list": [
@@ -88,6 +92,14 @@
 					"id": -1,
 					"name": "pages/parents/contactus/contactus",
 					"pathName": "pages/parents/contactus/contactus",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "pages/staffs/16pf/16pf",
+					"pathName": "pages/staffs/16pf/16pf",
+					"query": "",
 					"scene": null
 				}
 			]

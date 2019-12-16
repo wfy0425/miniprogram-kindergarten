@@ -1,14 +1,15 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/students/index/index",
-    "pages/parents/index/index",
     "pages/login/login",
+    "pages/staffs/16pf/16pf",
+    "pages/staffs/index/index",
+    "pages/parents/index/index",
     "pages/parents/account/account",
     "pages/parents/class/class",
     "pages/parents/babyQA/babyQA",
     "pages/parents/contactus/contactus",
-    "pages/staffs/16pf/16pf",
+    "pages/students/index/index",
     "pages/authorize/authorize",
     "pages/aboutus/aboutus"
   ],

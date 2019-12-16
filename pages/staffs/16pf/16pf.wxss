@@ -1,1 +1,6 @@
-/* pages/staffs/16pf/16pf.wxss */
+.view_hide{ 
+ display: none; 
+} 
+.view_show{ 
+ display: block; 
+} 
