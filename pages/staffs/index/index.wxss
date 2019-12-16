@@ -1,1 +1,21 @@
-/* pages/staffs/index/index.wxss */
+/* pages/parents/index/index.wxss */
+
+pages {
+    width: 100%;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    width: 690rpx;
+    margin: auto;
+}
+
+.banner {
+    padding: 20rpx 0;
+    /* border-bottom: solid 1px #efefef; */
+    width: 100%;
+    height: 600rpx;
+}
+
+
