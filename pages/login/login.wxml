@@ -24,6 +24,6 @@
 </van-cell-group>
 <van-button bindtap='login' type="primary">登录</van-button>
 <van-button bindtap='register' type="info">注册</van-button>
-
+<van-toast id="van-toast" />
   </view>
 </view>

@@ -2,10 +2,12 @@
   "pages": [
     "pages/index/index",
     "pages/login/login",
+    "pages/changePw/changePw",
     "pages/staffs/16pf/16pf",
     "pages/staffs/index/index",
     "pages/parents/index/index",
     "pages/parents/account/account",
+    "pages/parents/bindStudents/bindStudents",
     "pages/parents/class/class",
     "pages/parents/babyQA/babyQA",
     "pages/parents/contactus/contactus",

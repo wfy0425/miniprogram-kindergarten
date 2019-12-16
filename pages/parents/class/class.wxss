@@ -1,6 +1,6 @@
 /* pages/parents/index/index.wxss */
 
-pages {
+page {
     width: 100%;
 }
 

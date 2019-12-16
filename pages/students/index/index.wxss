@@ -1,6 +1,6 @@
 /* pages/students/index/index.wxss */
 
-pages {
+page {
     width: 100%;
 }
 

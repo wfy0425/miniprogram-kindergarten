@@ -80,8 +80,9 @@ Page({
         } else {
             //not login in
             wx.navigateTo({
-                url: '/pages/login/login',
+                url: '/pages/login/login?type=parents',
             })
+            console.log()
         }
     },
 

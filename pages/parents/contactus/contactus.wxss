@@ -1,6 +1,6 @@
 /* pages/parents/index/index.wxss */
 
-pages {
+page {
     width: 100%;
     background-color: #f0f3f6;
 }

@@ -14,8 +14,12 @@ Page({
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         username: "",
         password: "",
-        dbCollection: null
+        newPassword: "",
+        dbCollection: null,
+        logoUrl: '/images/logo.svg',
+        bannerUrl: '/images/banner.svg',
     },
+
     //输入用户名
     inputName: function(value) {
         this.setData({
@@ -26,6 +30,11 @@ Page({
     inputPassword: function(value) {
         this.setData({
             password: value.detail
+        })
+    },
+    inputNewPassword: function(value) {
+        this.setData({
+            newPassword: value.detail
         })
     },
     /**
@@ -86,9 +95,8 @@ Page({
     onShareAppMessage: function() {
 
     },
-    //登陆
-    login() {
-
+    //更改密码
+    change() {
         const collection = db.collection(this.data.dbCollection);
         console.log(collection)
         let that = this;
@@ -98,6 +106,7 @@ Page({
             success: (res) => {
                 let user = res.data;
                 let userExist = false;
+                let userId = null;
                 console.log(user);
                 console.log(that.data);
                 for (let i = 0; i < user.length; i++) { //遍历数据库对象集合
@@ -109,70 +118,46 @@ Page({
                             console.log('密码错误')
                             Toast.fail('密码错误');
                         } else {
-                            console.log('登陆成功')
-                            Toast.success('登陆成功');
-                            app.globalData.currentUserName = that.data.username;
-                            console.log(user[i]);
-                            wx.redirectTo({
-                                url: '/pages/parents/account/account',
-                            })
+
+                            userId = user[i]._id
                         }
                     }
                 }
                 if (!userExist) { //不存在
                     console.log('用户名不存在')
                     Toast.fail('用户名不存在');
-
+                }
+                if (userId) {
+                    that.saveuserinfo(that, userId)
                 }
             }
         })
     },
-    //注册
-    register() {
-        const collection = db.collection(this.data.dbCollection);
-        let that = this;
-        let flag = false //是否存在 true为存在
-            //查询用户是否已经注册
-        collection.get({
-            success: (res) => {
-                for (let i = 0; i < res.data.length; i++) { //遍历数据库对象集合
-                    if (that.data.username === res.data[i].username) { //用户名存在
-                        flag = true;
-                        //   break;
-                    }
-                }
-                if (flag === true) { //已注册
-                    Toast.fail('该用户名已使用');
-                } else { //未注册
-                    that.saveuserinfo(that)
-                }
-            }
-        })
-    },
-
 
     //注册用户信息
-    saveuserinfo(that) {
-
+    saveuserinfo(that, userId) {
         const collection = db.collection(this.data.dbCollection);
-        // let that = this;
-        collection.add({ //添加数据
+        console.log(userId)
+            // let that = this;
+        collection.doc(userId).set({ //添加数据
             data: {
                 username: that.data.username,
-                password: that.data.password
+                password: that.data.newPassword
             }
         }).then(res => {
-            app.globalData.currentUserName = that.data.username;
-            console.log('注册成功')
+            console.log('修改成功')
             Toast.success({
                 duration: 2000,
-                message: '注册成功',
+                message: '修改成功',
                 onClose: function() {
-                    wx.redirectTo({
-                        url: '/pages/parents/account/account',
-                    })
+                    wx.navigateBack({
+                        delta: 1
+                    });
                 }
             });
+
         })
+
+
     },
 })

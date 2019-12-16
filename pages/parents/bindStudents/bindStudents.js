@@ -17,7 +17,7 @@ Page({
      */
     onLoad: function(options) {
 
-        console.log(app.globalData.currentUserName)
+
     },
 
     /**
@@ -70,13 +70,6 @@ Page({
     },
 
     changePw: function() {
-        wx.navigateTo({
-            url: '/pages/changePw/changePw?type=parents',
-        })
-    },
-    bindStudents: function() {
-        wx.navigateTo({
-            url: '/pages/parents/bindStudents/bindStudents',
-        })
+
     },
 })

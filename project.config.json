@@ -108,6 +108,20 @@
 					"pathName": "pages/staffs/index/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/parents/changePw/changePw",
+					"pathName": "pages/parents/changePw/changePw",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/changePw/changePw",
+					"pathName": "pages/changePw/changePw",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

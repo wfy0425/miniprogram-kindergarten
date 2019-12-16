@@ -7,22 +7,22 @@
   <view class='box'>
     <view class='text'>
         <view class="text-occupy"></view>
-        <view class="text-box" bindtap="changePw">
+        <view class="text-box">
         
             <view class="text-icon">
                 <van-icon name="setting-o" />
             </view>
-          <text class='text-text'>修改密码</text>
+          <text class='text-text' bindtap="changePw">修改密码</text>
           
         </view>
         <view class="text-occupy1"></view>
         <view class="text-hairline"></view>
         <view class="text-occupy"></view>
-        <view class="text-box" bindtap="bindStudents">
+        <view class="text-box">
         <view class="text-icon">
                 <van-icon name="friends-o" />
             </view>
-          <text class='text-text'>绑定学生</text>
+          <text class='text-text'>绑定孩子</text>
         </view>
         <view class="text-occupy1"></view>
     </view>
