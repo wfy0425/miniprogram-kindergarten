@@ -13,10 +13,6 @@ page {
     padding-top: 20rpx;
 }
 
-.slide-image image {
-    width: 100%;
-}
-
 .text {
     position: relative;
     border-radius: 20rpx;

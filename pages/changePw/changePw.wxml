@@ -31,7 +31,7 @@
     border="{{ false }}"
   />
 </van-cell-group>
-<van-button bindtap='change' type="primary">确定</van-button>
+<van-button bind:click='change' type="primary">确定</van-button>
 <van-toast id="van-toast" />
   </view>
 </view>

@@ -1,5 +1,3 @@
-/* pages/students/index/index.wxss */
-
 page {
     width: 100%;
     background-color: #f0f3f6
@@ -13,40 +11,24 @@ page {
     padding-top: 20rpx;
 }
 
-.slide-image image {
-    width: 100%;
-}
-
 .text {
     position: relative;
-    border-radius: 20rpx;
-    background-color: #fff;
+    padding: 0 0 30rpx;
 }
 
 .text-box {
-    display: flex;
-    flex-direction: row;
-}
-
-.text-icon {
-    padding-left: 10rpx;
-    padding-right: 10rpx;
-}
-
-.text-occupy {
-    padding: 10rpx;
-}
-
-.text-occupy1 {
-    padding: 5rpx;
-}
-
-.text-hairline {
-    padding: 3rpx;
-    background-color: #f0f3f6
+    padding: 14.493rpx;
+    background-color: #fff;
+    border-radius: 10rpx;
+    box-shadow: 0 5rpx 10rpx #ebedf0;
 }
 
 .text-text {
     color: #34495e;
     font-size: 30rpx;
+    line-height: 30rpx;
+}
+
+.botton-item {
+    padding-top: 15rpx;
 }

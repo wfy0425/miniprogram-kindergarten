@@ -1,14 +1,14 @@
 <view class="services_container">
+<view class="logo-banner" >
+    <image mode='widthFix' src="{{bannerUrl}}"></image>
+  </view>
   <view class='box'>
-  <!-- <i-input  bind:change='inputName' maxlength="15" title="账号" autofocus placeholder="请输入账号" />
-<i-input  bind:change='inputPassword' maxlength="15" title="密码" autofocus placeholder="请输入密码" /> -->
 <van-cell-group>
   <van-field
     bind:input='inputName'
     required
     clearable
     label="用户名"
-    icon="question-o"
     placeholder="请输入用户名"
     bind:click-icon="onClickUsernameIcon"
   />
@@ -22,8 +22,14 @@
     border="{{ false }}"
   />
 </van-cell-group>
-<van-button bindtap='login' type="primary">登录</van-button>
-<van-button bindtap='register' type="info">注册</van-button>
+<view class="botton" >
+<view  >
+<van-button bind:click='login' type="primary">登录</van-button>
+</view>
+<view class="botton-item" >
+<van-button bind:click='register' type="info">注册</van-button>
+</view>
+  </view>
 <van-toast id="van-toast" />
   </view>
 </view>

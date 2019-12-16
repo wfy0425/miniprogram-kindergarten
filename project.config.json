@@ -122,6 +122,20 @@
 					"pathName": "pages/changePw/changePw",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/login/login",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/parents/bindStudents/bindStudents",
+					"pathName": "pages/parents/bindStudents/bindStudents",
+					"query": "",
+					"scene": null
 				}
 			]
 		}
