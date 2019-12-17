@@ -96,66 +96,54 @@ Page({
 
     },
     //更改密码
-    change() {
+    change: function() {
         const collection = db.collection(this.data.dbCollection);
         console.log(collection)
         let that = this;
         console.log(this)
             //登陆获取用户信息
-        collection.get({
-            success: (res) => {
-                let user = res.data;
-                let userExist = false;
-                let userId = null;
-                console.log(user);
-                console.log(that.data);
-                for (let i = 0; i < user.length; i++) { //遍历数据库对象集合
-                    console.log(user[i]);
-                    if (that.data.username === user[i].username) { //用户名存在
-                        console.log("用户名存在");
-                        userExist = true;
-                        if (that.data.password !== user[i].password) { //判断密码是否正确
-                            console.log('密码错误')
-                            Toast.fail('密码错误');
-                        } else {
-
-                            userId = user[i]._id
-                        }
-                    }
+        collection.doc(this.data.username).get({
+            success: function(res) {
+                // res.data 包含该记录的数据
+                console.log(res.data)
+                console.log("用户名存在");
+                console.log(res.data.password)
+                console.log(that.data.password == res.data.password)
+                if (that.data.password == res.data.password) { //判断密码是否正确
+                    console.log('密码正确')
+                    that.saveuserinfo(that)
+                } else {
+                    console.log('密码错误')
+                    Toast.fail('密码错误');
                 }
-                if (!userExist) { //不存在
-                    console.log('用户名不存在')
-                    Toast.fail('用户名不存在');
-                }
-                if (userId) {
-                    that.saveuserinfo(that, userId)
-                }
+            },
+            fail: function() {
+                console.log('用户名不存在')
+                Toast.fail('用户名不存在');
             }
         })
     },
 
     //注册用户信息
-    saveuserinfo(that, userId) {
+    saveuserinfo: function(that) {
         const collection = db.collection(this.data.dbCollection);
-        console.log(userId)
-            // let that = this;
-        collection.doc(userId).set({ //添加数据
+        // let that = this;
+        collection.doc(this.data.username).update({ //添加数据
             data: {
-                username: that.data.username,
                 password: that.data.newPassword
+            },
+            success: function(res) {
+                console.log('修改成功')
+                Toast.success({
+                    duration: 2000,
+                    message: '修改成功',
+                    onClose: function() {
+                        wx.navigateBack({
+                            delta: 1
+                        });
+                    }
+                })
             }
-        }).then(res => {
-            console.log('修改成功')
-            Toast.success({
-                duration: 2000,
-                message: '修改成功',
-                onClose: function() {
-                    wx.navigateBack({
-                        delta: 1
-                    });
-                }
-            });
-
         })
 
 

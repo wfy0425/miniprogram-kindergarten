@@ -76,8 +76,9 @@ Page({
     onShareAppMessage: function() {
 
     },
-    //登陆
-    login() {
+
+
+    change: function() {
 
         const collection = db.collection(this.data.dbCollection);
         console.log(collection)
@@ -118,7 +119,7 @@ Page({
         })
     },
     //注册
-    register() {
+    register: function() {
         const collection = db.collection(this.data.dbCollection);
         let that = this;
         let flag = false //是否存在 true为存在
@@ -142,7 +143,7 @@ Page({
 
 
     //注册用户信息
-    saveuserinfo(that) {
+    saveuserinfo: function(that) {
 
         const collection = db.collection(this.data.dbCollection);
         // let that = this;

@@ -117,17 +117,17 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 10,
 					"name": "pages/changePw/changePw",
 					"pathName": "pages/changePw/changePw",
-					"query": "",
+					"query": "type=parents",
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 11,
 					"name": "pages/login/login",
 					"pathName": "pages/login/login",
-					"query": "",
+					"query": "type=parents",
 					"scene": null
 				},
 				{
