@@ -7,7 +7,7 @@
     <view class='box'>
         <view class='text'>
         <view class="text-box">
-            <text class='text-text'>当前检测到您的账户尚未绑定与您孩子的识别码绑定，请您尽快绑定，否则将无法访问孩子的在校情况。</text>
+            <text class='text-text'>当前检测到您的账户尚未绑定您孩子的识别码，请您尽快绑定，否则将无法访问孩子的在校情况。</text>
         </view>
     </view>
         <van-cell-group>
@@ -24,7 +24,7 @@
     <view class='box'>
         <view class='text'>
         <view class="text-box">
-            <text class='text-text'>此账户已绑定您孩子的识别码绑定</text>
+            <text class='text-text'>此账户已绑定您孩子的识别码</text>
         </view>
     </view>
     </view>
