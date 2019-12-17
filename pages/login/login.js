@@ -107,12 +107,12 @@ Page({
                     app.globalData.currentUserName = res.data._id;
                     console.log(app.globalData.currentUserName);
                     Toast.success({
-                        duration: 2000,
+                        duration: 1000,
                         message: '登陆成功',
                         onClose: function() {
-                            wx.navigateTo({
-                                url: '/pages/parents/account/account',
-                            })
+                            wx.navigateBack({
+                                delta: 1 //TODO 登录后直接进入账户管理页面
+                            });
                         }
                     })
 
@@ -162,12 +162,12 @@ Page({
             app.globalData.currentUserName = that.data.username;
             console.log('注册成功')
             Toast.success({
-                duration: 2000,
+                duration: 1000,
                 message: '注册成功',
                 onClose: function() {
-                    wx.redirectTo({
-                        url: '/pages/parents/index/index', //TODO: 进入账户管理界面，但是可以返回主页
-                    })
+                    wx.navigateBack({
+                        delta: 1
+                    });
                 }
             });
         })

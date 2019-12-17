@@ -3,18 +3,31 @@
         <image mode='widthFix' src="{{bannerUrl}}"></image>
     </view>
 
+<view wx:if='{{!isBinded}}'>
     <view class='box'>
         <view class='text'>
         <view class="text-box">
-            <text class='text-text'>当前检测到您的账户并未绑定与您孩子的识别码绑定，请您尽快绑定，否则将无法访问孩子的在校情况。</text>
+            <text class='text-text'>当前检测到您的账户尚未绑定与您孩子的识别码绑定，请您尽快绑定，否则将无法访问孩子的在校情况。</text>
         </view>
     </view>
         <van-cell-group>
-            <van-field bind:input='inputStudentId' required clearable label="学生识别码" placeholder="请输入您孩子所对应的识别码" />
+            <van-field bind:input='inputLinkId' required clearable label="学生识别码" placeholder="请输入您孩子所对应的识别码" />
         </van-cell-group>
         <view class="botton-item" >
-        <van-button bind:click='change' type="primary">确定</van-button>
+        <van-button bind:click='bind' type="primary">确定</van-button>
         </view>
-        <van-toast id="van-toast" />
+
     </view>
+    </view>
+
+    <view wx:if='{{isBinded}}'>
+    <view class='box'>
+        <view class='text'>
+        <view class="text-box">
+            <text class='text-text'>此账户已绑定您孩子的识别码绑定</text>
+        </view>
+    </view>
+    </view>
+    </view> 
+    <van-toast id="van-toast" />
 </view>
