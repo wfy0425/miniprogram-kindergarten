@@ -10,6 +10,7 @@
     "pages/parents/bindStudents/bindStudents",
     "pages/parents/class/class",
     "pages/parents/babyQA/babyQA",
+    "pages/parents/babyQA/postDetail/postDetail",
     "pages/parents/contactus/contactus",
     "pages/students/index/index",
     "pages/authorize/authorize",

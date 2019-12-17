@@ -1,0 +1,18 @@
+<!--pages/parents/babyQA/postDetail/postDetail.wxml-->
+<view class="services_container">
+<van-toast id="van-toast" />
+  <view class="logo-banner" >
+    <image mode='widthFix' src="{{bannerUrl}}"></image>
+  </view>
+  <view class="hairline"></view>
+    <view class='blocks'>
+        <view class='blocks-item'>
+          <view class="blocks-image">
+            <image mode='widthFix' src="{{post.url}}" />
+          </view>
+           <view class='blocks-tittle'>{{post.tittle}}</view>
+          <view class='blocks-desc'>{{post.text}}</view>
+        </view>
+    </view>
+</view>
+
