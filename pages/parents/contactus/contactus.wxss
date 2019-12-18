@@ -2,7 +2,7 @@
 
 page {
     width: 100%;
-    background-color: #f0f3f6;
+    background-color: var(--background-color);
 }
 
 .box {
@@ -17,6 +17,10 @@ page {
     /* border-bottom: solid 1px #efefef; */
     width: 100%;
     height: 600rpx;
+}
+
+.hairline {
+    margin-top: 20rpx;
 }
 
 .blocks {
@@ -39,7 +43,6 @@ page {
     padding: 48rpx;
     background-color: #fff;
     border-radius: 12rpx;
-    box-shadow: 0 16rpx 24rpx #ebedf0;
 }
 
 .blocks-image {
@@ -63,13 +66,13 @@ page {
 }
 
 .blocks-tittle {
-    font-weight: 500;
+    color: var(--title-color);
     font-size: 40rpx;
     padding-left: 20rpx;
 }
 
 .blocks-desc {
-    color: #34495e;
+    color: var(--content-color);
     padding-left: 20rpx;
     font-size: 28rpx;
     line-height: 52rpx;

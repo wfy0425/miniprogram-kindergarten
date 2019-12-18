@@ -2,7 +2,7 @@
 
 page {
     width: 100%;
-    background-color: #f0f3f6
+    background-color: var(--background-color)
 }
 
 .box {
@@ -39,10 +39,10 @@ page {
 
 .text-hairline {
     padding: 3rpx;
-    background-color: #f0f3f6
+    background-color: var(--background-color);
 }
 
 .text-text {
-    color: #34495e;
+    color: var(--title-color);
     font-size: 30rpx;
 }

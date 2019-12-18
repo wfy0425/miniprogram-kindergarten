@@ -4,7 +4,7 @@
   <view class="logo-banner" >
     <image mode='widthFix' src="{{bannerUrl}}"></image>
   </view>
-  <view class="van-hairline--top"></view>
+  <view class="hairline"></view>
     <view class='blocks'>
       <block wx:for="{{memberList}}" wx:key="{{item}}">
         <view class='blocks-item'>

@@ -4,6 +4,7 @@
   <view class="logo-banner">
     <image mode='widthFix' src="{{bannerUrl}}"></image>
   </view>
+
   <view class='box'>
 
     <swiper class="banner" autoplay="autoplay" interval="2500" duration="500" indicator-dots="true">

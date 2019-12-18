@@ -1,6 +1,6 @@
 page {
     width: 100%;
-    background-color: #f0f3f6
+    background-color: var(--background-color);
 }
 
 .box {
@@ -20,11 +20,10 @@ page {
     padding: 14.493rpx;
     background-color: #fff;
     border-radius: 10rpx;
-    box-shadow: 0 5rpx 10rpx #ebedf0;
 }
 
 .text-text {
-    color: #34495e;
+    color: var(--content-color);
     font-size: 30rpx;
     line-height: 30rpx;
 }

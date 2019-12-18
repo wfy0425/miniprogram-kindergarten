@@ -52,6 +52,6 @@ page {
 .photo-desc {
     font-family: PingFangSC-Regular;
     font-size: 26rpx;
-    color: #666;
+    color: var(content-color);
     margin-top: 10rpx;
 }
