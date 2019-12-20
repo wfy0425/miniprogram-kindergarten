@@ -38,6 +38,7 @@ Page({
             dbCollection: options.type,
         })
         console.log(this.data.dbCollection)
+
     },
 
     /**

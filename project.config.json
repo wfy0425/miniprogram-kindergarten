@@ -136,6 +136,12 @@
 					"pathName": "pages/parents/contactus/contactus",
 					"query": "type=parents",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/staffs/16pf/score/score",
+					"pathName": "pages/staffs/16pf/score/score",
+					"scene": null
 				}
 			]
 		}

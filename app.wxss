@@ -10,6 +10,7 @@ page {
     --divider-color: #e9eaec;
     --border-color: #dddee1;
     --sub-color:#80848f;
+    --error-color:#ed3f14;
 }
 
 .container {

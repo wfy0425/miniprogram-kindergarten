@@ -1,43 +1,49 @@
-<view wx:if='{{!hide}}' class='container'>
-  <swiper class='sheet' current='{{currentQuestion}}' bindchange="changeQuestion">
-    <block wx:for="{{qnaire}}" wx:key="*this">
-      <swiper-item>
-        <form bindsubmit='submit'>
-          <view class='naire'>
-            <view class='question'>{{item.question}}</view>
-            <!--view class='border' /-->
-            <radio-group class='radio-group' name='answer' bindchange='radioChange'>
-              <label class='radio'>
-                <radio value="{{item.score.a}}" color='#fcbe39' />{{item.option.a}}</label>
-              <label class='radio'>
-                <radio value="{{item.score.b}}" color='#fcbe39' />{{item.option.b}}</label>
-              <label class='radio'>
-                <radio value="{{item.score.c}}" color='#fcbe39' />{{item.option.c}}</label>
-            </radio-group>
-          </view>
-          <view class='button-group'>
-            <button class='button' hover-class='none' bindtap='prevQ' disabled='{{currentQuestion==0}}'>上一题</button>
-            <button wx:if="{{currentQuestion<questionLength-1}}" class='button' hover-class='none' form-type='submit' bindtap='nextQ'>下一题</button>
-            <button wx:else class='button' hover-class='none' form-type='submit' bindtap='formSubmit'>提交</button>
-          </view>
-          <view class='id'>{{currentQuestion+1}}/{{qnaire.length}}</view>
-        </form>
-      </swiper-item>
-    </block>
-  </swiper>
-
-
-</view>
-
-  <view class='precaution' wx:if='{{hide}}' >
-  <view class='precaution-precaution'>
-      <text decode="{{true}}" space="{{true}}" class='precaution-tittle'>卡特尔16种性格因素测验</text>
-      <text decode="{{true}}" space="{{true}}" class='precaution-text'>{{precaution}}</text>
-      </view>
-      <van-cell-group>
-        <van-field label="姓名" required placeholder="请输入您的姓名" border="{{ false }}" bind:change="inputName" error="{{fieldError}}" />
-      </van-cell-group>
-      <view class='precaution-button'>
-      <van-button round type="info" bind:click='nameSubmit'>开始答题</van-button>
-</view>
+<view class="services_container">
+  <view class="logo-banner" >
+    <image mode='widthFix' src="{{bannerUrl}}"></image>
   </view>
+<view wx:if='{{!hide}}' class='container'>
+    <swiper class='sheet' current='{{currentQuestion}}' bindchange="changeQuestion">
+        <block wx:for="{{qnaire}}" wx:key="*this">
+            <swiper-item>
+                <form bindsubmit='submit'>
+                    <view class='naire'>
+                        <view class='question'>{{item.question}}</view>
+                        <!--view class='border' /-->
+                        <radio-group class='radio-group' name='answer' bindchange='radioChange'>
+                            <label class='radio'>
+                <radio value="{{item.score.a}}" color='#fcbe39' />{{item.option.a}}</label>
+                            <label class='radio'>
+                <radio value="{{item.score.b}}" color='#fcbe39' />{{item.option.b}}</label>
+                            <label class='radio'>
+                <radio value="{{item.score.c}}" color='#fcbe39' />{{item.option.c}}</label>
+                        </radio-group>
+                    </view>
+                    <view class='button-group'>
+                        <button class='button' hover-class='none' bindtap='prevQ' disabled='{{currentQuestion==0}}'>上一题</button>
+                        <button wx:if="{{currentQuestion<questionLength-1}}" class='button' hover-class='none' form-type='submit' bindtap='nextQ'>下一题</button>
+                        <button wx:else class='button' hover-class='none' form-type='submit' bindtap='formSubmit'>提交</button>
+                    </view>
+                    <view class='id'>{{currentQuestion+1}}/{{qnaire.length}}</view>
+                </form>
+            </swiper-item>
+        </block>
+    </swiper>
+
+
+</view>
+
+<view class='precaution' wx:if='{{hide}}'>
+    <view class='precaution-precaution'>
+        <text decode="{{true}}" space="{{true}}" class='precaution-tittle'>卡特尔16种性格因素测验</text>
+        <text decode="{{true}}" space="{{true}}" class='precaution-text'>&emsp;&emsp;本测验共有187道题目，都是有关个人的兴趣和态度等问题。每个人对这些问题是会有不同看法的，回答也是不同的，因而对问题如何回答，并没有对与不对之分，只是表明你对这些问题的态度。请你要尽量表达个人的意见，不要有顾虑。</text>
+        <text decode="{{true}}" space="{{true}}" class='precaution-text-color'>\n应当记住的是：\n1．每一测题只能选择一个答案。\n2．不可漏掉任何题目。\n3．尽量不选择B答案。\n4．本测验不计时间，但应凭自己的直觉反应进行作答，不要迟疑不决，拖延时间。一定要在一个小时以内完成整个测验。\n5．有些题目你可能从未思考过，或者感到不太容易回答。对于这样的题目，同样要求你做出一种倾向性的选择。</text>
+    </view>
+    <van-cell-group>
+        <van-field label="姓名" required placeholder="请输入您的姓名" border="{{ false }}" bind:change="inputName" error="{{fieldError}}" />
+    </van-cell-group>
+    <view class='precaution-button'>
+        <van-button round type="info" bind:click='nameSubmit'>开始答题</van-button>
+    </view>
+</view>
+</view>

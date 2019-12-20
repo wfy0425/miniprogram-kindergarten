@@ -1,198 +1,321 @@
 // pages/staffs/16pf/16pf.js
 const db = wx.cloud.database()
-const qnaire = require("./questions.js") //导入题库
+const questions = require("./questions.js") //导入题库
 var ans;
 Page({
 
-  /**
-   * 页面的初始数据
-   */
+    /**
+     * 页面的初始数据
+     */
 
 
-  data: {
-    qnaire: qnaire.qnaire,
-    questionLength: qnaire.qnaire.length,
-    answer: ans,
-    currentQuestion: 0,
-    hide:true,
-    fieldError: false,
-    name:"",
-    precaution: "&emsp;&emsp;卡特尔16种性格因素测验从乐群性，智慧性，稳定性，影响性，活泼性，有恒性，交际性，情感性，怀疑性，想象性，世故性，忧虑性，变革性，独立性，自律性，紧张性16个相对独立的性格维度对人进行评价，能够较全面地反映人的性格特点，该测验共由187道题组成，在职业指导及人员选拔领域被广泛运用。\n&emsp;&emsp;本测试包括一些有关个人生活情形的问题，每个人对这些问题会有不同的看法，每个人的回答也就自然会有所不同。因而对问题如何回答，不存在“对”与“不对”之分，只是表明您对这些问题的态度。请您尽量表达您个人的意见，不要有所顾忌。\n&emsp;&emsp;每一个问题都有三个被选项，但您对每个问题只能选择一个项目。请尽量少选中性答案。每个问题都要回答。务必请您根据自己的实际情况回答。对每个问题不要过多考虑，请尽快回答。"
-  },
+    data: {
+        logoUrl: '../../../images/logo.svg',
+        bannerUrl: '../../../images/banner.svg',
+        qnaire: questions.qnaire,
+        questionLength: questions.qnaire.length,
+        category: questions.category,
+        answer: ans,
+        currentQuestion: 0,
+        hide: true,
+        fieldError: false,
+        name: "",
+    },
 
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-    ans = new Array(this.data.questionLength);
-    for (var j = 0, len = ans.length; j < len; j++) {
-      ans[j]=-1;
-    }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  },
-
-  inputName: function (value) {
-    this.setData({
-      name: value.detail
-    })
-  },
-
-  nameSubmit: function(e) {
-    if (this.data.name) {
-      this.setData({
-        hide: false
-      })}
-    else{
-      this.setData({
-        fieldError: true
-      })
-    }
-  },
-
-  changeQuestion: function (event) {
-    this.setData({
-      currentQuestion: event.detail.current,
-    });
-  },
-
-  radioChange: function(e) {
-    console.log(e.detail.value)
-  },
-
-  nextQ: function() {
-    if (this.data.currentQuestion < this.data.questionLength) {
-      this.setData({
-        currentQuestion: this.data.currentQuestion + 1,
-      })
-    }
-  },
-
-  prevQ: function(e) {
-    if (this.data.currentQuestion >= 0) {
-      this.setData({
-        currentQuestion: this.data.currentQuestion - 1,
-      })
-    }
-  },
-
-  submit: function(e) {
-    console.log(e.detail.value);
-    ans[this.data.currentQuestion] = e.detail.value.answer;
-    this.setData({
-      answer: ans,
-    })
-    console.log(this.data.answer);
-
-  },
-
-  //判断答题完成情况
-  formSubmit: function() {
-    var finish = true;
-    var i = 0;
-    var that = this;
-    while (i < this.data.questionLength) {
-      if (ans[i] == -1) {
-        finish = false;
-        break;
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function(options) {
+        ans = new Array(this.data.questionLength);
+        console.log(this.data.questionLength)
+        for (var j = 0; j < ans.length; j++) {
+            ans[j] = -1;
         }
-      i++;
-    }
-    if (finish == false) {
-      wx.showModal({
-        title: '无法提交',
-        content: '您还有部分题目未完成，请检查后重新提交',
-        showCancel: false,
-        confirmColor: '#fcbe39',
-        confirmText: "好的",
-        success(res) {
-          that.setData({
-            currentQuestion: i,
-          })
-        }
-      })
-    } else {
-      wx.showLoading({
-        title: '加载中',
-      })
-      setTimeout(function() {
-        wx.hideLoading({
-          success(res) {
-            that.answer2db();
-            wx.navigateBack({
-              delta: 1
+    },
+
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function() {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function() {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function() {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function() {
+
+    },
+
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function() {
+
+    },
+
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom: function() {
+
+    },
+
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage: function() {
+
+    },
+
+    inputName: function(value) {
+        this.setData({
+            name: value.detail
+        })
+    },
+
+    nameSubmit: function(e) {
+        if (this.data.name) {
+            this.setData({
+                hide: false
             })
-          }
-        })
-      }, 2000)
-    }
-  },
+        } else {
+            this.setData({
+                fieldError: true
+            })
+        }
+    },
 
-  //将用户完成的答案数组上传至云数据库
-  answer2db: function() {
-    db.collection('16pf').add({
-      data: {
-        name:this.data.name,
-        answer: this.data.answer
-      },
-      success(res) {
-        console.log(res._id);
-      },
-      fail(res) {
-        wx.showToast({
-          icon: 'none',
-          title: '新增记录失败'
+    changeQuestion: function(event) {
+        this.setData({
+            currentQuestion: event.detail.current,
+        });
+    },
+
+    radioChange: function(e) {
+        console.log(e.detail.value)
+    },
+
+    nextQ: function() {
+        if (this.data.currentQuestion < this.data.questionLength) {
+            this.setData({
+                currentQuestion: this.data.currentQuestion + 1,
+            })
+        }
+    },
+
+    prevQ: function(e) {
+        if (this.data.currentQuestion >= 0) {
+            this.setData({
+                currentQuestion: this.data.currentQuestion - 1,
+            })
+        }
+    },
+
+    submit: function(e) {
+        console.log(e.detail.value);
+        ans[this.data.currentQuestion] = e.detail.value.answer;
+        this.setData({
+            answer: ans,
         })
-        console.error('[数据库] [新增记录] 失败：', err)
-      }
-    })
-  }
+        console.log(this.data.answer);
+
+    },
+
+    //判断答题完成情况
+    formSubmit: function() {
+        var finish = true;
+        var i = 0;
+        var that = this;
+        while (i < this.data.questionLength) {
+            if (ans[i] == -1) {
+                finish = false;
+                break;
+            }
+            i++;
+        }
+        if (finish == false) {
+            wx.showModal({
+                title: '无法提交',
+                content: '您还有部分题目未完成，请检查后重新提交',
+                showCancel: false,
+                confirmColor: '#fcbe39',
+                confirmText: "好的",
+                success(res) {
+                    that.setData({
+                        currentQuestion: i,
+                    })
+                }
+            })
+        } else {
+            wx.showLoading({
+                title: '正在计算结果',
+            })
+            setTimeout(function() {
+                wx.hideLoading({
+                    success(res) {
+                        that.answer2db();
+                        wx.navigateBack({
+                            delta: 1
+                        })
+                    }
+                })
+            }, 2000)
+        }
+    },
+
+    //将用户完成的答案数组上传至云数据库
+    answer2db: function() {
+        var aScore = 0;
+        var a = this.data.category.A;
+        console.log()
+        for (var i = 0; i < a.length; i++) {
+            aScore += Number(this.data.answer[a[i]]);
+        }
+        var bScore = 0;
+        var b = this.data.category.B;
+        for (var i = 0; i < b.length; i++) {
+            bScore += Number(this.data.answer[b[i]]);
+        }
+        var cScore = 0;
+        var c = this.data.category.C;
+        for (var i = 0; i < c.length; i++) {
+            cScore += Number(this.data.answer[c[i]]);
+        }
+        var eScore = 0;
+        var e = this.data.category.E;
+        for (var i = 0; i < e.length; i++) {
+            eScore += Number(this.data.answer[e[i]]);
+        }
+        var fScore = 0;
+        var f = this.data.category.F;
+        for (var i = 0; i < f.length; i++) {
+            fScore += Number(this.data.answer[f[i]]);
+        }
+        var gScore = 0;
+        var g = this.data.category.G;
+        for (var i = 0; i < g.length; i++) {
+            gScore += Number(this.data.answer[g[i]]);
+        }
+        var hScore = 0;
+        var h = this.data.category.H;
+        for (var i = 0; i < h.length; i++) {
+            hScore += Number(this.data.answer[h[i]]);
+        }
+        var iScore = 0;
+        var iarr = this.data.category.I;
+        for (var i = 0; i < iarr.length; i++) {
+            iScore += Number(this.data.answer[iarr[i]]);
+        }
+        var lScore = 0;
+        var l = this.data.category.L;
+        for (var i = 0; i < l.length; i++) {
+            lScore += Number(this.data.answer[l[i]]);
+        }
+        var mScore = 0;
+        var m = this.data.category.M;
+        for (var i = 0; i < m.length; i++) {
+            mScore += Number(this.data.answer[m[i]]);
+        }
+        var nScore = 0;
+        var n = this.data.category.N;
+        for (var i = 0; i < n.length; i++) {
+            nScore += Number(this.data.answer[n[i]]);
+        }
+        var oScore = 0;
+        var o = this.data.category.O;
+        for (var i = 0; i < o.length; i++) {
+            oScore += Number(this.data.answer[o[i]]);
+        }
+        var q1Score = 0;
+        var q1 = this.data.category.Q1;
+        for (var i = 0; i < q1.length; i++) {
+            q1Score += Number(this.data.answer[q1[i]]);
+        }
+        var q2Score = 0;
+        var q2 = this.data.category.Q2;
+        for (var i = 0; i < q2.length; i++) {
+            q2Score += Number(this.data.answer[q2[i]]);
+        }
+        var q3Score = 0;
+        var q3 = this.data.category.Q3;
+        for (var i = 0; i < q3.length; i++) {
+            q3Score += Number(this.data.answer[q3[i]]);
+        }
+        var q4Score = 0;
+        var q4 = this.data.category.Q4;
+        for (var i = 0; i < q4.length; i++) {
+            q4Score += Number(this.data.answer[q4[i]]);
+        }
+
+
+
+        db.collection('16pf').add({
+            data: {
+                name: this.data.name,
+                answer: this.data.answer,
+                A: aScore,
+                B: bScore,
+                C: cScore,
+                E: eScore,
+                F: fScore,
+                G: gScore,
+                H: hScore,
+                I: iScore,
+                L: lScore,
+                M: mScore,
+                N: nScore,
+                O: oScore,
+                Q1: q1Score,
+                Q2: q2Score,
+                Q3: q3Score,
+                Q4: q4Score,
+            },
+            success(res) {
+                console.log(res._id);
+                wx.setStorageSync('a', 1);
+                wx.setStorageSync('b', bScore);
+                wx.setStorageSync('c', cScore);
+                wx.setStorageSync('e', eScore);
+                wx.setStorageSync('f', fScore);
+                wx.setStorageSync('g', gScore);
+                wx.setStorageSync('h', hScore);
+                wx.setStorageSync('i', iScore);
+                wx.setStorageSync('l', lScore);
+                wx.setStorageSync('m', mScore);
+                wx.setStorageSync('n', nScore);
+                wx.setStorageSync('o', oScore);
+                wx.setStorageSync('q1', q1Score);
+                wx.setStorageSync('q2', q2Score);
+                wx.setStorageSync('q3', q3Score);
+                wx.setStorageSync('q4', q4Score);
+
+                wx.navigateTo({
+                    url: '/pages/staffs/16pf/score/score',
+                })
+            },
+            fail(res) {
+                wx.showToast({
+                    icon: 'none',
+                    title: '新增记录失败'
+                })
+                console.error('[数据库] [新增记录] 失败：', err)
+            }
+        })
+    }
 })
