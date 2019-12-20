@@ -1,0 +1,7 @@
+.view_hide {
+    display: none;
+}
+
+.view_show {
+    display: block;
+}

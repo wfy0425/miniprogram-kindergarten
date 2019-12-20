@@ -1,0 +1,149 @@
+<view>
+    <text>请您输入16种因素所对应的分数</text>
+    <van-cell-group>
+        <van-field
+            required
+            clearable
+            label="A乐群性"
+            value="{{ A }}"
+            placeholder="请输入分数"
+            bind:change="onChangeA"
+        />
+        <van-field
+            required
+            clearable
+            label="B聪慧性"
+            value="{{ B }}"
+            placeholder="请输入分数"
+            bind:change="onChangeB"
+        />
+        <van-field
+            required
+            clearable
+            label="C稳定性"
+            value="{{ C }}"
+            placeholder="请输入分数"
+            bind:change="onChangeC"
+        />
+        <van-field
+            required
+            clearable
+            label="E恃强性"
+            value="{{ E }}"
+            placeholder="请输入分数"
+            bind:change="onChangeE"
+        />
+        <van-field
+            required
+            clearable
+            label="F兴奋性"
+            value="{{ F }}"
+            placeholder="请输入分数"
+            bind:change="onChangeF"
+        />
+        <van-field
+            required
+            clearable
+            label="G有恒性"
+            value="{{ G }}"
+            placeholder="请输入分数"
+            bind:change="onChangeG"
+        />
+        <van-field
+            required
+            clearable
+            label="H敢为性"
+            value="{{ H }}"
+            placeholder="请输入分数"
+            bind:change="onChangeH"
+        />
+        <van-field
+            required
+            clearable
+            label="I敏感性"
+            value="{{ I }}"
+            placeholder="请输入分数"
+            bind:change="onChangeI"
+        />
+        <van-field
+            required
+            clearable
+            label="L怀疑性"
+            value="{{ L }}"
+            placeholder="请输入分数"
+            bind:change="onChangeL"
+        />
+        <van-field
+            required
+            clearable
+            label="M幻想性"
+            value="{{ M }}"
+            placeholder="请输入分数"
+            bind:change="onChangeM"
+        />
+        <van-field
+            required
+            clearable
+            label="N世故性"
+            value="{{ N }}"
+            placeholder="请输入分数"
+            bind:change="onChangeN"
+        />
+        <van-field
+            required
+            clearable
+            label="O忧虑性"
+            value="{{ O }}"
+            placeholder="请输入分数"
+            bind:change="onChangeO"
+        />
+        <van-field
+            required
+            clearable
+            label="Q1试验性"
+            value="{{ Q1 }}"
+            placeholder="请输入分数"
+            bind:change="onChangeQ1"
+        />
+        <van-field
+            required
+            clearable
+            label="Q2独立性"
+            value="{{ Q2 }}"
+            placeholder="请输入分数"
+            bind:change="onChangeQ2"
+        />
+        <van-field
+            required
+            clearable
+            label="Q3自律性"
+            value="{{ Q3 }}"
+            placeholder="请输入分数"
+            bind:change="onChangeQ3"
+        />
+        <van-field
+            required
+            clearable
+            label="Q4紧张性"
+            value="{{ Q4 }}"
+            placeholder="请输入分数"
+            bind:change="onChangeQ4"
+        />
+    </van-cell-group>
+
+    <van-button type="primary" bind:click="onSubmit">计算</van-button>
+</view>
+
+<view class="{{show?'view_show':'view_hide'}}">
+    <text>X1适应与焦虑型：{{X1}}\n</text>
+    <text>X2内向与外向型：{{X2}}\n</text>
+    <text>X3感情用事与安详机警型：{{X3}}\n</text>
+    <text>X4怯懦与果断型：{{X4}}\n</text>
+    <text>Y1心理健康因素：{{Y1}}\n</text>
+    <text>Y2专业有成就者的人格因素：{{Y2}}\n</text>
+    <text>Y3创造力强者的人格因素：{{Y3}}\n</text>
+    <text>Y4在新环境中有成长能力的人格因素：{{Y4}}\n</text>
+
+
+
+</view>

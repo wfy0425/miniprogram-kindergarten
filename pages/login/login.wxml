@@ -22,11 +22,11 @@
     border="{{ false }}"
   />
 </van-cell-group>
-<view class="botton" >
+<view class="button" >
 <view  >
 <van-button bind:click='login' type="primary">登录</van-button>
 </view>
-<view class="botton-item" >
+<view class="button-item" >
 <van-button bind:click='register' type="info">注册</van-button>
 </view>
   </view>

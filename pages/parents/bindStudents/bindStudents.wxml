@@ -13,7 +13,7 @@
         <van-cell-group>
             <van-field bind:input='inputLinkId' required clearable label="学生识别码" placeholder="请输入您孩子所对应的识别码" />
         </van-cell-group>
-        <view class="botton-item" >
+        <view class="button-item" >
         <van-button bind:click='bind' type="primary">确定</van-button>
         </view>
 

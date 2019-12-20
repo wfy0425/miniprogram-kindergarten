@@ -1,991 +1,198 @@
 // pages/staffs/16pf/16pf.js
+const db = wx.cloud.database()
+const qnaire = require("./questions.js") //导入题库
+var ans;
 Page({
 
-    /**
-     * 页面的初始数据
-     */
-    data: {
-        A: null,
-        B: null,
-        C: null,
-        E: null,
-        F: null,
-        G: null,
-        H: null,
-        I: null,
-        L: null,
-        M: null,
-        N: null,
-        O: null,
-        Q1: null,
-        Q2: null,
-        Q3: null,
-        Q4: null,
-        X1: null,
-        X2: null,
-        X3: null,
-        X4: null,
-        Y1: null,
-        Y2: null,
-        Y3: null,
-        Y4: null,
-        show: false,
-    },
+  /**
+   * 页面的初始数据
+   */
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function(options) {
 
-    },
+  data: {
+    qnaire: qnaire.qnaire,
+    questionLength: qnaire.qnaire.length,
+    answer: ans,
+    currentQuestion: 0,
+    hide:true,
+    fieldError: false,
+    name:"",
+    precaution: "&emsp;&emsp;卡特尔16种性格因素测验从乐群性，智慧性，稳定性，影响性，活泼性，有恒性，交际性，情感性，怀疑性，想象性，世故性，忧虑性，变革性，独立性，自律性，紧张性16个相对独立的性格维度对人进行评价，能够较全面地反映人的性格特点，该测验共由187道题组成，在职业指导及人员选拔领域被广泛运用。\n&emsp;&emsp;本测试包括一些有关个人生活情形的问题，每个人对这些问题会有不同的看法，每个人的回答也就自然会有所不同。因而对问题如何回答，不存在“对”与“不对”之分，只是表明您对这些问题的态度。请您尽量表达您个人的意见，不要有所顾忌。\n&emsp;&emsp;每一个问题都有三个被选项，但您对每个问题只能选择一个项目。请尽量少选中性答案。每个问题都要回答。务必请您根据自己的实际情况回答。对每个问题不要过多考虑，请尽快回答。"
+  },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function() {
 
-    },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+    ans = new Array(this.data.questionLength);
+    for (var j = 0, len = ans.length; j < len; j++) {
+      ans[j]=-1;
+    }
+  },
 
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function() {
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
 
-    },
+  },
 
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function() {
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
 
-    },
+  },
 
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function() {
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function() {
 
-    },
+  },
 
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function() {
 
-    },
+  },
 
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
 
-    },
+  },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
 
-    },
-    onChangeA(event) {
-        // event.detail 为当前输入的值
-        this.setData({
-            A: event.detail
-        })
+  },
 
-    },
-    onChangeB(event) {
-        // event.detail 为当前输入的值
-        this.setData({
-            B: event.detail
-        })
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function() {
 
-    },
-    onChangeC(event) {
-        // event.detail 为当前输入的值
-        this.setData({
-            C: event.detail
-        })
+  },
 
-    },
-    onChangeE(event) {
-        // event.detail 为当前输入的值
-        this.setData({
-            E: event.detail
-        })
+  inputName: function (value) {
+    this.setData({
+      name: value.detail
+    })
+  },
 
-    },
-    onChangeF(event) {
-        // event.detail 为当前输入的值
-        this.setData({
-            F: event.detail
-        })
+  nameSubmit: function(e) {
+    if (this.data.name) {
+      this.setData({
+        hide: false
+      })}
+    else{
+      this.setData({
+        fieldError: true
+      })
+    }
+  },
 
-    },
-    onChangeG(event) {
-        // event.detail 为当前输入的值
-        this.setData({
-            G: event.detail
-        })
+  changeQuestion: function (event) {
+    this.setData({
+      currentQuestion: event.detail.current,
+    });
+  },
 
-    },
-    onChangeH(event) {
-        // event.detail 为当前输入的值
-        this.setData({
-            H: event.detail
-        })
+  radioChange: function(e) {
+    console.log(e.detail.value)
+  },
 
-    },
-    onChangeI(event) {
-        // event.detail 为当前输入的值
-        this.setData({
-            I: event.detail
-        })
+  nextQ: function() {
+    if (this.data.currentQuestion < this.data.questionLength) {
+      this.setData({
+        currentQuestion: this.data.currentQuestion + 1,
+      })
+    }
+  },
 
-    },
-    onChangeL(event) {
-        // event.detail 为当前输入的值
-        this.setData({
-            L: event.detail
-        })
+  prevQ: function(e) {
+    if (this.data.currentQuestion >= 0) {
+      this.setData({
+        currentQuestion: this.data.currentQuestion - 1,
+      })
+    }
+  },
 
-    },
-    onChangeM(event) {
-        // event.detail 为当前输入的值
-        this.setData({
-            M: event.detail
-        })
+  submit: function(e) {
+    console.log(e.detail.value);
+    ans[this.data.currentQuestion] = e.detail.value.answer;
+    this.setData({
+      answer: ans,
+    })
+    console.log(this.data.answer);
 
-    },
-    onChangeN(event) {
-        // event.detail 为当前输入的值
-        this.setData({
-            N: event.detail
-        })
-    },
-    onChangeO(event) {
-        // event.detail 为当前输入的值
-        this.setData({
-            O: event.detail
-        })
-    },
-    onChangeQ1(event) {
-        // event.detail 为当前输入的值
-        this.setData({
-            Q1: event.detail
-        })
-    },
-    onChangeQ2(event) {
-        // event.detail 为当前输入的值
-        this.setData({
-            Q2: event.detail
-        })
-    },
-    onChangeQ3(event) {
-        // event.detail 为当前输入的值
-        this.setData({
-            Q3: event.detail
-        })
-    },
-    onChangeQ4(event) {
-        // event.detail 为当前输入的值
-        this.setData({
-            Q4: event.detail
-        })
-    },
+  },
 
-    onSubmit(event) {
-        if (this.data.A <= 1) {
-            this.setData({
-                A: 1
-            })
-        } else if (this.data.A <= 3) {
-            this.setData({
-                A: 2
-            })
-        } else if (this.data.A <= 5) {
-            this.setData({
-                A: 3
-            })
-        } else if (this.data.A <= 6) {
-            this.setData({
-                A: 4
-            })
-        } else if (this.data.A <= 8) {
-            this.setData({
-                A: 5
-            })
-        } else if (this.data.A <= 11) {
-            this.setData({
-                A: 6
-            })
-        } else if (this.data.A <= 13) {
-            this.setData({
-                A: 7
-            })
-        } else if (this.data.A <= 14) {
-            this.setData({
-                A: 8
-            })
-        } else if (this.data.A <= 16) {
-            this.setData({
-                A: 9
-            })
-        } else if (this.data.A <= 20) {
-            this.setData({
-                A: 10
-            })
+  //判断答题完成情况
+  formSubmit: function() {
+    var finish = true;
+    var i = 0;
+    var that = this;
+    while (i < this.data.questionLength) {
+      if (ans[i] == -1) {
+        finish = false;
+        break;
         }
-
-        if (this.data.A <= 1) {
-            this.setData({
-                A: 1
-            })
-        } else if (this.data.A <= 3) {
-            this.setData({
-                A: 2
-            })
-        } else if (this.data.A <= 5) {
-            this.setData({
-                A: 3
-            })
-        } else if (this.data.A <= 6) {
-            this.setData({
-                A: 4
-            })
-        } else if (this.data.A <= 8) {
-            this.setData({
-                A: 5
-            })
-        } else if (this.data.A <= 11) {
-            this.setData({
-                A: 6
-            })
-        } else if (this.data.A <= 13) {
-            this.setData({
-                A: 7
-            })
-        } else if (this.data.A <= 14) {
-            this.setData({
-                A: 8
-            })
-        } else if (this.data.A <= 16) {
-            this.setData({
-                A: 9
-            })
-        } else if (this.data.A <= 20) {
-            this.setData({
-                A: 10
-            })
+      i++;
+    }
+    if (finish == false) {
+      wx.showModal({
+        title: '无法提交',
+        content: '您还有部分题目未完成，请检查后重新提交',
+        showCancel: false,
+        confirmColor: '#fcbe39',
+        confirmText: "好的",
+        success(res) {
+          that.setData({
+            currentQuestion: i,
+          })
         }
-
-        if (this.data.B <= 3) {
-            this.setData({
-                B: 1
-            })
-        } else if (this.data.B <= 4) {
-            this.setData({
-                B: 2
-            })
-        } else if (this.data.B <= 5) {
-            this.setData({
-                B: 3
-            })
-        } else if (this.data.B <= 6) {
-            this.setData({
-                B: 4
-            })
-        } else if (this.data.B <= 7) {
-            this.setData({
-                B: 5
-            })
-        } else if (this.data.B <= 8) {
-            this.setData({
-                B: 6
-            })
-        } else if (this.data.B <= 9) {
-            this.setData({
-                B: 7
-            })
-        } else if (this.data.B <= 10) {
-            this.setData({
-                B: 8
-            })
-        } else if (this.data.B <= 11) {
-            this.setData({
-                B: 9
-            })
-        } else if (this.data.B <= 13) {
-            this.setData({
-                B: 10
-            })
-        }
-
-        if (this.data.C <= 5) {
-            this.setData({
-                C: 1
-            })
-        } else if (this.data.C <= 7) {
-            this.setData({
-                C: 2
-            })
-        } else if (this.data.C <= 9) {
-            this.setData({
-                C: 3
-            })
-        } else if (this.data.C <= 11) {
-            this.setData({
-                C: 4
-            })
-        } else if (this.data.C <= 13) {
-            this.setData({
-                C: 5
-            })
-        } else if (this.data.C <= 16) {
-            this.setData({
-                C: 6
-            })
-        } else if (this.data.C <= 18) {
-            this.setData({
-                C: 7
-            })
-        } else if (this.data.C <= 20) {
-            this.setData({
-                C: 8
-            })
-        } else if (this.data.C <= 22) {
-            this.setData({
-                C: 9
-            })
-        } else if (this.data.C <= 26) {
-            this.setData({
-                C: 10
-            })
-        }
-
-        if (this.data.E <= 2) {
-            this.setData({
-                E: 1
-            })
-        } else if (this.data.E <= 4) {
-            this.setData({
-                E: 2
-            })
-        } else if (this.data.E <= 5) {
-            this.setData({
-                E: 3
-            })
-        } else if (this.data.E <= 7) {
-            this.setData({
-                E: 4
-            })
-        } else if (this.data.E <= 9) {
-            this.setData({
-                E: 5
-            })
-        } else if (this.data.E <= 12) {
-            this.setData({
-                E: 6
-            })
-        } else if (this.data.E <= 14) {
-            this.setData({
-                E: 7
-            })
-        } else if (this.data.E <= 16) {
-            this.setData({
-                E: 8
-            })
-        } else if (this.data.E <= 18) {
-            this.setData({
-                E: 9
-            })
-        } else if (this.data.E <= 26) {
-            this.setData({
-                E: 10
-            })
-        }
-
-        if (this.data.F <= 3) {
-            this.setData({
-                F: 1
-            })
-        } else if (this.data.F <= 4) {
-            this.setData({
-                F: 2
-            })
-        } else if (this.data.F <= 6) {
-            this.setData({
-                F: 3
-            })
-        } else if (this.data.F <= 7) {
-            this.setData({
-                F: 4
-            })
-        } else if (this.data.F <= 9) {
-            this.setData({
-                F: 5
-            })
-        } else if (this.data.F <= 12) {
-            this.setData({
-                F: 6
-            })
-        } else if (this.data.F <= 14) {
-            this.setData({
-                F: 7
-            })
-        } else if (this.data.F <= 16) {
-            this.setData({
-                F: 8
-            })
-        } else if (this.data.F <= 18) {
-            this.setData({
-                F: 9
-            })
-        } else if (this.data.F <= 26) {
-            this.setData({
-                F: 10
-            })
-        }
-
-        if (this.data.F <= 3) {
-            this.setData({
-                F: 1
-            })
-        } else if (this.data.F <= 4) {
-            this.setData({
-                F: 2
-            })
-        } else if (this.data.F <= 6) {
-            this.setData({
-                F: 3
-            })
-        } else if (this.data.F <= 7) {
-            this.setData({
-                F: 4
-            })
-        } else if (this.data.F <= 9) {
-            this.setData({
-                F: 5
-            })
-        } else if (this.data.F <= 12) {
-            this.setData({
-                F: 6
-            })
-        } else if (this.data.F <= 14) {
-            this.setData({
-                F: 7
-            })
-        } else if (this.data.F <= 16) {
-            this.setData({
-                F: 8
-            })
-        } else if (this.data.F <= 18) {
-            this.setData({
-                F: 9
-            })
-        } else if (this.data.F <= 26) {
-            this.setData({
-                F: 10
-            })
-        }
-
-
-        if (this.data.G <= 5) {
-            this.setData({
-                G: 1
-            })
-        } else if (this.data.G <= 7) {
-            this.setData({
-                G: 2
-            })
-        } else if (this.data.G <= 9) {
-            this.setData({
-                G: 3
-            })
-        } else if (this.data.G <= 10) {
-            this.setData({
-                G: 4
-            })
-        } else if (this.data.G <= 12) {
-            this.setData({
-                G: 5
-            })
-        } else if (this.data.G <= 14) {
-            this.setData({
-                G: 6
-            })
-        } else if (this.data.G <= 16) {
-            this.setData({
-                G: 7
-            })
-        } else if (this.data.G <= 17) {
-            this.setData({
-                G: 8
-            })
-        } else if (this.data.G <= 18) {
-            this.setData({
-                G: 9
-            })
-        } else if (this.data.G <= 20) {
-            this.setData({
-                G: 10
-            })
-        }
-
-        if (this.data.H <= 1) {
-            this.setData({
-                H: 1
-            })
-        } else if (this.data.H <= 2) {
-            this.setData({
-                H: 2
-            })
-        } else if (this.data.H <= 3) {
-            this.setData({
-                H: 3
-            })
-        } else if (this.data.H <= 6) {
-            this.setData({
-                H: 4
-            })
-        } else if (this.data.H <= 8) {
-            this.setData({
-                H: 5
-            })
-        } else if (this.data.H <= 11) {
-            this.setData({
-                H: 6
-            })
-        } else if (this.data.H <= 14) {
-            this.setData({
-                H: 7
-            })
-        } else if (this.data.H <= 16) {
-            this.setData({
-                H: 8
-            })
-        } else if (this.data.H <= 19) {
-            this.setData({
-                H: 9
-            })
-        } else if (this.data.H <= 26) {
-            this.setData({
-                H: 10
-            })
-        }
-
-        if (this.data.I <= 5) {
-            this.setData({
-                I: 1
-            })
-        } else if (this.data.I <= 6) {
-            this.setData({
-                I: 2
-            })
-        } else if (this.data.I <= 8) {
-            this.setData({
-                I: 3
-            })
-        } else if (this.data.I <= 10) {
-            this.setData({
-                I: 4
-            })
-        } else if (this.data.I <= 12) {
-            this.setData({
-                I: 5
-            })
-        } else if (this.data.I <= 13) {
-            this.setData({
-                I: 6
-            })
-        } else if (this.data.I <= 14) {
-            this.setData({
-                I: 7
-            })
-        } else if (this.data.I <= 16) {
-            this.setData({
-                I: 8
-            })
-        } else if (this.data.I <= 17) {
-            this.setData({
-                I: 9
-            })
-        } else if (this.data.I <= 19) {
-            this.setData({
-                I: 10
-            })
-        }
-
-        if (this.data.L <= 3) {
-            this.setData({
-                L: 1
-            })
-        } else if (this.data.L <= 5) {
-            this.setData({
-                L: 2
-            })
-        } else if (this.data.L <= 6) {
-            this.setData({
-                L: 3
-            })
-        } else if (this.data.L <= 8) {
-            this.setData({
-                L: 4
-            })
-        } else if (this.data.L <= 10) {
-            this.setData({
-                L: 5
-            })
-        } else if (this.data.L <= 12) {
-            this.setData({
-                L: 6
-            })
-        } else if (this.data.L <= 13) {
-            this.setData({
-                L: 7
-            })
-        } else if (this.data.L <= 15) {
-            this.setData({
-                L: 8
-            })
-        } else if (this.data.L <= 16) {
-            this.setData({
-                L: 9
-            })
-        } else if (this.data.L <= 20) {
-            this.setData({
-                L: 10
-            })
-        }
-
-        if (this.data.M <= 5) {
-            this.setData({
-                M: 1
-            })
-        } else if (this.data.M <= 7) {
-            this.setData({
-                M: 2
-            })
-        } else if (this.data.M <= 9) {
-            this.setData({
-                M: 3
-            })
-        } else if (this.data.M <= 11) {
-            this.setData({
-                M: 4
-            })
-        } else if (this.data.M <= 13) {
-            this.setData({
-                M: 5
-            })
-        } else if (this.data.M <= 15) {
-            this.setData({
-                M: 6
-            })
-        } else if (this.data.M <= 17) {
-            this.setData({
-                M: 7
-            })
-        } else if (this.data.M <= 19) {
-            this.setData({
-                M: 8
-            })
-        } else if (this.data.M <= 20) {
-            this.setData({
-                M: 9
-            })
-        } else if (this.data.M <= 26) {
-            this.setData({
-                M: 10
-            })
-        }
-
-        if (this.data.N <= 2) {
-            this.setData({
-                N: 1
-            })
-        } else if (this.data.N <= 3) {
-            this.setData({
-                N: 2
-            })
-        } else if (this.data.N <= 4) {
-            this.setData({
-                N: 3
-            })
-        } else if (this.data.N <= 6) {
-            this.setData({
-                N: 4
-            })
-        } else if (this.data.N <= 8) {
-            this.setData({
-                N: 5
-            })
-        } else if (this.data.N <= 10) {
-            this.setData({
-                N: 6
-            })
-        } else if (this.data.N <= 11) {
-            this.setData({
-                N: 7
-            })
-        } else if (this.data.N <= 13) {
-            this.setData({
-                N: 8
-            })
-        } else if (this.data.N <= 14) {
-            this.setData({
-                N: 9
-            })
-        } else if (this.data.N <= 20) {
-            this.setData({
-                N: 10
-            })
-        }
-
-        if (this.data.O <= 2) {
-            this.setData({
-                O: 1
-            })
-        } else if (this.data.O <= 3) {
-            this.setData({
-                O: 2
-            })
-        } else if (this.data.O <= 4) {
-            this.setData({
-                O: 3
-            })
-        } else if (this.data.O <= 6) {
-            this.setData({
-                O: 4
-            })
-        } else if (this.data.O <= 8) {
-            this.setData({
-                O: 5
-            })
-        } else if (this.data.O <= 10) {
-            this.setData({
-                O: 6
-            })
-        } else if (this.data.O <= 11) {
-            this.setData({
-                O: 7
-            })
-        } else if (this.data.O <= 13) {
-            this.setData({
-                O: 8
-            })
-        } else if (this.data.O <= 14) {
-            this.setData({
-                O: 9
-            })
-        } else if (this.data.O <= 20) {
-            this.setData({
-                O: 10
-            })
-        }
-
-        if (this.data.Q1 <= 4) {
-            this.setData({
-                Q1: 1
-            })
-        } else if (this.data.Q1 <= 5) {
-            this.setData({
-                Q1: 2
-            })
-        } else if (this.data.Q1 <= 7) {
-            this.setData({
-                Q1: 3
-            })
-        } else if (this.data.Q1 <= 8) {
-            this.setData({
-                Q1: 4
-            })
-        } else if (this.data.Q1 <= 10) {
-            this.setData({
-                Q1: 5
-            })
-        } else if (this.data.Q1 <= 12) {
-            this.setData({
-                Q1: 6
-            })
-        } else if (this.data.Q1 <= 13) {
-            this.setData({
-                Q1: 7
-            })
-        } else if (this.data.Q1 <= 14) {
-            this.setData({
-                Q1: 8
-            })
-        } else if (this.data.Q1 <= 15) {
-            this.setData({
-                Q1: 9
-            })
-        } else if (this.data.Q1 <= 20) {
-            this.setData({
-                Q1: 10
-            })
-        }
-
-        if (this.data.Q2 <= 5) {
-            this.setData({
-                Q2: 1
-            })
-        } else if (this.data.Q2 <= 7) {
-            this.setData({
-                Q2: 2
-            })
-        } else if (this.data.Q2 <= 8) {
-            this.setData({
-                Q2: 3
-            })
-        } else if (this.data.Q2 <= 10) {
-            this.setData({
-                Q2: 4
-            })
-        } else if (this.data.Q2 <= 12) {
-            this.setData({
-                Q2: 5
-            })
-        } else if (this.data.Q2 <= 14) {
-            this.setData({
-                Q2: 6
-            })
-        } else if (this.data.Q2 <= 15) {
-            this.setData({
-                Q2: 7
-            })
-        } else if (this.data.Q2 <= 17) {
-            this.setData({
-                Q2: 8
-            })
-        } else if (this.data.Q2 <= 18) {
-            this.setData({
-                Q2: 9
-            })
-        } else if (this.data.Q2 <= 20) {
-            this.setData({
-                Q2: 10
-            })
-        }
-
-        if (this.data.Q3 <= 4) {
-            this.setData({
-                Q3: 1
-            })
-        } else if (this.data.Q3 <= 6) {
-            this.setData({
-                Q3: 2
-            })
-        } else if (this.data.Q3 <= 8) {
-            this.setData({
-                Q3: 3
-            })
-        } else if (this.data.Q3 <= 10) {
-            this.setData({
-                Q3: 4
-            })
-        } else if (this.data.Q3 <= 12) {
-            this.setData({
-                Q3: 5
-            })
-        } else if (this.data.Q3 <= 14) {
-            this.setData({
-                Q3: 6
-            })
-        } else if (this.data.Q3 <= 15) {
-            this.setData({
-                Q3: 7
-            })
-        } else if (this.data.Q3 <= 17) {
-            this.setData({
-                Q3: 8
-            })
-        } else if (this.data.Q3 <= 18) {
-            this.setData({
-                Q3: 9
-            })
-        } else if (this.data.Q3 <= 20) {
-            this.setData({
-                Q3: 10
-            })
-        }
-
-        if (this.data.Q4 <= 2) {
-            this.setData({
-                Q4: 1
-            })
-        } else if (this.data.Q4 <= 4) {
-            this.setData({
-                Q4: 2
-            })
-        } else if (this.data.Q4 <= 6) {
-            this.setData({
-                Q4: 3
-            })
-        } else if (this.data.Q4 <= 7) {
-            this.setData({
-                Q4: 4
-            })
-        } else if (this.data.Q4 <= 11) {
-            this.setData({
-                Q4: 5
-            })
-        } else if (this.data.Q4 <= 14) {
-            this.setData({
-                Q4: 6
-            })
-        } else if (this.data.Q4 <= 16) {
-            this.setData({
-                Q4: 7
-            })
-        } else if (this.data.Q4 <= 19) {
-            this.setData({
-                Q4: 8
-            })
-        } else if (this.data.Q4 <= 21) {
-            this.setData({
-                Q4: 9
-            })
-        } else if (this.data.Q4 <= 26) {
-            this.setData({
-                Q4: 10
-            })
-        }
-
-        var X1 = ((38 + 2 * this.data.L + 3 * this.data.O + 4 * this.data.Q4) - (2 * this.data.C + 2 * this.data.H + 2 * this.data.Q2)) / 10;
-        this.setData({
-            X1: X1
+      })
+    } else {
+      wx.showLoading({
+        title: '加载中',
+      })
+      setTimeout(function() {
+        wx.hideLoading({
+          success(res) {
+            that.answer2db();
+            wx.navigateBack({
+              delta: 1
+            })
+          }
         })
-        var X2 = ((2 + this.data.A + 3 * this.data.E + 4 * this.data.F + 5 * this.data.H) - (2 * this.data.Q2 + 11)) / 10;
-        this.setData({
-            X2: X2
+      }, 2000)
+    }
+  },
+
+  //将用户完成的答案数组上传至云数据库
+  answer2db: function() {
+    db.collection('16pf').add({
+      data: {
+        name:this.data.name,
+        answer: this.data.answer
+      },
+      success(res) {
+        console.log(res._id);
+      },
+      fail(res) {
+        wx.showToast({
+          icon: 'none',
+          title: '新增记录失败'
         })
-        var X3 = ((77 + 2 * this.data.C + 2 * this.data.E + 2 * this.data.F + 2 * this.data.N) - (4 * this.data.A + 6 * this.data.H + this.data.I + 2 * this.data.M)) / 10;
-        this.setData({
-            X3: X3
-        })
-        var X4 = ((4 * this.data.E + 3 * this.data.M + 4 * this.data.Q1 + 4 * this.data.Q2) - (3 * this.data.A + 2 * this.data.G)) / 10;
-        this.setData({
-            X4: X4
-        })
-        var Y1 = (this.data.C + this.data.F + 11 - this.data.O + 11 - this.data.Q4);
-        this.setData({
-            Y1: Y1
-        })
-        var Y2 = (2 * this.data.Q3 + 2 * this.data.G + this.data.E + this.data.N + this.data.Q2 + this.data.Q1);
-        this.setData({
-            Y2: Y2
-        })
-        var Y3 = ((11 - this.data.A) * 2 + this.data.B * 2 + this.data.E + (11 - this.data.F) * 2 + this.data.H + this.data.I * 2 + this.data.M + (11 - this.data.N) + this.data.Q1 + this.data.Q2 * 2);
-        this.setData({
-            Y3: Y3
-        })
-        var Y4 = (this.data.B + this.data.G + this.data.Q3 + (11 - this.data.F));
-        this.setData({
-            Y4: Y4
-        })
-        this.setData({
-            show: true
-        })
-    },
+        console.error('[数据库] [新增记录] 失败：', err)
+      }
+    })
+  }
 })

@@ -4,6 +4,7 @@
     "pages/login/login",
     "pages/changePw/changePw",
     "pages/staffs/16pf/16pf",
+    "pages/staffs/16pf/score/score",
     "pages/staffs/index/index",
     "pages/parents/index/index",
     "pages/parents/account/account",

@@ -11,11 +11,11 @@ page {
     padding-top: 20rpx;
 }
 
-.botton {
+.button {
     display: flex;
     flex-direction: row;
 }
 
-.botton-item {
+.button-item {
     padding-left: 20rpx;
 }

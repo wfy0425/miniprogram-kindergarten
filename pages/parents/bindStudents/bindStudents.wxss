@@ -28,6 +28,6 @@ page {
     line-height: 30rpx;
 }
 
-.botton-item {
+.button-item {
     padding-top: 15rpx;
 }
