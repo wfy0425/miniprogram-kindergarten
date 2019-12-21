@@ -1,0 +1,19 @@
+/* component/searchHilightTextView.wxss */
+
+text {
+    font-size: 40rpx;
+    color: var(--tittle-color);
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+}
+
+.highlight {
+    color: hotpink;
+}
+
+.normal {
+    color: #484848;
+}

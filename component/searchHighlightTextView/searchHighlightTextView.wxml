@@ -1,0 +1,5 @@
+<!--component/searchHilightTextView.wxml-->
+<view>
+  <text wx:for="{{searchArray}}" wx:key="*this" class="{{item == keyName ? 'highlight' : 'normal' }}">{{item}}</text>
+  <van-divider hairline />
+</view>

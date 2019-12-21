@@ -288,25 +288,25 @@ Page({
             },
             success(res) {
                 console.log(res._id);
-                wx.setStorageSync('a', 1);
-                wx.setStorageSync('b', bScore);
-                wx.setStorageSync('c', cScore);
-                wx.setStorageSync('e', eScore);
-                wx.setStorageSync('f', fScore);
-                wx.setStorageSync('g', gScore);
-                wx.setStorageSync('h', hScore);
-                wx.setStorageSync('i', iScore);
-                wx.setStorageSync('l', lScore);
-                wx.setStorageSync('m', mScore);
-                wx.setStorageSync('n', nScore);
-                wx.setStorageSync('o', oScore);
-                wx.setStorageSync('q1', q1Score);
-                wx.setStorageSync('q2', q2Score);
-                wx.setStorageSync('q3', q3Score);
-                wx.setStorageSync('q4', q4Score);
+                // wx.setStorageSync('a', 1);
+                // wx.setStorageSync('b', bScore);
+                // wx.setStorageSync('c', cScore);
+                // wx.setStorageSync('e', eScore);
+                // wx.setStorageSync('f', fScore);
+                // wx.setStorageSync('g', gScore);
+                // wx.setStorageSync('h', hScore);
+                // wx.setStorageSync('i', iScore);
+                // wx.setStorageSync('l', lScore);
+                // wx.setStorageSync('m', mScore);
+                // wx.setStorageSync('n', nScore);
+                // wx.setStorageSync('o', oScore);
+                // wx.setStorageSync('q1', q1Score);
+                // wx.setStorageSync('q2', q2Score);
+                // wx.setStorageSync('q3', q3Score);
+                // wx.setStorageSync('q4', q4Score);
 
                 wx.navigateTo({
-                    url: '/pages/staffs/16pf/score/score',
+                    url: '/pages/staffs/16pf/score/score?_id=' + e.target.dataset.id,
                 })
             },
             fail(res) {

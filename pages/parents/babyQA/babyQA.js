@@ -34,7 +34,7 @@ Page({
         var that = this;
         var page = this.data.page;
         var startCount = page * this.data.pageSize
-        this.refresh(startCount);
+
 
         // 获取总数
         collection.count({
@@ -46,7 +46,7 @@ Page({
             },
             fail: console.error
         })
-
+        this.refresh(startCount);
     },
 
     /**

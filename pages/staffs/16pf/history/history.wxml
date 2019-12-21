@@ -1,0 +1,29 @@
+<view class="services_container">
+  <view class="logo-banner" >
+    <image mode='widthFix' src="{{bannerUrl}}"></image>
+  </view>
+  <van-toast id="van-toast" />
+  <van-search
+  value="{{ value }}"
+  placeholder="请输入搜索关键词"
+  use-action-slot
+  bind:change="onChange"
+  bind:search="onSearch"
+>
+  <view slot="action" bind:tap="onSearch">搜索</view>
+</van-search>
+
+<!-- 搜索时内容 -->
+<view class="box">
+  <block wx:for="{{searchResultDatas}}">
+    <view class="search-result-item">
+      <searchHighlightTextView 
+      class="result-item" 
+      datas='{{searchData[index]}}' 
+      bindtap="chooseSearchResultAction" 
+      data-id='{{item._id}}'
+       />
+    </view>
+  </block>
+</view>
+</view>

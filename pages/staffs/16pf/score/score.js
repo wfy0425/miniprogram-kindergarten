@@ -1,4 +1,7 @@
 // pages/staffs/16pf/16pf.js
+const db = wx.cloud.database();
+import Toast from '../../../../vant/toast/toast';
+const collection = db.collection("16pf");
 Page({
 
     /**
@@ -40,151 +43,186 @@ Page({
     onLoad: function(options) {
         var id = options._id;
         var that = this;
-        wx.getStorage({
-            key: 'a',
-            success(res) {
-                console.log(res.data)
-                that.setData({
-                    A: res.data,
-                })
-            }
-        })
-        wx.getStorage({
-            key: 'b',
-            success(res) {
-                console.log(res.data)
-                that.setData({
-                    B: res.data,
-                })
-            }
-        })
-        wx.getStorage({
-            key: 'c',
-            success(res) {
-                console.log(res.data)
-                that.setData({
-                    C: res.data,
-                })
-            }
-        })
-        wx.getStorage({
-            key: 'e',
-            success(res) {
-                console.log(res.data)
-                that.setData({
-                    E: res.data,
-                })
-            }
-        })
-        wx.getStorage({
-            key: 'f',
-            success(res) {
-                console.log(res.data)
-                that.setData({
-                    F: res.data,
-                })
-            }
-        })
-        wx.getStorage({
-            key: 'g',
-            success(res) {
-                console.log(res.data)
-                that.setData({
-                    G: res.data,
-                })
-            }
-        })
-        wx.getStorage({
-            key: 'h',
-            success(res) {
-                console.log(res.data)
-                that.setData({
-                    H: res.data,
-                })
-            }
-        })
-        wx.getStorage({
-            key: 'i',
-            success(res) {
-                console.log(res.data)
-                that.setData({
-                    I: res.data,
-                })
-            }
-        })
-        wx.getStorage({
-            key: 'l',
-            success(res) {
-                console.log(res.data)
-                that.setData({
-                    L: res.data,
-                })
-            }
-        })
-        wx.getStorage({
-            key: 'm',
-            success(res) {
-                console.log(res.data)
-                that.setData({
-                    M: res.data,
-                })
-            }
-        })
-        wx.getStorage({
-            key: 'n',
-            success(res) {
-                console.log(res.data)
-                that.setData({
-                    N: res.data,
-                })
-            }
-        })
-        wx.getStorage({
-            key: 'o',
-            success(res) {
-                console.log(res.data)
-                that.setData({
-                    O: res.data,
-                })
-            }
-        })
-        wx.getStorage({
-            key: 'q1',
-            success(res) {
-                console.log(res.data)
-                that.setData({
-                    Q1: res.data,
-                })
-            }
-        })
-        wx.getStorage({
-            key: 'q2',
-            success(res) {
-                console.log(res.data)
-                that.setData({
-                    Q2: res.data,
-                })
-            }
-        })
-        wx.getStorage({
-            key: 'q3',
-            success(res) {
-                console.log(res.data)
-                that.setData({
-                    Q3: res.data,
-                })
-            }
-        })
-        wx.getStorage({
-            key: 'q4',
-            success(res) {
-                console.log(res.data)
-                that.setData({
-                    Q4: res.data,
-                })
-            }
-        })
+        // wx.getStorage({
+        //     key: 'a',
+        //     success(res) {
+        //         console.log(res.data)
+        //         that.setData({
+        //             A: res.data,
+        //         })
+        //     }
+        // })
+        // wx.getStorage({
+        //     key: 'b',
+        //     success(res) {
+        //         console.log(res.data)
+        //         that.setData({
+        //             B: res.data,
+        //         })
+        //     }
+        // })
+        // wx.getStorage({
+        //     key: 'c',
+        //     success(res) {
+        //         console.log(res.data)
+        //         that.setData({
+        //             C: res.data,
+        //         })
+        //     }
+        // })
+        // wx.getStorage({
+        //     key: 'e',
+        //     success(res) {
+        //         console.log(res.data)
+        //         that.setData({
+        //             E: res.data,
+        //         })
+        //     }
+        // })
+        // wx.getStorage({
+        //     key: 'f',
+        //     success(res) {
+        //         console.log(res.data)
+        //         that.setData({
+        //             F: res.data,
+        //         })
+        //     }
+        // })
+        // wx.getStorage({
+        //     key: 'g',
+        //     success(res) {
+        //         console.log(res.data)
+        //         that.setData({
+        //             G: res.data,
+        //         })
+        //     }
+        // })
+        // wx.getStorage({
+        //     key: 'h',
+        //     success(res) {
+        //         console.log(res.data)
+        //         that.setData({
+        //             H: res.data,
+        //         })
+        //     }
+        // })
+        // wx.getStorage({
+        //     key: 'i',
+        //     success(res) {
+        //         console.log(res.data)
+        //         that.setData({
+        //             I: res.data,
+        //         })
+        //     }
+        // })
+        // wx.getStorage({
+        //     key: 'l',
+        //     success(res) {
+        //         console.log(res.data)
+        //         that.setData({
+        //             L: res.data,
+        //         })
+        //     }
+        // })
+        // wx.getStorage({
+        //     key: 'm',
+        //     success(res) {
+        //         console.log(res.data)
+        //         that.setData({
+        //             M: res.data,
+        //         })
+        //     }
+        // })
+        // wx.getStorage({
+        //     key: 'n',
+        //     success(res) {
+        //         console.log(res.data)
+        //         that.setData({
+        //             N: res.data,
+        //         })
+        //     }
+        // })
+        // wx.getStorage({
+        //     key: 'o',
+        //     success(res) {
+        //         console.log(res.data)
+        //         that.setData({
+        //             O: res.data,
+        //         })
+        //     }
+        // })
+        // wx.getStorage({
+        //     key: 'q1',
+        //     success(res) {
+        //         console.log(res.data)
+        //         that.setData({
+        //             Q1: res.data,
+        //         })
+        //     }
+        // })
+        // wx.getStorage({
+        //     key: 'q2',
+        //     success(res) {
+        //         console.log(res.data)
+        //         that.setData({
+        //             Q2: res.data,
+        //         })
+        //     }
+        // })
+        // wx.getStorage({
+        //     key: 'q3',
+        //     success(res) {
+        //         console.log(res.data)
+        //         that.setData({
+        //             Q3: res.data,
+        //         })
+        //     }
+        // })
+        // wx.getStorage({
+        //     key: 'q4',
+        //     success(res) {
+        //         console.log(res.data)
+        //         that.setData({
+        //             Q4: res.data,
+        //         })
+        //     }
+        // })
 
+
+        collection.doc(id).get({
+            success: function(res) {
+                // res.data 包含该记录的数据
+                console.log(res.data)
+
+                that.setData({
+                    A: res.data.A,
+                    B: res.data.B,
+                    C: res.data.C,
+                    E: res.data.E,
+                    F: res.data.F,
+                    G: res.data.G,
+                    H: res.data.H,
+                    I: res.data.I,
+                    L: res.data.L,
+                    M: res.data.M,
+                    N: res.data.N,
+                    O: res.data.O,
+                    Q1: res.data.Q1,
+                    Q2: res.data.Q2,
+                    Q3: res.data.Q3,
+                    Q4: res.data.Q4,
+                })
+            },
+            fail: function() {
+                //未注册
+                console.log("用户数据丢失");
+                Toast.fail({
+                    duration: 0,
+                    mask: true,
+                    message: '用户数据丢失...'
+                });
+            }
+        })
         this.onSubmit();
     },
 

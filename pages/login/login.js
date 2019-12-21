@@ -106,6 +106,7 @@ Page({
                 if (that.data.password == res.data.password) { //判断密码是否正确
                     console.log('登陆成功')
                     app.globalData.currentUserName = res.data._id;
+                  app.globalData.isAdmin = res.data.isAdmin;
                     console.log(app.globalData.currentUserName);
                     Toast.success({
                         duration: 1000,
@@ -157,7 +158,8 @@ Page({
         collection.add({ //添加数据
             data: {
                 _id: that.data.username,
-                password: that.data.password
+                password: that.data.password,
+                isAdmin:false
             }
         }).then(res => {
             app.globalData.currentUserName = that.data.username;

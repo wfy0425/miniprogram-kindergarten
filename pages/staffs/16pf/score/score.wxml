@@ -2,6 +2,7 @@
   <view class="logo-banner" >
     <image mode='widthFix' src="{{bannerUrl}}"></image>
   </view>
+  <van-toast id="van-toast" />
 <view class='text-view'>
     <text decode="{{true}}" class='text-tittle'>因素A（乐群性）：{{A}}\n</text>
     <text decode="{{true}}" class='text'>&emsp;&emsp;高分特征：开朗、热情、随和，易于建立社会联系，在集体中倾向于承担责任和担任领导。在性方面倾向于自由、 早婚。推销员、企业经理、商人、会计、教士、社会工作者等多具有此种特质。典型的代表人物如 狄更斯、富兰克林、罗斯福； \n&emsp;&emsp;低分特征：保守、孤僻、严肃、退缩、拘谨、生硬，在职业上倾向于从事富于创造性的工作如科学家（尤其是物理学家和生物学家）、艺术家、音乐家和作家等。典型的代表人物如达尔文、威尔逊、爱迪生、 牛顿、奥斯汀、张伯伦、米尔顿、卡莱尔、塞缪尔、约翰生（英国作家）\n\n</text>

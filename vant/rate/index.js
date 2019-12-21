@@ -48,7 +48,7 @@ VantComponent({
     data: {
         innerValue: 0,
         gutterWithUnit: undefined,
-        sizeWithUnit: '20px'
+        sizeWithUnit: null
     },
     watch: {
         value(value) {
@@ -58,14 +58,14 @@ VantComponent({
         }
     },
     methods: {
-        setSizeWithUnit(val) {
-            this.setData({
-                sizeWithUnit: addUnit(val)
-            });
-        },
         setGutterWithUnit(val) {
             this.setData({
                 gutterWithUnit: addUnit(val)
+            });
+        },
+        setSizeWithUnit(size) {
+            this.setData({
+                sizeWithUnit: addUnit(size)
             });
         },
         onSelect(event) {
@@ -81,14 +81,11 @@ VantComponent({
             const { touchable } = this.data;
             if (!touchable)
                 return;
-            const { clientX, clientY } = event.touches[0];
+            const { clientX } = event.touches[0];
             this.getRect('.van-rate__icon', true).then((list) => {
                 const target = list
                     .sort(item => item.right - item.left)
-                    .find(item => clientX >= item.left &&
-                    clientX <= item.right &&
-                    clientY >= item.top &&
-                    clientY <= item.bottom);
+                    .find(item => clientX >= item.left && clientX <= item.right);
                 if (target != null) {
                     this.onSelect(Object.assign(Object.assign({}, event), { currentTarget: target }));
                 }
