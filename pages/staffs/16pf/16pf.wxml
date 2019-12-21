@@ -44,6 +44,7 @@
     </van-cell-group>
     <view class='precaution-button'>
         <van-button round type="info" bind:click='nameSubmit'>开始答题</van-button>
+        <van-button wx:if='{{isAdmin}}' round type="primary" bind:click='onHistory'>查看历史问卷</van-button>
     </view>
 </view>
 </view>

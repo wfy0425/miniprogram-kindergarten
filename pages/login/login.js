@@ -106,8 +106,9 @@ Page({
                 if (that.data.password == res.data.password) { //判断密码是否正确
                     console.log('登陆成功')
                     app.globalData.currentUserName = res.data._id;
-                  app.globalData.isAdmin = res.data.isAdmin;
+                    app.globalData.isAdmin = res.data.isAdmin;
                     console.log(app.globalData.currentUserName);
+                    console.log(app.globalData.isAdmin);
                     Toast.success({
                         duration: 1000,
                         message: '登陆成功',
@@ -123,8 +124,9 @@ Page({
                     Toast.fail('密码错误');
                 }
             },
-            fail: function() {
+            fail: function(res) {
                 console.log('用户名不存在')
+                console.log(res)
                 Toast.fail('用户名不存在');
             }
         })
@@ -159,7 +161,7 @@ Page({
             data: {
                 _id: that.data.username,
                 password: that.data.password,
-                isAdmin:false
+                isAdmin: false
             }
         }).then(res => {
             app.globalData.currentUserName = that.data.username;

@@ -2,6 +2,7 @@
 const db = wx.cloud.database()
 const questions = require("./questions.js") //导入题库
 var ans;
+let app = getApp();
 Page({
 
     /**
@@ -20,6 +21,7 @@ Page({
         hide: true,
         fieldError: false,
         name: "",
+        isAdmin: false
     },
 
 
@@ -27,6 +29,11 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        var isAdmin = app.globalData.isAdmin
+
+        this.setData({
+            isAdmin
+        })
         ans = new Array(this.data.questionLength);
         console.log(this.data.questionLength)
         for (var j = 0; j < ans.length; j++) {
@@ -83,6 +90,12 @@ Page({
 
     },
 
+
+    onHistory: function(value) {
+        wx.navigateTo({
+            url: '/pages/staffs/16pf/history/history'
+        })
+    },
     inputName: function(value) {
         this.setData({
             name: value.detail
