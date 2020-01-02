@@ -14,9 +14,8 @@ Page({
         logoUrl: '/images/logo.svg',
         bannerUrl: '/images/banner.svg',
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
-        linkId: "",
-        dbCollection: "parents",
-        isBinded: false,
+        linkId: "", //使用数据时用这个
+        isBinded: false, //用于控件显示
     },
 
     inputLinkId: function(value) {
@@ -43,29 +42,70 @@ Page({
      */
     onShow: function() {
         let that = this;
-        if (!this.data.isBinded) {
-            if (app.globalData.currentUserName) {
-                const collection = db.collection(this.data.dbCollection);
-                collection.doc(app.globalData.currentUserName).get({
-                    success: function(res) {
-                        // res.data 包含该记录的数据
-                        console.log(res.data)
-                        if (res.data.linkId) {
-                            console.log("该用户名已绑定");
-                            that.setData({
-                                isBinded: true
-                            })
-                        }
+        const collection = db.collection("parents");
+        // if (!this.data.isBinded) {
+        //     if (app.globalData.currentUserName) {
+        //         const collection = db.collection(this.data.dbCollection);
+        //         collection.doc(app.globalData.currentUserName).get({
+        //             success: function(res) {
+        //                 // res.data 包含该记录的数据
+        //                 console.log(res.data)
+        //                 if (res.data.linkId) {
+        //                     console.log("该用户名已绑定");
+        //                     that.setData({
+        //                         isBinded: true
+        //                     })
+        //                 }
 
-                    },
-                    fail: function() {
-                        //未注册
-                        console.log("绑定：用户不存在");
+        //             },
+        //             fail: function() {
+        //                 //未注册
+        //                 console.log("绑定：用户不存在");
+        //             }
+        //         })
+        //     } else {
+        //         console.log("绑定：用户未登录");
+        //     }
+        // }
+
+        if (!app.globalData.linkId) {
+            console.log("onShow: 检查是否bind student-没有bind信息");
+            //检查是否bind student
+            collection.doc(app.globalData.openid).get({
+                success: function(res) {
+                    //此用户存在
+                    // res.data 包含该记录的数据
+                    console.log("onShow: 检查是否bind student-此用户存在");
+                    if (res.data.linkId) { //判断该账户是否绑定
+                        console.log("onShow: 检查是否bind student-linkId存在");
+                        that.setData({
+                            linkId: res.data.linkId,
+                            isBinded: true
+                        })
+                        app.globalData.linkId = res.data.linkId
+                    } else {
+                        console.log('onShow: 检查是否bind student-linkId不存在')
                     }
-                })
-            } else {
-                console.log("绑定：用户未登录");
-            }
+                },
+                fail: function(res) {
+                    //此用户不存在
+                    console.log("onShow: 检查是否bind student-此用户不存在");
+                    //放入数据库
+                    collection.add({ //添加数据
+                        data: {
+                            _id: app.globalData.openid,
+                            userInfo: app.globalData.userInfo,
+                            linkId: '',
+
+                        }
+                    }).then(res => {})
+                }
+            })
+        } else {
+            console.log("onShow: 检查是否bind student-有bind信息");
+            that.setData({
+                isBinded: true
+            })
         }
     },
 
@@ -105,25 +145,26 @@ Page({
     },
 
 
-    //登陆
+    //bind
     bind: function() {
-        console.log(!app.globalData.currentUserName)
-        if (!app.globalData.currentUserName) {
+
+        if (!app.globalData.userInfo) {
+            console.log('bind:没有登录')
             Toast.fail({
                 duration: 1000,
                 message: '请先登录',
                 onClose: function() {
-                    wx.navigateTo({
-                        url: '/pages/login/login?type=parents',
-                    })
+                    wx.navigateBack({
+                        delta: 1
+                    });
                 }
             })
         } else {
             let that = this;
             console.log(this.data.linkId)
-            const collection = db.collection(this.data.dbCollection);
+            const collection = db.collection("parents");
             console.log(collection)
-            collection.doc(app.globalData.currentUserName).update({ //添加数据
+            collection.doc(app.globalData.openid).update({ //添加数据
                 data: {
                     linkId: that.data.linkId
                 },

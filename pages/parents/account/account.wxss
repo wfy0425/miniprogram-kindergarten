@@ -1,48 +1,79 @@
 /* pages/students/index/index.wxss */
 
 page {
-    width: 100%;
-    background-color: var(--background-color)
+  width: 100%;
+  background-color: var(--background-color);
 }
 
 .box {
-    display: flex;
-    flex-direction: column;
-    width: 690rpx;
-    margin: auto;
-    padding-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+  width: 690rpx;
+  margin: auto;
+  padding-top: 20rpx;
 }
 
 .text {
-    position: relative;
-    border-radius: 20rpx;
-    background-color: #fff;
+  position: relative;
+  border-radius: 20rpx;
+  background-color: #fff;
 }
 
 .text-box {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .text-icon {
-    padding-left: 10rpx;
-    padding-right: 10rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
 }
 
 .text-occupy {
-    padding: 10rpx;
+  padding: 10rpx;
 }
 
 .text-occupy1 {
-    padding: 5rpx;
+  padding: 5rpx;
 }
 
 .text-hairline {
-    padding: 3rpx;
-    background-color: var(--background-color);
+  padding: 3rpx;
+  background-color: var(--background-color);
 }
 
 .text-text {
-    color: var(--title-color);
-    font-size: 30rpx;
+  color: var(--title-color);
+  font-size: 30rpx;
+}
+
+.userinfo {
+  height: 140rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 300ms ease;
+  padding-left: 50rpx;
+}
+
+.userinfo-avatar {
+
+}
+
+.userinfo-nickname {
+  color: var(--title-color);
+  font-size: 30rpx;
+  background-color: white;
+  background-size: cover;
+  text-align: left;
+  padding-left: 0;
+  margin-left: 10px;
+}
+
+.userinfo-nickname::after {
+  border: none;
+}
+
+.userinfo-nickname-wrapper {
 }

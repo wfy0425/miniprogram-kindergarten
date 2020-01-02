@@ -7,17 +7,36 @@ Page({
      * 页面的初始数据
      */
     data: {
-        logoUrl: '../../../images/logo.svg',
-        bannerUrl: '../../../images/banner.svg',
-        userInfo: {},
-        canIUse: wx.canIUse('button.open-type.getUserInfo'),
+        logoUrl: '/images/logo.svg',
+        bannerUrl: '/images/banner.svg',
+        userInfo: {}, //使用数据时用这个
+        avatarUrl: '/images/user-unlogin.png', //用于控件显示
+        username: '点击登陆', //用于控件显示
+        logged: false,
+        takeSession: false,
+        linkId: "",
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        let that = this;
 
-        console.log(app.globalData.currentUserName)
+        if (!app.globalData.openid) {
+            this.onGetOpenid();
+        }
+        if (app.globalData.userInfo) {
+            this.setData({
+                logged: true,
+                userInfo: app.globalData.userInfo,
+                username: app.globalData.userInfo.nickName,
+                avatarUrl: app.globalData.userInfo.avatarUrl
+            })
+
+
+
+        }
+
     },
 
     /**
@@ -69,6 +88,20 @@ Page({
 
     },
 
+
+    onGetUserInfo: function(e) {
+        if (!this.data.logged && e.detail.userInfo) {
+            this.setData({
+                logged: true,
+                avatarUrl: e.detail.userInfo.avatarUrl,
+                userInfo: e.detail.userInfo,
+                username: e.detail.userInfo.nickName
+            })
+            app.globalData.userInfo = e.detail.userInfo;
+        }
+    },
+
+
     changePw: function() {
         wx.navigateTo({
             url: '/pages/changePw/changePw?type=parents',
@@ -77,6 +110,21 @@ Page({
     bindStudents: function() {
         wx.navigateTo({
             url: '/pages/parents/bindStudents/bindStudents',
+        })
+    },
+
+    onGetOpenid: function() {
+        // 调用云函数
+        wx.cloud.callFunction({
+            name: 'getWXContext',
+            data: {},
+            success: res => {
+                console.log('[云函数] [getWXContext] user openid: ', res.result.openid)
+                app.globalData.openid = res.result.openid
+            },
+            fail: err => {
+                console.error('[云函数] [getWXContext] 调用失败', err)
+            }
         })
     },
 })
