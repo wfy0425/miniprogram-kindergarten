@@ -1,7 +1,7 @@
 import Toast from '../../../vant/toast/toast';
 let app = getApp();
 //获取云数据库引用
-
+//TODO: 把bindStudent移动到account里面
 const db = wx.cloud.database();
 
 Page({
@@ -160,6 +160,7 @@ Page({
                 }
             })
         } else {
+            //TODO: 添加学生数据库
             let that = this;
             console.log(this.data.linkId)
             const collection = db.collection("parents");

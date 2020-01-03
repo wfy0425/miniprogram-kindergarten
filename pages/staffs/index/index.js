@@ -72,18 +72,9 @@ Page({
     },
 
     onAccount: function(event) {
-        console.log(app.globalData.currentUserName);
-        if (app.globalData.currentUserName) {
-            wx.navigateTo({
-                url: '/pages/parents/account/account',
-            })
-        } else {
-            //not login in
-            wx.navigateTo({
-                url: '/pages/login/login?type=staffs',
-            })
-            console.log()
-        }
+        wx.navigateTo({
+            url: '/pages/staffs/account/account',
+        })
     },
 
 })

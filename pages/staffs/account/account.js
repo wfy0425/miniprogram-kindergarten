@@ -14,7 +14,6 @@ Page({
         username: '点击登陆', //用于控件显示
         logged: false,
         takeSession: false,
-        linkId: "",
     },
     /**
      * 生命周期函数--监听页面加载
@@ -102,16 +101,6 @@ Page({
     },
 
 
-    // changePw: function() {
-    //     wx.navigateTo({
-    //         url: '/pages/changePw/changePw?type=parents',
-    //     })
-    // },
-    bindStudents: function() {
-        wx.navigateTo({
-            url: '/pages/parents/bindStudents/bindStudents',
-        })
-    },
 
     onGetOpenid: function() {
         // 调用云函数

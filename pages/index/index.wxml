@@ -4,8 +4,10 @@
   </view>
   <view class="van-hairline--top"></view>
   <view class='box'>
-<van-button round color="#82d9d0" plain size="large" bindtap='parents'>我是家长</van-button>
-<van-button round color="#82d9d0" plain size="large" bindtap='staffs'>我是园丁</van-button>
-<van-button round color="#82d9d0" plain size="large" bindtap='students'>稚爱教育馆</van-button>
+<van-button round color="#82d9d0" plain size="large" bind:click='parents'>我是家长</van-button>
+<van-button round color="#82d9d0" plain size="large" open-type="getUserInfo" bindgetuserinfo="staffs" >我是园丁</van-button>
+<van-button round color="#82d9d0" plain size="large" bind:click='students'>稚爱教育馆</van-button>
+<van-button round color="#82d9d0" plain size="large" bind:click='on16pf'>卡特尔人格因素测验</van-button>
 </view>
+<van-toast id="van-toast" />
 </view>

@@ -1,3 +1,5 @@
+let app = getApp();
+import Toast from '../../vant/toast/toast';
 // pages/index/index.js
 Page({
 
@@ -79,10 +81,59 @@ Page({
         })
     },
 
-    staffs: function(event) {
+
+    on16pf: function(event) {
         console.log(event)
         wx.navigateTo({
-            url: '/pages/staffs/index/index',
+            url: '/pages/staffs/16pf/16pf',
         })
+    },
+
+    staffs: function(event) {
+        console.log(event)
+        if (event.detail.userInfo) {
+            app.globalData.userInfo = event.detail.userInfo;
+        }
+        // 查询openid
+        wx.cloud.callFunction({
+            name: 'getWXContext',
+            data: {},
+            success: res => {
+                console.log('[云函数] [getWXContext] user openid: ', res.result.openid)
+                app.globalData.openid = res.result.openid
+
+                //查询staffs数据库里是否有用户的openid
+                const db = wx.cloud.database();
+                const collection = db.collection("staffs");
+                collection.doc(app.globalData.openid).get({
+                    success: function(res) {
+                        // res.data 包含该记录的数据
+                        app.globalData.isAdmin = res.data.isAdmin
+                        console.log(res.data)
+                        wx.navigateTo({
+                            url: '/pages/staffs/index/index',
+                        })
+                    },
+                    fail: function() {
+                        //没有
+                        console.log("staffs: 不是园丁")
+                        Toast.fail({
+                            duration: 2000,
+                            message: '只有老师才能访问这里哦',
+                        })
+                    }
+                })
+
+            },
+            fail: err => {
+                console.error('[云函数] [getWXContext] 调用失败', err)
+                Toast.fail({
+                    duration: 2000,
+                    message: 'openid获取失败，请稍后再试',
+                })
+            }
+        })
+
+
     },
 })
