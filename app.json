@@ -11,12 +11,14 @@
     "pages/staffs/account/account",
 
     "pages/parents/index/index",
+    "pages/parents/myKid/myKid",
     "pages/parents/account/account",
     "pages/parents/bindStudents/bindStudents",
     "pages/parents/class/class",
     "pages/parents/babyQA/babyQA",
     "pages/parents/babyQA/postDetail/postDetail",
     "pages/parents/contactus/contactus",
+
     "pages/students/index/index",
     "pages/authorize/authorize",
     "pages/aboutus/aboutus"

@@ -160,6 +160,13 @@
 					"id": -1,
 					"name": "pages/staffs/16pf/history/history",
 					"pathName": "pages/staffs/16pf/history/history",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/parents/myKid/myKid",
+					"pathName": "pages/parents/myKid/myKid",
 					"scene": null
 				}
 			]
