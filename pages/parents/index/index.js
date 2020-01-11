@@ -8,6 +8,7 @@ Page({
     data: {
         logoUrl: '../../../images/logo.svg',
         bannerUrl: '../../../images/banner.svg',
+        //TODO: 图片预加载
         imgUrls: [
             'cloud://cloud-zhiai-8dv2t.636c-cloud-zhiai-8dv2t-1300754910/img/娱乐区淘气堡.jpg',
             'cloud://cloud-zhiai-8dv2t.636c-cloud-zhiai-8dv2t-1300754910/img/休息区.jpg',
@@ -24,11 +25,11 @@ Page({
         currentTabsIndex: 0,
         pageIndex: 1,
         photoList: [{
-                'url': "../../../images/photo/多功能影音室.jpg",
+                'url': "cloud://cloud-zhiai-8dv2t.636c-cloud-zhiai-8dv2t-1300754910/img/多功能影音室.jpg",
                 'description': "多功能影音室"
             },
             {
-                'url': "../../../images/photo/海洋球池.jpg",
+                'url': "cloud://cloud-zhiai-8dv2t.636c-cloud-zhiai-8dv2t-1300754910/img/海洋球池.jpg",
                 'description': "海洋球池"
             },
         ],
