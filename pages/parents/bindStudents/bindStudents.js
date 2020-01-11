@@ -18,7 +18,7 @@ Page({
         isBinded: false, //用于控件显示
     },
 
-    inputLinkId: function(value) {
+    inputLinkId: function (value) {
         this.setData({
             linkId: value.detail
         })
@@ -26,21 +26,26 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
-
+    onLoad: function (options) {
+        Toast.loading({
+            duration: 0, // 持续展示 toast
+            forbidClick: true, // 禁用背景点击
+            message: '加载中',
+            mask: true
+        });
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {
+    onReady: function () {
 
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function() {
+    onShow: function () {
         let that = this;
         const collection = db.collection("parents");
         // if (!this.data.isBinded) {
@@ -72,7 +77,7 @@ Page({
             console.log("onShow: 检查是否bind student-没有bind信息");
             //检查是否bind student
             collection.doc(app.globalData.openid).get({
-                success: function(res) {
+                success: function (res) {
                     //此用户存在
                     // res.data 包含该记录的数据
                     console.log("onShow: 检查是否bind student-此用户存在");
@@ -86,8 +91,9 @@ Page({
                     } else {
                         console.log('onShow: 检查是否bind student-linkId不存在')
                     }
+                    Toast.clear();
                 },
-                fail: function(res) {
+                fail: function (res) {
                     //此用户不存在
                     console.log("onShow: 检查是否bind student-此用户不存在");
                     //放入数据库
@@ -98,7 +104,9 @@ Page({
                             linkId: '',
 
                         }
-                    }).then(res => {})
+                    }).then(res => {
+                        Toast.clear();
+                    })
                 }
             })
         } else {
@@ -106,54 +114,55 @@ Page({
             that.setData({
                 isBinded: true
             })
+            Toast.clear();
         }
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
-    onHide: function() {
+    onHide: function () {
 
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
-    onUnload: function() {
+    onUnload: function () {
 
     },
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function() {
+    onPullDownRefresh: function () {
 
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function() {
+    onReachBottom: function () {
 
     },
 
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function() {
+    onShareAppMessage: function () {
 
     },
 
 
     //bind
-    bind: function() {
+    bind: function () {
 
         if (!app.globalData.userInfo) {
             console.log('bind:没有登录')
             Toast.fail({
                 duration: 1000,
                 message: '请先登录',
-                onClose: function() {
+                onClose: function () {
                     wx.navigateBack({
                         delta: 1
                     });
@@ -169,19 +178,19 @@ Page({
                 data: {
                     linkId: that.data.linkId
                 },
-                success: function(res) {
+                success: function (res) {
                     console.log('绑定成功')
                     Toast.success({
                         duration: 2000,
                         message: '绑定成功',
-                        onClose: function() {
+                        onClose: function () {
                             wx.navigateBack({
                                 delta: 1
                             });
                         }
                     })
                 },
-                fail: function() {
+                fail: function () {
                     console.log('绑定失败')
                     Toast.fail('绑定失败');
                 }

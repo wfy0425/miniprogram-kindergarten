@@ -90,6 +90,12 @@ Page({
     },
 
     staffs: function(event) {
+        Toast.loading({
+            duration: 0, // 持续展示 toast
+            forbidClick: true, // 禁用背景点击
+            message: '加载中',
+            mask: true
+        });
         console.log(event)
         if (event.detail.userInfo) {
             app.globalData.userInfo = event.detail.userInfo;
@@ -113,6 +119,7 @@ Page({
                         wx.navigateTo({
                             url: '/pages/staffs/index/index',
                         })
+                        Toast.clear();
                     },
                     fail: function() {
                         //没有
@@ -121,6 +128,7 @@ Page({
                             duration: 2000,
                             message: '只有老师才能访问这里哦',
                         })
+                        Toast.clear();
                     }
                 })
 
@@ -131,9 +139,9 @@ Page({
                     duration: 2000,
                     message: 'openid获取失败，请稍后再试',
                 })
+                Toast.clear();
             }
         })
-
 
     },
 })

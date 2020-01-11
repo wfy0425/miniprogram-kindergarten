@@ -1,31 +1,31 @@
 <view class="services_container">
-  <view class="logo-banner">
-    <image mode='widthFix' src="{{bannerUrl}}"></image>
-  </view>
-  <view class="van-hairline--top"></view>
-  <view class='box'>
+	<view class="logo-banner">
+		<image mode='widthFix' src="{{bannerUrl}}"></image>
+	</view>
+	<view class="van-hairline--top"></view>
+	<view class='box'>
 
-    <view class='text'>
-      <!-- 用户 openid -->
-      <view class="userinfo">
-        <view style="userinfo-avatar">
-          <image style="width: 100rpx; height: 100rpx; border-radius: 50%; margin-top: 20rpx;" mode='scaleToFill' src="{{avatarUrl}}"></image>
-        </view>
-        <view class="userinfo-nickname-wrapper">
-          <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-nickname">{{username}}</button>
-        </view>
+		<view class='text'>
+			<!-- 用户 openid -->
+			<view class="userinfo">
+				<view style="userinfo-avatar">
+					<image style="width: 100rpx; height: 100rpx; border-radius: 50%; margin-top: 20rpx;" mode='scaleToFill' src="{{avatarUrl}}"></image>
+				</view>
+				<view class="userinfo-nickname-wrapper">
+					<button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-nickname">{{username}}</button>
+				</view>
 
-      </view>
-      <view class="text-hairline"></view>
-      <view class="text-occupy"></view>
-      <view class="text-box" bindtap="bindStudents">
-        <view class="text-icon">
-          <van-icon name="friends-o" />
-        </view>
-        <text class='text-text'>绑定学生</text>
-      </view>
-      <view class="text-occupy1"></view>
-    </view>
+			</view>
+			<view class="text-hairline"></view>
+			<view class="text-occupy"></view>
+			<view class="text-box" bindtap="bindStudents">
+				<view class="text-icon">
+					<van-icon name="friends-o" />
+				</view>
+				<text class='text-text'>绑定学生</text>
+			</view>
+			<view class="text-occupy1"></view>
+		</view>
 
-  </view>
+	</view>
 </view>
