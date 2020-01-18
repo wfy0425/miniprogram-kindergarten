@@ -1,2 +1,30 @@
-<!--pages/parents/myKid/myKid.wxml-->
-<text>pages/parents/myKid/myKid.wxml</text>
+<!--pages/students/index/index.wxml-->
+<!-- <van-notice-bar mode="link" text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。" /> -->
+<view class="services_container">
+	<view class="logo-banner">
+		<image mode='widthFix' src="{{bannerUrl}}"></image>
+	</view>
+
+	<view class='box'>
+		<view class="picker_group">
+			<picker mode="date" value="{{date}}" fields="month" bindchange="bindDateChange">
+				<view class="picker">
+					{{date}}
+				</view>
+			</picker>
+		</view>
+
+		<view class='text'>
+			<block wx:for="{{evalArry}}" wx:key="{{item}}">
+				<view class="text-box">
+					<view class='text-tittle'>{{item.studentId}}</view>
+					<text class='text-text'>{{item.content}}</text>
+				</view>
+			</block>
+		</view>
+
+	</view>
+
+</view>
+
+<van-toast id="van-toast" />

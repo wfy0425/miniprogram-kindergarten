@@ -28,7 +28,7 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
+    onLoad: function (options) {
         var isAdmin = app.globalData.isAdmin
 
         this.setData({
@@ -44,65 +44,65 @@ Page({
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {
+    onReady: function () {
 
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function() {
+    onShow: function () {
 
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
-    onHide: function() {
+    onHide: function () {
 
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
-    onUnload: function() {
+    onUnload: function () {
 
     },
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function() {
+    onPullDownRefresh: function () {
 
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function() {
+    onReachBottom: function () {
 
     },
 
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function() {
+    onShareAppMessage: function () {
 
     },
 
 
-    onHistory: function(value) {
+    onHistory: function (value) {
         wx.navigateTo({
             url: '/pages/staffs/16pf/history/history'
         })
     },
-    inputName: function(value) {
+    inputName: function (value) {
         this.setData({
             name: value.detail
         })
     },
 
-    nameSubmit: function(e) {
+    nameSubmit: function (e) {
         if (this.data.name) {
             this.setData({
                 hide: false
@@ -114,17 +114,17 @@ Page({
         }
     },
 
-    changeQuestion: function(event) {
+    changeQuestion: function (event) {
         this.setData({
             currentQuestion: event.detail.current,
         });
     },
 
-    radioChange: function(e) {
+    radioChange: function (e) {
         console.log(e.detail.value)
     },
 
-    nextQ: function() {
+    nextQ: function () {
         if (this.data.currentQuestion < this.data.questionLength) {
             this.setData({
                 currentQuestion: this.data.currentQuestion + 1,
@@ -132,7 +132,7 @@ Page({
         }
     },
 
-    prevQ: function(e) {
+    prevQ: function (e) {
         if (this.data.currentQuestion >= 0) {
             this.setData({
                 currentQuestion: this.data.currentQuestion - 1,
@@ -140,7 +140,7 @@ Page({
         }
     },
 
-    submit: function(e) {
+    submit: function (e) {
         console.log(e.detail.value);
         ans[this.data.currentQuestion] = e.detail.value.answer;
         this.setData({
@@ -151,7 +151,7 @@ Page({
     },
 
     //判断答题完成情况
-    formSubmit: function() {
+    formSubmit: function () {
         var finish = true;
         var i = 0;
         var that = this;
@@ -179,7 +179,7 @@ Page({
             wx.showLoading({
                 title: '正在计算结果',
             })
-            setTimeout(function() {
+            setTimeout(function () {
                 wx.hideLoading({
                     success(res) {
                         that.answer2db();
@@ -193,7 +193,7 @@ Page({
     },
 
     //将用户完成的答案数组上传至云数据库
-    answer2db: function() {
+    answer2db: function () {
         var aScore = 0;
         var a = this.data.category.A;
         console.log()
