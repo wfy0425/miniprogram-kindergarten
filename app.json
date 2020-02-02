@@ -5,6 +5,7 @@
     "pages/changePw/changePw",
 
     "pages/staffs/index/index",
+    "pages/staffs/evalStudent/evalStudent",
     "pages/staffs/16pf/16pf",
     "pages/staffs/16pf/score/score",
     "pages/staffs/16pf/history/history",
@@ -20,6 +21,7 @@
     "pages/parents/contactus/contactus",
 
     "pages/students/index/index",
+
     "pages/authorize/authorize",
     "pages/aboutus/aboutus"
   ],

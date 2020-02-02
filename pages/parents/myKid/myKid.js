@@ -37,7 +37,7 @@ Page({
           console.log(year);
           console.log(month);
           that.setData({
-            date: year.toString() + "-" + month.toString()
+            date: year.toString() + "-" + month.toString(),
           })
         },
         fail: function (err) {
@@ -58,6 +58,8 @@ Page({
         evalArry: res.data
       })
     })
+
+
   },
 
   /**
@@ -117,6 +119,33 @@ Page({
     that.setData({
       date: e.detail.value,
     })
+    var year_month = this.data.date.split('-');
+    //调试通过：新生成一个字段birthmonth, 再筛选(match)
+    const $ = db.command.aggregate
+    db.collection("students_eval").aggregate()
+      .project({
+        _id: true,
+        category: true,
+        content: true,
+        linkId: true,
+        studentId: true,
+        month: $.month('$date'),
+        year: $.year('$date'),
+      })
+      .match({
+        year: parseInt(year_month[0], 10),
+        month: parseInt(year_month[1], 10),
+        linkId: that.data.linkId
+      })
+      .end()
+      .then(res => {
+        console.log(res)
+        that.setData({
+          evalArry: res.list
+        })
+      }, err => {
+        console.log('error1: ', err)
+      })
   },
 
   utc_beijing: function (utc_datetime) {
