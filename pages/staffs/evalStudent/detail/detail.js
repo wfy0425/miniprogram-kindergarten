@@ -1,3 +1,4 @@
+//TODO: 评价缩略
 import Toast from '../../../../vant/toast/toast';
 let app = getApp();
 const db = wx.cloud.database()
