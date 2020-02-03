@@ -1,20 +1,20 @@
-<!--pages/parents/index/index.wxml-->
 <view class="services_container">
-  <view class="logo-banner" >
-    <image mode='widthFix' src="{{bannerUrl}}"></image>
-  </view>
-  <view class="van-hairline--top"></view>
-  <view class='box'>
+	<view class="logo-banner">
+		<image mode='widthFix' src="{{bannerUrl}}"></image>
+	</view>
+	<van-toast id="van-toast" />
+	<van-search value="{{ value }}" placeholder="请输入搜索关键词" use-action-slot bind:change="onChange" bind:search="onSearch">
+		<view slot="action" bind:tap="onSearch">搜索</view>
+	</van-search>
 
-    <van-grid border="{{ false }}" column-num="3" >
-      <van-grid-item icon="friends-o" text="学生情况" link-type="navigateTo" url="/pages/staffs/evalStudent/evalStudent"/>
-      <van-grid-item icon="desktop-o" text="卡特尔测试" link-type="navigateTo" url="/pages/staffs/16pf/16pf"/>
-      <van-grid-item icon="user-circle-o" text="账户管理" bind:click='onAccount' />
-    </van-grid>
-<view class="van-hairline--top"></view>
-    <view class='photo'>
-
-    </view>
-    
-  </view>
+	<!-- 搜索时内容 -->
+	<view class="text">
+		<block wx:for="{{searchResultDatas}}" wx:key="{{item}}">
+    <view class="van-hairline--top"></view>
+			<van-row>
+				<van-col span="4"><text class='text-id'>{{item._id}}</text></van-col>
+				<van-col span="10" offset="4"><text class='text-name'>{{item.name}}</text></van-col>
+			</van-row>
+		</block>
+	</view>
 </view>

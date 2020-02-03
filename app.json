@@ -6,6 +6,7 @@
 
     "pages/staffs/index/index",
     "pages/staffs/evalStudent/evalStudent",
+    "pages/staffs/evalStudent/detail/detail",
     "pages/staffs/16pf/16pf",
     "pages/staffs/16pf/score/score",
     "pages/staffs/16pf/history/history",

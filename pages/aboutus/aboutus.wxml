@@ -19,6 +19,7 @@
     <view class="hairline"></view>
     <view class='text'>
       <block wx:for="{{textArray}}" wx:key="{{item}}">
+      
         <view class="text-box">
           <view class='text-tittle'>{{item.tittle}}</view>
           <text class='text-text'>{{item.text}}</text>
