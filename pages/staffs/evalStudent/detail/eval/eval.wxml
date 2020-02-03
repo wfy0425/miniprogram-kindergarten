@@ -1,0 +1,16 @@
+<!--pages/students/index/index.wxml-->
+<!-- <van-notice-bar mode="link" text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。" /> -->
+<view class="services_container">
+	<view class="logo-banner">
+		<image mode='widthFix' src="{{bannerUrl}}"></image>
+	</view>
+
+	<van-cell-group>
+		<van-field value="{{ eval }}" label="评价" type="textarea" placeholder="请输入评价" autosize error-message="{{ err }}" border="{{ false }}" bind:change="onChange" >
+    <van-button slot="button" size="small" type="primary" bind:click="onSubmit">提交</van-button>
+    </van-field>
+	</van-cell-group>
+
+</view>
+
+<van-toast id="van-toast" />

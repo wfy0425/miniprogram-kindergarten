@@ -9,12 +9,14 @@
 
 	<!-- 搜索时内容 -->
 	<view class="text">
-		<block wx:for="{{searchResultDatas}}" wx:key="{{item}}">
+		<block wx:for="{{searchResultDatas}}" wx:key="item">
     <view class="van-hairline--top"></view>
+    <view bindtap="onDetail" data-id="{{item._id}}">
 			<van-row>
-				<van-col span="4"><text class='text-id'>{{item._id}}</text></van-col>
-				<van-col span="10" offset="4"><text class='text-name'>{{item.name}}</text></van-col>
+				<van-col span="4"><view class='text-id'>{{item._id}}</view></van-col>
+				<van-col span="10" offset="4"><view class='text-name'>{{item.name}}</view></van-col>
 			</van-row>
+      </view>
 		</block>
 	</view>
 </view>

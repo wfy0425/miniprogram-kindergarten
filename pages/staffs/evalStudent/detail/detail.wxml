@@ -1,18 +1,31 @@
-<!--pages/parents/babyQA/postDetail/postDetail.wxml-->
+<!--pages/students/index/index.wxml-->
+<!-- <van-notice-bar mode="link" text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。" /> -->
 <view class="services_container">
-<van-toast id="van-toast" />
-  <view class="logo-banner" >
-    <image mode='widthFix' src="{{bannerUrl}}"></image>
-  </view>
-  <view class="hairline"></view>
-    <view class='blocks'>
-        <view class='blocks-item'>
-          <view class="blocks-image">
-            <image mode='widthFix' src="{{post.url}}" />
-          </view>
-           <view class='blocks-tittle'>{{post.tittle}}</view>
-          <view class='blocks-desc'>{{post.text}}</view>
-        </view>
-    </view>
+	<view class="logo-banner">
+		<image mode='widthFix' src="{{bannerUrl}}"></image>
+	</view>
+
+	<view class='box'>
+		<view class="picker_group">
+			<picker mode="date" value="{{date}}" fields="month" bindchange="bindDateChange">
+				<view class="picker">
+					{{date}}
+				</view>
+			</picker>
+      <van-button size="small" type="primary" bind:click="onNewEval">新建评价</van-button>
+		</view>
+
+		<view class='text'>
+			<block wx:for="{{evalArry}}" wx:key="item">
+				<view class="text-box">
+					<view class='text-tittle'>{{item.year}}-{{item.month}}-{{item.day}}</view>
+					<view class='text-text'>{{item.content}}</view>
+				</view>
+			</block>
+		</view>
+
+	</view>
+
 </view>
 
+<van-toast id="van-toast" />

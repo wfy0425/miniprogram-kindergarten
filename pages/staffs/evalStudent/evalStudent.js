@@ -253,5 +253,13 @@ Page({
     wx.navigateTo({
       url: '/pages/staffs/16pf/score/score?_id=' + e.target.dataset.id,
     })
-  }
+  },
+
+  onDetail: function(event) {
+    var studentId = event.currentTarget.dataset.id
+    wx.navigateTo({
+        url: 'detail/detail?id=' + studentId
+    });
+
+},
 })

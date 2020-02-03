@@ -64,4 +64,5 @@ page {
   font-size: 34rpx;
 
   line-height: 52rpx;
+  word-break:break-all;
 }
