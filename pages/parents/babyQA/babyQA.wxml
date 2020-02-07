@@ -7,7 +7,7 @@
   </view>
   <view class="hairline"></view>
     <view class='blocks'>
-      <block wx:for="{{articleList}}" wx:key="{{item}}">
+      <block wx:for="{{videoList}}" wx:key="{{item}}">
         <view class='blocks-item' bindtap="detail" data-id="{{item._id}}">
           <view class="blocks-image">
             <image mode='widthFix' src="{{item.url}}" />

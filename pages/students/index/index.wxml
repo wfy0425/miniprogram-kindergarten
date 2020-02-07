@@ -1,53 +1,17 @@
 <!--pages/students/index/index.wxml-->
-<!-- <van-notice-bar mode="link" text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。" /> -->
+
 <view class="services_container">
-  <view class="logo-banner">
-    <image mode='widthFix' src="{{bannerUrl}}"></image>
-  </view>
+	<view class="logo-banner">
+		<image mode='widthFix' src="{{bannerUrl}}"></image>
+	</view>
 
-  <view class='box'>
-
-    <swiper class="banner" autoplay="autoplay" interval="2500" duration="500" indicator-dots="true">
-      <block wx:for="{{imgUrls}}" wx:key="{{item}}">
-        <swiper-item>
-          <view class="slide-image">
-            <image mode='widthFix' src="{{item}}" />
-          </view>
-        </swiper-item>
-      </block>
-    </swiper>
-
-    <view class='photo'>
-      <block wx:for="{{photoList}}" wx:key="{{item}}">
-        <view class='photo-item'>
-          <view class="photo-image">
-            <image mode='widthFix' src="{{item.url}}" />
-          </view>
-          <view class='photo-desc'>{{item.description}}</view>
-        </view>
-      </block>
-    </view>
-
-    <view class='video'>
-      <block wx:for="{{videoList}}">
-        <view class='video-item'>
-          <view class='wrapper'>
-            <video class='video-video' wx:if='{{index==videoIndex}}' id='video{{index}}' autoplay='{{true}}' show-center-play-btn="{{false}}" src='{{item.resource_add}}'></video>
-            <image class='video-video2' wx:if='{{index!=videoIndex}}' mode='aspectFill' src='{{item.coverimg}}'></image>
-            <image class='videoPlay' wx:if='{{index!=videoIndex}}' data-index='{{index}}' bindtap='videoPlay' src='/images/play.png'></image>
-          </view>
-          <view class='video-name'>{{item.title}}</view>
-          <view class='video-desc' style="{{item.upStatus?'':'display:-webkit-box'}}">{{item.description}}</view>
-          <view class='video-bottom'>
-            <view class='video-btn' data-index="{{index}}" bindtap='upDown'>
-              <image hidden='{{item.upStatus}}' src='/images/slide.png'></image>
-              <image hidden='{{!item.upStatus}}' src='/images/up.png'></image>
-              <text>{{!item.upStatus?'展开':'收起'}}</text>
-            </view>
-          </view>
-        </view>
-      </block>
-    </view>
-    
-  </view>
+	<view class='box'>
+		<view class='blocks'>
+			<block wx:for="{{videoList}}" wx:key="{{item}}">
+				<txv-video vid="{{item.vid}}" playerid="{{item.vid}}" autoplay="{{false}}"></txv-video>
+				<view class='video-name'>{{item.tittle}}</view>
+				<view class='video-desc'>{{item.description}}</view>
+			</block>
+		</view>
+	</view>
 </view>

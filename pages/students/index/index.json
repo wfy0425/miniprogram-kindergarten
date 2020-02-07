@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "van-notice-bar": "../../../vant/notice-bar/index"
+    "txv-video": "plugin://tencentvideo/video"
   }
+  
 }

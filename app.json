@@ -39,5 +39,11 @@
   },
 
   "cloud": true,
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "plugins": {
+    "tencentvideo": {
+      "version": "1.3.7",
+      "provider": "wxa75efa648b60994b"
+    }
+  }
 }
