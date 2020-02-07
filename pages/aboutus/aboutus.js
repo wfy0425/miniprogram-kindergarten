@@ -1,4 +1,7 @@
 // pages/students/index/index.js
+let app = getApp();
+const db = wx.cloud.database();
+const collection = db.collection('aboutus_photo');
 Page({
 
   /**
@@ -12,9 +15,10 @@ Page({
       'https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg',
       'https://ss1.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=92afee66fd36afc3110c39658318eb85/908fa0ec08fa513db777cf78376d55fbb3fbd9b3.jpg'
     ],
+    activeNames: ["father"],//vant折叠面板，记录当前展开的tab
     textArray: [
       {
-        'tittle': "关于童心童行",
+        'tittle': "我们是谁",
         'text': "童心童行幼儿学院于2019年成立于北京,作为高品质的国际教育机构,我们专注为1至6岁,来自世界各地的儿童提供全方位优质的教学、成长及发展支持,满足不同家庭多元化的教育需求。我们致力于为孩子提供最好的环境和机会,在这里孩子们将充分感受到快乐、关爱及激发。\n童心童行的教育理念建立在“探究式学习”之上, 使用瑞吉欧教学法, 欣赏个体差异, 鼓励每个孩子发现独一无二的自己, 探究无限可能的世界。童心童行是孩子们快乐成长的地方, 而学习在这里也如此有趣。童心童行给孩子们提供充分探索的环境, 他们终日探究, 个性与爱好得到了极大的尊重和满足。他们永远被鼓励去尝试新的事物及挑战, 勇敢的做出自己的选择, 表达内心的声音。我们经验丰富、敬业奉献的教职团队确保每个孩子在学习和成长过程中都能得到最好的支持。\n作为教育者, 我们为孩子的发现之旅指引航向, 希望每个孩子都能通过这段旅程成为独一无二的世界公民和终身学习者。\n作为教学者, 我们一直在专业领域不断精进发展, 协同合作, 接受挑战, 不断反思, 从而成长为更好的教师。\n作为社区的一部分, 我们为孩子、家长及社区的发展提供创新性及个性化的教育支持, 搭建开放、互助的交流平台。\n让童心童行为孩子们构建出一个多元美好的成长乐园。"
       },
       {
@@ -42,67 +46,22 @@ Page({
         'text': "童心童行课外拓展学院将最优质的资源汇集于此，为所有学生提供丰富多彩，品质高端的精品课程。学生可以按照他们的兴趣继续在学术上精益求精，以及拓展兴趣爱好。从学术培养，素质培养，领导力培养三方面，提供语言、逻辑、科学、人文、艺术、生活方式及运动健康七大类别几十种拓展资源，全方位支持孩子不断挑战自我，发现自我，无限发挥自我的内在张力，我们每年固定在假期开设夏令营及冬令营，周末学校也是童心童行课后拓展学院的重要组成部分。"
       },
     ],
-    isLoadedAll: false,
-    musicIndex: null,
-    videoIndex: null,
-    currentTabsIndex: 0,
-    pageIndex: 1,
-    photoList: [
-      {
-        'url': "/images/photo/多功能影音室.jpg",
-        'description': "这是第一个示例，这是第一个示例，这是第一个示例，这是第一个示例。这是第一个示例，这是第一个示例，这是第一个示例，这是第一个示例。"
-      },
-      {
-        'url': "/images/photo/海洋泡泡区.jpg",
-        'description': "海洋泡泡区"
-      },
-      {
-        'url': "/images/photo/海洋球池.jpg",
-        'description': "海洋球池"
-      },
-      
-    ],
-    videoList: [
-      {
-        'coverimg': "https://goss.veer.com/creative/vcg/veer/800water/veer-146156021.jpg",
-        'description': "这是第一个示例，这是第一个示例，这是第一个示例，这是第一个示例。这是第一个示例，这是第一个示例，这是第一个示例，这是第一个示例。",
-        'id': "41",
-        'resource_add': "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400",
-        'title': " 第三期 Beatles 02",
-        'type': "1"
-      },
-      {
-        'coverimg': "https://goss.veer.com/creative/vcg/veer/800water/veer-146156021.jpg",
-        'description': "",
-        'id': "42",
-        'resource_add': "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400",
-        'title': " 第三期 Beatles 02",
-        'type': "1"
-      },
-      {
-        'coverimg': "https://goss.veer.com/creative/vcg/veer/800water/veer-146156021.jpg",
-        'description': "",
-        'id': "43",
-        'resource_add': "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400",
-        'title': " 第三期 Beatles 02",
-        'type': "1"
-      },
-      {
-        'coverimg': "https://goss.veer.com/creative/vcg/veer/800water/veer-146156021.jpg",
-        'description': "",
-        'id': "44",
-        'resource_add': "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400",
-        'title': " 第三期 Beatles 02",
-        'type': "1"
-      },
-    ]
+    photoList: []
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    collection.get({
+      success: function (res) {
+        that.setData({
+          photoList: res.data,
+        })
+      }
+    })
   },
 
   /**
@@ -153,75 +112,13 @@ Page({
   onShareAppMessage: function () {
 
   },
-  //tap切换
-  onTabsItemTap: function (event) {
-    var index = event.currentTarget.dataset['index'];
+
+  /**
+   * vant折叠面板点击展开
+   */
+  onChange(event) {
     this.setData({
-      currentTabsIndex: index
+      activeNames: event.detail
     });
-    //tab切换时停止音乐播放
-    backgroundAudioManager.stop();
-
-    //tab切换时停止视频播放
-    var videoContextPrev = wx.createVideoContext('video' + this.data.videoIndex);
-    videoContextPrev.stop();
-
-    //将当前播放视频、音频的index设置为空
-    this.setData({
-      musicIndex: null,
-      videoIndex: null,
-    })
-  },
-  //展开
-  //原本没有upStatus这个字段，所以默认值为false
-  upDown(event) {
-    var index = event.currentTarget.dataset['index'];
-    this.data.videoList[index].upStatus = !this.data.videoList[index].upStatus;
-    this.setData({
-      videoList: this.data.videoList
-    })
-  },
-  //播放音频
-  musicPlay(event) {
-    var src = event.currentTarget.dataset['src'];
-    var index = event.currentTarget.dataset['index'];
-    this.setData({
-      musicIndex: index,
-      audioSrc: src
-    });
-
-    backgroundAudioManager.src = src;
-    backgroundAudioManager.play()
-
-  },
-  //停止音频
-  musicPause(event) {
-    this.setData({
-      musicIndex: null
-    });
-    backgroundAudioManager.pause();
-  },
-  //播放视频
-  videoPlay(event) {
-    var length = this.data.videoList.length;
-    var index = event.currentTarget.dataset['index'];
-
-    if (!this.data.videoIndex) { // 没有播放时播放视频
-      this.setData({
-        videoIndex: index
-      })
-      var videoContext = wx.createVideoContext('video' + index)
-      videoContext.play()
-    } else {
-      //停止正在播放的视频
-      var videoContextPrev = wx.createVideoContext('video' + this.data.videoIndex)
-      videoContextPrev.stop()
-      //将点击视频进行播放
-      this.setData({
-        videoIndex: index
-      })
-      var videoContextCurrent = wx.createVideoContext('video' + index)
-      videoContextCurrent.play()
-    }
-  },
+  }
 })

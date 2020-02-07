@@ -30,10 +30,6 @@ page {
 
 .text {
     position: relative;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    flex: 1;
-    padding: 0 0 150rpx;
 }
 
 .text block {
@@ -42,8 +38,8 @@ page {
 }
 
 .text-box {
-    margin-bottom: 48rpx;
-    padding: 48rpx;
+    padding-left: 36rpx;
+    padding-right: 36rpx;
     background-color: #fff;
 }
 
@@ -89,92 +85,4 @@ page {
     font-size: 26rpx;
     color: var(--content-color);
     margin-top: 10rpx;
-}
-
-.video {
-    display: flex;
-    flex-direction: column;
-}
-
-.video-item {
-    padding: 40rpx 0;
-    /* border-bottom: solid 1px #efefef; */
-}
-
-.wrapper {
-    width: 690rpx;
-    height: 400rpx;
-    position: relative;
-}
-
-.video-video {
-    width: 690rpx;
-    height: 400rpx;
-}
-
-.video-video2 {
-    width: 690rpx;
-    height: 400rpx;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 99;
-}
-
-.videoPlay {
-    position: absolute;
-    width: 60rpx;
-    height: 60rpx;
-    top: 50%;
-    left: 50%;
-    margin: -30rpx 0 0 -30rpx;
-    z-index: 100;
-}
-
-.video-name {
-    margin-top: 10rpx;
-    font-size: 34rpx;
-    color: var(--title-color);
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-    overflow: hidden;
-}
-
-.video-desc {
-    font-size: 26rpx;
-    color: var(--content-color);
-    margin-top: 10rpx;
-    /* display: -webkit-box; */
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-}
-
-.video-bottom {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.video-btn {
-    margin-top: 20rpx;
-    width: 103rpx;
-    height: 39rpx;
-    border: solid 1px var(--sub-color);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.video-btn image {
-    width: 19rpx;
-    height: 12rpx;
-    margin-right: 10rpx;
-}
-
-.video-btn text {
-    font-family: PingFangSC-Regular;
-    font-size: 22rpx;
-    color: var(--sub-color);
 }
