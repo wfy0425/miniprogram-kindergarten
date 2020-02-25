@@ -9,8 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    logoUrl: '/images/logo.svg',
-    bannerUrl: '/images/banner.svg',
+    logoUrl: '/images/logo.jpg',
+    bannerUrl: '/images/banner.png',
     date: '2020-01', //默认起始时间  
     evalArry: null,
     linkId: 1234,

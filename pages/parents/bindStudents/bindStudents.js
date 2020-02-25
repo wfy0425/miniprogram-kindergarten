@@ -11,8 +11,8 @@ Page({
      */
     data: {
         userInfo: {},
-        logoUrl: '/images/logo.svg',
-        bannerUrl: '/images/banner.svg',
+        logoUrl: '/images/logo.jpg',
+        bannerUrl: '/images/banner.png',
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         linkId: "", //使用数据时用这个
         isBinded: false, //用于控件显示

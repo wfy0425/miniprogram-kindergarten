@@ -9,8 +9,8 @@ Page({
    */
   data: {
     studentId: null,
-    logoUrl: '/images/logo.svg',
-    bannerUrl: '/images/banner.svg',
+    logoUrl: '/images/logo.jpg',
+    bannerUrl: '/images/banner.png',
     eval: '',
     page: 0,
     pageSize: 20,

@@ -11,8 +11,8 @@ Page({
 
 
     data: {
-        logoUrl: '../../../images/logo.svg',
-        bannerUrl: '../../../images/banner.svg',
+        logoUrl: '../../../images/logo.jpg',
+        bannerUrl: '../../../images/banner.png',
         qnaire: questions.qnaire,
         questionLength: questions.qnaire.length,
         category: questions.category,

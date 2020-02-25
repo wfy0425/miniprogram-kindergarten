@@ -8,8 +8,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        logoUrl: '../../../images/logo.svg',
-        bannerUrl: '../../../images/banner.svg',
+        logoUrl: '../../../images/logo.jpg',
+        bannerUrl: '../../../images/banner.png',
         memberList: [],
     },
 

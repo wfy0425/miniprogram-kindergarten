@@ -7,8 +7,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        logoUrl: '/images/logo.svg',
-        bannerUrl: '/images/banner.svg',
+        logoUrl: '/images/logo.jpg',
+        bannerUrl: '/images/banner.png',
         userInfo: {}, //使用数据时用这个
         avatarUrl: '/images/user-unlogin.png', //用于控件显示
         username: '点击登陆', //用于控件显示

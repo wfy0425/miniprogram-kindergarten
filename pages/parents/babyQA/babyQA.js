@@ -9,8 +9,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        logoUrl: '../../../images/logo.svg',
-        bannerUrl: '../../../images/banner.svg',
+        logoUrl: '../../../images/logo.jpg',
+        bannerUrl: '../../../images/banner.png',
         imgUrls: [
             'cloud://cloud-zhiai-8dv2t.636c-cloud-zhiai-8dv2t-1300754910/img/娱乐区淘气堡.jpg',
             'cloud://cloud-zhiai-8dv2t.636c-cloud-zhiai-8dv2t-1300754910/img/休息区.jpg',

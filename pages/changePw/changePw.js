@@ -16,8 +16,8 @@ Page({
         password: "",
         newPassword: "",
         dbCollection: null,
-        logoUrl: '/images/logo.svg',
-        bannerUrl: '/images/banner.svg',
+        logoUrl: '/images/logo.jpg',
+        bannerUrl: '/images/banner.png',
     },
 
     //输入用户名
