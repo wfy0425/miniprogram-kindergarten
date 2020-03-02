@@ -13,7 +13,7 @@ Page({
     data: {
         userInfo: {},
         logoUrl: '/images/logo.jpg',
-        bannerUrl: '/images/banner.png',
+        bannerUrl: '/images/banner.svg',
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         username: "",
         password: "",

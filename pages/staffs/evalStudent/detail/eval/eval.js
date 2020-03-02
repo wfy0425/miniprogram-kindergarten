@@ -10,7 +10,7 @@ Page({
   data: {
     studentId: null,
     logoUrl: '/images/logo.jpg',
-    bannerUrl: '/images/banner.png',
+    bannerUrl: '/images/banner.svg',
     eval: '',
     page: 0,
     pageSize: 20,

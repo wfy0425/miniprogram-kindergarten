@@ -10,7 +10,7 @@ Page({
     data: {
         post: null,
         logoUrl: '/images/logo.jpg',
-        bannerUrl: '/images/banner.png',
+        bannerUrl: '/images/banner.svg',
     },
 
     /**

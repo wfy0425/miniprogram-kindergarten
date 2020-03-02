@@ -7,7 +7,7 @@ Page({
    */
   data: {
     logoUrl: '../../../images/logo.jpg',
-    bannerUrl: '../../../images/banner.png',
+    bannerUrl: '../../../images/banner.svg',
     isLoadedAll: false,
     musicIndex: null,
     videoIndex: null,

@@ -9,7 +9,7 @@ Page({
      */
     data: {
         logoUrl: '/images/logo.jpg',
-        bannerUrl: '/images/banner.png',
+        bannerUrl: '/images/banner.svg',
         A: null,
         B: null,
         C: null,

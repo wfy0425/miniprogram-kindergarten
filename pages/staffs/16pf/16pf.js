@@ -12,7 +12,7 @@ Page({
 
     data: {
         logoUrl: '../../../images/logo.jpg',
-        bannerUrl: '../../../images/banner.png',
+        bannerUrl: '../../../images/banner.svg',
         qnaire: questions.qnaire,
         questionLength: questions.qnaire.length,
         category: questions.category,

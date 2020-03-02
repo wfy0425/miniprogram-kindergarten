@@ -7,7 +7,7 @@ Page({
      */
     data: {
         logoUrl: '../../../images/logo.jpg',
-        bannerUrl: '../../../images/banner.png',
+        bannerUrl: '../../../images/banner.svg',
         //TODO: 图片预加载
         imgUrls: [
             'cloud://cloud-zhiai-8dv2t.636c-cloud-zhiai-8dv2t-1300754910/img/娱乐区淘气堡.jpg',

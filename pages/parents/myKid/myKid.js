@@ -10,7 +10,7 @@ Page({
    */
   data: {
     logoUrl: '/images/logo.jpg',
-    bannerUrl: '/images/banner.png',
+    bannerUrl: '/images/banner.svg',
     date: '2020-01', //默认起始时间  
     evalArry: null,
     linkId: 1234,
