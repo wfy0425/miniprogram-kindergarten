@@ -1,3 +1,5 @@
+/* pages/parents/index/index.wxss */
+
 page {
     width: 100%;
     background-color: var(--background-color);
@@ -59,11 +61,10 @@ page {
     margin-bottom: 24rpx;
     color: var(--tittle-color);
     font-size: 40rpx;
-    text-align:center;
 }
 
 .blocks-desc {
     color: var(--content-color);
-    font-size: 30rpx;
+    font-size: 28rpx;
     line-height: 52rpx;
 }

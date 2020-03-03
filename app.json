@@ -21,6 +21,8 @@
     "pages/parents/babyQA/babyQA",
     "pages/parents/babyQA/postDetail/postDetail",
     "pages/parents/contactus/contactus",
+    "pages/parents/teacherTraining/teacherTraining",
+    "pages/parents/babyQA/teacherTraining/teacherTraining",
 
     "pages/students/index/index",
 

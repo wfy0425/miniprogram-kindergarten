@@ -18,8 +18,8 @@
 
 		<van-grid border="{{ false }}" column-num="3">
 			<van-grid-item icon="label-o" text="我的孩子" link-type="navigateTo" url="/pages/parents/myKid/myKid" />
-			<van-grid-item icon="desktop-o" text="家长课堂" link-type="navigateTo" url="/pages/parents/class/class" />
-			<van-grid-item icon="chat-o" text="育儿问答" link-type="navigateTo" url="/pages/parents/babyQA/babyQA" />
+			<van-grid-item icon="desktop-o" text="教师培训" link-type="navigateTo" url="/pages/parents/teacherTraining/teacherTraining" />
+			<van-grid-item icon="description" text="绘本故事" link-type="navigateTo" url="/pages/parents/babyQA/babyQA" />
 			<van-grid-item icon="service-o" text="联系我们" link-type="navigateTo" url="/pages/parents/contactus/contactus" />
 			<van-grid-item icon="user-circle-o" text="账户管理" bind:click='onAccount' />
 			<van-grid-item icon="friends-o" text="了解稚爱" link-type="navigateTo" url="/pages/aboutus/aboutus" />
