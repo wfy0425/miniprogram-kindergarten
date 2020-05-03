@@ -14,6 +14,7 @@
     "pages/staffs/account/account",
 
     "pages/parents/index/index",
+    "pages/parents/invitationCard/invitationCard",
     "pages/parents/myKid/myKid",
     "pages/parents/account/account",
     "pages/parents/bindStudents/bindStudents",

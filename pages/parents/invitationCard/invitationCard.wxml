@@ -1,0 +1,41 @@
+<!--pages/parents/index/index.wxml-->
+<!-- <van-notice-bar mode="link" text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。" /> -->
+<view class="services_container">
+	<van-toast id="van-toast" />
+	<view class="logo-banner">
+		<image mode='widthFix' src="{{bannerUrl}}"></image>
+	</view>
+	<view class="hairline"></view>
+	<view class='blocks'>
+		<block wx:for="{{articleList}}" wx:key="item">
+			<view class='blocks-item' bindtap="detail" data-id="{{item._id}}">
+				<view class="blocks-image">
+					<image mode='widthFix' src="{{item.url}}" />
+				</view>
+				<view class='blocks-tittle'>{{item.tittle}}</view>
+				<view class='blocks-desc'>{{item.description}}</view>
+			</view>
+		</block>
+	</view>
+	<view class='info'>
+		<view class='precaution'>
+			<text decode="{{true}}" space="{{true}}" class='precaution-tittle'>卡特尔16种性格因素测验</text>
+			<text decode="{{true}}" space="{{true}}" class='precaution-text'>&emsp;&emsp;本测验共有187道题目，都是有关个人的兴趣和态度等问题。每个人对这些问题是会有不同看法的，回答也是不同的，因而对问题如何回答，并没有对与不对之分，只是表明你对这些问题的态度。请你要尽量表达个人的意见，不要有顾虑。</text>
+			<text decode="{{true}}" space="{{true}}" class='precaution-text-color'>\n应当记住的是：\n1．每一测题只能选择一个答案。\n2．不可漏掉任何题目。\n3．尽量不选择B答案。\n4．本测验不计时间，但应凭自己的直觉反应进行作答，不要迟疑不决，拖延时间。一定要在一个小时以内完成整个测验。\n5．有些题目你可能从未思考过，或者感到不太容易回答。对于这样的题目，同样要求你做出一种倾向性的选择。</text>
+		</view>
+		<van-cell-group>
+			<van-field label="宝宝姓名" required placeholder="请输入宝宝的姓名" border="{{ false }}" bind:change="inputBabyName" error="{{babyNameError}}" required />
+			<van-field label="出生年月" required placeholder="请输入宝宝的出生年月" value="{{ babyBirthday }}" border="{{ false }}" bind:focus="inputBabyBirthday" error="{{babyBirthdayError}}" required />
+			<van-popup show="{{ babyBirthdayPickerShow }}" position="bottom" bind:close="babyBirthdayPickerClose">
+				<van-datetime-picker type="date" value="{{ currentDate }}" bind:confirm="confirmBabyBirthday"  />
+			</van-popup>
+
+			<van-field label="家长姓名" required placeholder="请输入您的姓名" border="{{ false }}" bind:change="inputParentsName" error="{{parentsNameError}}" required />
+			<van-field label="联系方式" required placeholder="请输入您的手机号" border="{{ false }}" bind:change="inputParentsContact" error-message="{{parentsContactError}}" required />
+			<van-field label="家庭住址" required placeholder="请输入您的家庭住址" border="{{ false }}" bind:change="inputParentsAddress" />
+		</van-cell-group>
+		<view class='precaution-button'>
+			<van-button round type="info" bind:click='submit'>提交</van-button>
+		</view>
+	</view>
+</view>

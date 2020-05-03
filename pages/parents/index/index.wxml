@@ -7,7 +7,7 @@
 	<view class="van-hairline--top"></view>
 	<view class='box'>
 		<swiper class="banner" autoplay="autoplay" interval="2500" duration="500" indicator-dots="true">
-			<block wx:for="{{imgUrls}}" wx:key="{{item}}">
+			<block wx:for="{{imgUrls}}" wx:key="item">
 				<swiper-item>
 					<view class="slide-image">
 						<image mode='widthFix' src="{{item}}" />
@@ -26,7 +26,7 @@
 		</van-grid>
 		<view class="van-hairline--top"></view>
 		<view class='photo'>
-			<block wx:for="{{photoList}}" wx:key="{{item}}">
+			<block wx:for="{{photoList}}" wx:key="item">
 				<view class='photo-item'>
 					<view class="photo-image">
 						<image mode='widthFix' src="{{item.url}}" />

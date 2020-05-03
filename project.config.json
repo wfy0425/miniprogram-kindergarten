@@ -181,6 +181,13 @@
 					"id": -1,
 					"name": "pages/parents/teacherTraining/teacherTraining",
 					"pathName": "pages/parents/teacherTraining/teacherTraining",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/parents/invitationCard/invitationCard",
+					"pathName": "pages/parents/invitationCard/invitationCard",
 					"scene": null
 				}
 			]

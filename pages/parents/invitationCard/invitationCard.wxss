@@ -1,0 +1,70 @@
+/* pages/parents/index/index.wxss */
+
+page {
+  width: 100%;
+  background-color: var(--background-color);
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  width: 690rpx;
+  margin: auto;
+}
+
+.banner {
+  padding: 20rpx 0;
+  /* border-bottom: solid 1px #efefef; */
+  width: 100%;
+  height: 600rpx;
+}
+
+.hairline {
+  margin-top: 20rpx;
+}
+
+.blocks {
+  display: flex;
+  flex-direction: column;
+  width: 690rpx;
+  margin: auto;
+  position: relative;
+  flex: 1;
+  padding: 0 0 75rpx;
+}
+
+.blocks block {
+  padding: 60rpx;
+  overflow: hidden;
+}
+
+.blocks-item {
+  margin-bottom: 20rpx;
+  padding: 48rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+}
+
+.blocks-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.blocks-image image {
+  width: 100%;
+  border-radius: 12rpx;
+  margin-bottom: 24rpx;
+}
+
+.blocks-tittle {
+  margin-bottom: 24rpx;
+  color: var(--tittle-color);
+  font-size: 40rpx;
+}
+
+.blocks-desc {
+  color: var(--content-color);
+  font-size: 28rpx;
+  line-height: 52rpx;
+}
