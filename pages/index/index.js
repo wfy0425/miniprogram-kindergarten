@@ -15,7 +15,39 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        Toast.loading({
+            duration: 0, // 持续展示 toast
+            forbidClick: true, // 禁用背景点击
+            message: '加载中',
+            mask: true
+        });
+        // 查询openid
+        wx.cloud.callFunction({
+            name: 'getWXContext',
+            data: {},
+            success: res => {
+                console.log('[云函数] [getWXContext] user openid: ', res.result.openid)
+                app.globalData.openid = res.result.openid
 
+                //查询staffs数据库里是否有用户的openid
+                const db = wx.cloud.database();
+                const collection = db.collection("staffs");
+                collection.doc(app.globalData.openid).get({
+                    success: function(res) {
+                        // res.data 包含该记录的数据
+                        app.globalData.isAdmin = res.data.isAdmin
+                        console.log(res.data)
+                        Toast.clear();
+                    },
+                    fail: function() {
+                        //没有
+                        app.globalData.isAdmin=false
+                        Toast.clear();
+                    }
+                })
+
+            },
+        })
     },
 
     /**

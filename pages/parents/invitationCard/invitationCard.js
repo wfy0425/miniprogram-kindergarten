@@ -1,6 +1,8 @@
 let app = getApp();
 const db = wx.cloud.database();
-const collection = db.collection('teacherTrainingPost');
+const collection = db.collection('parents_event');
+const ctx = wx.createCanvasContext('myCanvas')
+
 import Toast from '../../../vant/toast/toast';
 // pages/parents/index/index.js
 Page({
@@ -15,20 +17,78 @@ Page({
     page: 0,
     totalCount: 0,
     pageSize: 10,
-
-    babyBirthdayPickerShow:false,
+    hide: true, //先显示信息输入
+    adminList: false, //查看所有登记的人
+    babyBirthdayPickerShow: false,
     babyBirthday: new Date().getTime(),
+    openid: '',
+    babyName: '',
+    parentsName: '',
+    parentsContact: '',
+    parentsAddress: '',
 
+    infoExist: false, //用户是否已经登记过
+    submitButton: '确认',
 
+    isAdmin: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    Toast.loading({
+      duration: 0, // 持续展示 toast
+      forbidClick: true, // 禁用背景点击
+      message: '加载中',
+      mask: true
+    });
     var that = this;
     var page = this.data.page;
     var startCount = page * this.data.pageSize
+
+    //检测是不是老师
+    var isAdmin = app.globalData.isAdmin
+    this.setData({
+      isAdmin
+    })
+    if (!app.globalData.openid) {
+      this.onGetOpenid();
+    }
+    wx.cloud.callFunction({
+      name: 'getWXContext',
+      data: {},
+      success: res => {
+        console.log('[云函数] [getWXContext] user openid: ', res.result.openid)
+
+
+
+        //检查是否已经登记过
+        collection.doc(res.result.openid).get({
+          success: function (res) {
+            console.log(res)
+            that.setData({
+              infoExist: true,
+              submitButton: '更新',
+              babyBirthday: res.data.babyBirthday,
+
+              babyName: res.data.babyName,
+              parentsName: res.data.parentsName,
+              parentsContact: res.data.parentsContact,
+              parentsAddress: res.data.parentsAddress,
+            })
+            Toast.clear();
+          },
+          fail: function (res) {
+            console.log(res)
+            Toast.clear();
+          }
+        })
+      },
+      fail: err => {
+        console.error('[云函数] [getWXContext] 调用失败', err)
+      }
+    })
 
 
     // 获取总数
@@ -46,6 +106,18 @@ Page({
     this.setData({
       babyBirthday: this.formatter(new Date()),
     });
+
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          model: res.model,
+          screen_width: res.windowWidth / 375,
+          screen_height: res.windowHeight
+        })
+      }
+    })
+
   },
 
   /**
@@ -174,26 +246,28 @@ Page({
 
   inputBabyBirthday: function (event) {
     this.setData({
-      babyBirthdayPickerShow: true 
+      babyBirthdayPickerShow: true
     });
   },
   babyBirthdayPickerClose() {
-    this.setData({ babyBirthdayPickerShow: false });
+    this.setData({
+      babyBirthdayPickerShow: false
+    });
   },
 
   confirmBabyBirthday: function (event) {
     this.setData({
       babyBirthday: this.formatter(new Date(event.detail)),
-      babyBirthdayPickerShow: false 
+      babyBirthdayPickerShow: false
     });
   },
-  formatter: function(date)  {
+  formatter: function (date) {
     var year = date.getFullYear()
     var month = date.getMonth() + 1
     var day = date.getDate()
     return [year, month, day].map(this.formatNumber).join('-')
   },
-  formatNumber: function(n) {
+  formatNumber: function (n) {
     n = n.toString()
     return n[1] ? n : '0' + n
   },
@@ -215,27 +289,228 @@ Page({
   },
 
   submit: function (e) {
+    var that = this
+    var complete = true;
+    this.data.babyName = this.data.babyName.replace(/\s+/g, '');
+    this.data.parentsName = this.data.parentsName.replace(/\s+/g, '');
+    this.data.parentsContact = this.data.parentsContact.replace(/\s+/g, '');
+
     if (!this.data.babyName) {
       this.setData({
         babyNameError: true
       })
+      complete = false;
     }
     if (!this.data.babyBirthday) {
       this.setData({
         babyBirthdayError: true
       })
+      complete = false;
     }
     if (!this.data.parentsName) {
       this.setData({
         parentsNameError: true
       })
+      complete = false;
     }
-    if (!this.data.parentsContact || !/^\d{n}$/.test(parentsContact)) {
+
+    if (!this.data.parentsContact || !/^\d{11}$/.test(this.data.parentsContact)) {
       this.setData({
         parentsContactError: '请输入正确的手机号'
       })
+      complete = false;
     }
+    if (complete) {
+      Toast.loading({
+        duration: 0, // 持续展示 toast
+        forbidClick: true, // 禁用背景点击
+        message: '提交中',
+        mask: true
+      });
+      console.log('complete')
+      if (this.data.infoExist) {
+        collection.doc(app.globalData.openid).update({
+          data: {
+            babyName: this.data.babyName,
+            babyBirthday: this.data.babyBirthday,
+            parentsName: this.data.parentsName,
+            parentsContact: this.data.parentsContact,
+            parentsAddress: this.data.parentsAddress,
+          },
+          success: function (res) {
+
+
+            // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id 
+            console.log(res)
+            Toast.clear()
+            that.setData({
+              hide: false
+            })
+          },
+          fail: function (res) {
+            Toast.clear();
+            Toast.fail({
+              duration: 1000,
+              message: '新增记录失败，请稍后再试',
+            })
+            console.log(res)
+          }
+        })
+      } else {
+        collection.add({
+          data: {
+            _id: app.globalData.openid,
+            babyName: this.data.babyName,
+            babyBirthday: this.data.babyBirthday,
+            parentsName: this.data.parentsName,
+            parentsContact: this.data.parentsContact,
+            parentsAddress: this.data.parentsAddress,
+          },
+          success: function (res) {
+            // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
+            console.log(res)
+            Toast.clear()
+            that.setData({
+              hide: false
+            })
+          },
+          fail: function (res) {
+            Toast.clear();
+            Toast.fail({
+              duration: 1000,
+              message: '新增记录失败，请稍后再试',
+            })
+            console.log(res)
+          }
+        })
+      }
+
+
+    }
+    this.draw();
   },
 
+  draw: function () {
+    let that = this;
 
+    console.log('手机型号' + that.data.model, '宽' + that.data.screen_width * 375, '高' + that.data.screen_height)
+    let rpx = that.data.screen_width
+    ctx.drawImage('/images/invitationCard.jpg', 0, 0, 345 * rpx, 488 * rpx)
+    /* 绘制文字 位置自己计算 参数自己看文档 */
+    ctx.setTextAlign('center') //  位置
+    ctx.setFillStyle('#000000') //  颜色
+    ctx.font = 'normal normal 12px sans-serif';
+    ctx.fillText('为了感谢您长期以来对雉爱的厚爱，特于某地举办某活动', 345 / 2 * rpx, 260 * rpx) //  内容  不会自己换行 需手动换行
+    ctx.fillText('地点：兰亭雅居46号', 345 / 2 * rpx, 278 * rpx) //  内容
+
+    ctx.setTextAlign('right') //  位置
+    ctx.font = 'normal normal 22px sans-serif';
+    ctx.translate(90 * rpx, 350 * rpx)
+    ctx.rotate(90 * Math.PI / 180)
+    ctx.fillText('PM', 0 * rpx, 0 * rpx)
+    ctx.rotate(270 * Math.PI / 180)
+    ctx.translate(-90 * rpx, -350 * rpx)
+
+    ctx.setTextAlign('center') //  位置
+    ctx.font = 'normal normal 50px sans-serif';
+    ctx.fillText('14:00', 345 / 2 * rpx, 350 * rpx)
+
+    ctx.font = 'normal normal 20px sans-serif';
+    ctx.fillText('2020', 270 * rpx, 325 * rpx)
+    ctx.font = 'normal normal 20px sans-serif';
+    ctx.fillText('5/10', 270 * rpx, 350 * rpx)
+
+
+
+    ctx.drawImage('/images/wxacode.jpg', (345 / 2 - 43) * rpx, (430 - 43) * rpx, 86 * rpx, 86 * rpx)
+    ctx.draw()
+
+
+
+  },
+  onGetOpenid: function () {
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'getWXContext',
+      data: {},
+      success: res => {
+        console.log('[云函数] [getWXContext] user openid: ', res.result.openid)
+        app.globalData.openid = res.result.openid
+        this.setData({
+          openid: res.result.openid
+        })
+      },
+      fail: err => {
+        console.error('[云函数] [getWXContext] 调用失败', err)
+      }
+    })
+  },
+
+  onGenerateInvitation: function () {
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'getWXContext',
+      data: {},
+      success: res => {
+        console.log('[云函数] [getWXContext] user openid: ', res.result.openid)
+        app.globalData.openid = res.result.openid
+        this.setData({
+          openid: res.result.openid
+        })
+      },
+      fail: err => {
+        console.error('[云函数] [getWXContext] 调用失败', err)
+      }
+    })
+  },
+
+  onAdminBotton: function (e) {
+    this.setData({
+      adminList: true
+    })
+  },
+
+  onShare: function (e) {
+    var that = this
+    wx.canvasToTempFilePath({
+      x: 0,
+      y: 0,
+      width: 345 * rpx,
+      height: 488 * rpx,
+      destWidth: 345 * rpx,
+      destHeight: 488 * rpx,
+      canvasId: 'myCanvas',
+      success: function (res) {
+        console.log(res.tempFilePath);
+        /* 这里 就可以显示之前写的 预览区域了 把生成的图片url给image的src */
+        that.setData({
+          prurl: res.tempFilePath,
+          hidden: false
+        })
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    })
+    wx.saveImageToPhotosAlbum({
+      filePath: that.data.prurl,
+      success(res) {
+        wx.showModal({
+          content: '图片已保存到相册，赶紧晒一下吧~',
+          showCancel: false,
+          confirmText: '好的',
+          confirmColor: '#333',
+          success: function (res) {
+           if (res.confirm) {
+              console.log('用户点击确定');
+              /* 该隐藏的隐藏 */
+              that.setData({
+                hidden:true
+              })
+            }
+          }
+        })
+      }
+  })
+  }
 })

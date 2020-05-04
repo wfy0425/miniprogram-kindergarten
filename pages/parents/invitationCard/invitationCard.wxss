@@ -68,3 +68,11 @@ page {
   font-size: 28rpx;
   line-height: 52rpx;
 }
+
+.submit-button {
+  padding-top: 28rpx;
+}
+
+.admin-button{
+  padding-top: 28rpx;
+}
