@@ -3,7 +3,7 @@ const db = wx.cloud.database();
 const collection = db.collection('parents_event');
 const ctx = wx.createCanvasContext('myCanvas')
 
-import Toast from '../../../vant/toast/toast';
+import Toast from '../../vant/toast/toast';
 // pages/parents/index/index.js
 Page({
 
@@ -11,9 +11,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    logoUrl: '../../../images/logo.jpg',
-    bannerUrl: '../../../images/banner.svg',
-    articleList: [],
+    logoUrl: '/images/logo.jpg',
+    bannerUrl: '/images/banner.svg',
+    dataList: [],
     page: 0,
     totalCount: 0,
     pageSize: 10,
@@ -213,15 +213,15 @@ Page({
           success: function (res) {
             // res.data 是包含以上定义的两条记录的数组
             console.log(res.data)
-            var articleList = that.data.articleList;
+            var dataList = that.data.dataList;
             for (var i = 0; i < res.data.length; i++) {
-              articleList.push(res.data[i]);
+              dataList.push(res.data[i]);
             }
 
             that.setData({
-              articleList: articleList,
+              dataList: dataList,
             })
-            console.log(that.data.articleList)
+            console.log(that.data.dataList)
             wx.hideNavigationBarLoading(); //隐藏加载
             wx.stopPullDownRefresh();
 
@@ -398,27 +398,27 @@ Page({
     ctx.drawImage('/images/invitationCard.jpg', 0, 0, 345 * rpx, 488 * rpx)
     /* 绘制文字 位置自己计算 参数自己看文档 */
     ctx.setTextAlign('center') //  位置
-    ctx.setFillStyle('#000000') //  颜色
-    ctx.font = 'normal normal 12px sans-serif';
+    ctx.setFillStyle('#c3942e') //  颜色
+    ctx.font = 'normal normal 11px 标宋体';
     ctx.fillText('为了感谢您长期以来对雉爱的厚爱，特于某地举办某活动', 345 / 2 * rpx, 260 * rpx) //  内容  不会自己换行 需手动换行
     ctx.fillText('地点：兰亭雅居46号', 345 / 2 * rpx, 278 * rpx) //  内容
 
     ctx.setTextAlign('right') //  位置
-    ctx.font = 'normal normal 22px sans-serif';
-    ctx.translate(90 * rpx, 350 * rpx)
+    ctx.font = 'normal normal 35px "Courier New"';
+    ctx.translate(80 * rpx, 347 * rpx)
     ctx.rotate(90 * Math.PI / 180)
     ctx.fillText('PM', 0 * rpx, 0 * rpx)
     ctx.rotate(270 * Math.PI / 180)
-    ctx.translate(-90 * rpx, -350 * rpx)
+    ctx.translate(-80 * rpx, -347 * rpx)
 
     ctx.setTextAlign('center') //  位置
-    ctx.font = 'normal normal 50px sans-serif';
+    ctx.font = 'normal normal 60px Arial';
     ctx.fillText('14:00', 345 / 2 * rpx, 350 * rpx)
 
-    ctx.font = 'normal normal 20px sans-serif';
-    ctx.fillText('2020', 270 * rpx, 325 * rpx)
-    ctx.font = 'normal normal 20px sans-serif';
-    ctx.fillText('5/10', 270 * rpx, 350 * rpx)
+    ctx.font = 'normal normal 25px monospace';
+    ctx.fillText('2020', 275 * rpx, 325 * rpx)
+    ctx.font = 'normal normal 25px monospace';
+    ctx.fillText('5/10', 275 * rpx, 350 * rpx)
 
 
 
@@ -471,7 +471,8 @@ Page({
   },
 
   onShare: function (e) {
-    var that = this
+    let that = this;
+    let rpx = that.data.screen_width
     wx.canvasToTempFilePath({
       x: 0,
       y: 0,

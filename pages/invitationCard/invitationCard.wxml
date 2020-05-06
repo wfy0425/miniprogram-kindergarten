@@ -7,21 +7,22 @@
 	</view>
 	<view class="hairline"></view>
 	<view class='blocks' wx:if='{{adminList}}'>
-		<block wx:for="{{articleList}}" wx:key="item">
+		<block wx:for="{{dataList}}" wx:key="item">
 			<view class='blocks-item' bindtap="detail" data-id="{{item._id}}">
-				<view class="blocks-image">
-					<image mode='widthFix' src="{{item.url}}" />
-				</view>
-				<view class='blocks-tittle'>{{item.tittle}}</view>
-				<view class='blocks-desc'>{{item.description}}</view>
+				<view class='blocks-desc'>宝宝姓名: {{item.babyName}}</view>
+				<view class='blocks-desc'>出生年月: {{item.babyBirthday}}</view>
+				<view class='blocks-desc'>家长姓名: {{item.parentsName}}</view>
+				<view class='blocks-desc'>联系方式: {{item.parentsContact}}</view>
+				<view class='blocks-desc'>家庭住址: {{item.parentsAddress?item.parentsAddress:'未填写'}}</view>
 			</view>
 		</block>
+
+	</view>
+	<view class='blocks' wx:if='{{!hide&&!adminList}}'>
+		<canvas canvas-id="myCanvas" style="width:{{345*screen_width+'px'}}; height:{{488*screen_width+'px'}}"></canvas>
 		<view class='submit-button'>
 			<van-button round type="info" size="large" bind:click='onShare'>分享图片</van-button>
 		</view>
-	</view>
-		<view class='blocks' wx:if='{{!hide&&!adminList}}'>
-		<canvas canvas-id="myCanvas" style="width:{{345*screen_width+'px'}}; height:{{488*screen_width+'px'}}"></canvas>
 	</view>
 	<view class='blocks' wx:if='{{hide&&!adminList}}'>
 		<view class='blocks-item'>
@@ -39,7 +40,9 @@
 		</van-cell-group>
 		<view class='submit-button'>
 			<van-button round type="info" size="large" bind:click='submit'>{{submitButton}}</van-button>
-			<view wx:if='{{isAdmin}}' class="admin-button">	<van-button round type="info" size="large" bind:click='onAdminBotton'>查看后台数据</van-button></view>
+			<view wx:if='{{isAdmin}}' class="admin-button">
+				<van-button round type="info" size="large" bind:click='onAdminBotton'>查看后台数据</van-button>
+			</view>
 
 		</view>
 	</view>

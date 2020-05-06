@@ -112,7 +112,13 @@ Page({
             url: '/pages/students/index/index',
         })
     },
-
+    
+    invitationCard: function(event) {
+        console.log(event)
+        wx.navigateTo({
+            url: '/pages/invitationCard/invitationCard',
+        })
+    },
 
     on16pf: function(event) {
         console.log(event)
