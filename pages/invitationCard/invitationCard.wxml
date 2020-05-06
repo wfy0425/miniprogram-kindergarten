@@ -26,7 +26,7 @@
 	</view>
 	<view class='blocks' wx:if='{{hide&&!adminList}}'>
 		<view class='blocks-item'>
-			<text decode="{{true}}" space="{{true}}" class='blocks-tittle '>稚爱邀请函</text>
+			<text decode="{{true}}" space="{{true}}" class='blocks-tittle '>{{description}}</text>
 		</view>
 		<van-cell-group>
 			<van-field label="宝宝姓名" required placeholder="请输入宝宝的姓名" value=" {{ babyName }}" bind:change="inputBabyName" error="{{babyNameError}}" />

@@ -30,7 +30,18 @@ Page({
     infoExist: false, //用户是否已经登记过
     submitButton: '确认',
 
-    isAdmin: false
+    isAdmin: false,
+
+    invitationCardBackgroundPath: '',
+
+    am_pm: '',
+    date: '',
+    description: '',
+    invitation_text_1: '',
+    invitation_text_2: '',
+    time: '',
+    year: '',
+
   },
 
   /**
@@ -117,6 +128,43 @@ Page({
         })
       }
     })
+
+    wx.cloud.downloadFile({
+      fileID: 'cloud://cloud-zhiai-8dv2t.636c-cloud-zhiai-8dv2t-1300754910/img/invitationCard.jpg',
+      success: res => {
+        // get temp file path
+        console.log(res.tempFilePath)
+        that.setData({
+          invitationCardBackgroundPath: res.tempFilePath,
+        })
+
+      },
+      fail: err => {
+        // handle error
+        console.log(err)
+        Toast.fail({
+          duration: 2000,
+          message: '生成邀请函失败，请稍后再试',
+        })
+      }
+    })
+
+    collection.doc('event_info').get({
+      success: function (res) {
+        // res.data 包含该记录的数据
+        console.log(res.data)
+        that.setData({
+          am_pm: res.data.am_pm,
+          date: res.data.date,
+          description: res.data.description,
+          invitation_text_1: res.data.invitation_text_1,
+          invitation_text_2: res.data.invitation_text_2,
+          time: res.data.time,
+          year: res.data.year,
+        })
+      }
+    })
+
 
   },
 
@@ -348,7 +396,6 @@ Page({
             })
           },
           fail: function (res) {
-            Toast.clear();
             Toast.fail({
               duration: 1000,
               message: '新增记录失败，请稍后再试',
@@ -391,39 +438,43 @@ Page({
   },
 
   draw: function () {
-    let that = this;
+    var that = this
+
+    
 
     console.log('手机型号' + that.data.model, '宽' + that.data.screen_width * 375, '高' + that.data.screen_height)
     let rpx = that.data.screen_width
-    ctx.drawImage('/images/invitationCard.jpg', 0, 0, 345 * rpx, 488 * rpx)
+    ctx.drawImage(that.data.invitationCardBackgroundPath, 0, 0, 345 * rpx, 488 * rpx)
     /* 绘制文字 位置自己计算 参数自己看文档 */
     ctx.setTextAlign('center') //  位置
     ctx.setFillStyle('#c3942e') //  颜色
     ctx.font = 'normal normal 11px 标宋体';
-    ctx.fillText('为了感谢您长期以来对雉爱的厚爱，特于某地举办某活动', 345 / 2 * rpx, 260 * rpx) //  内容  不会自己换行 需手动换行
-    ctx.fillText('地点：兰亭雅居46号', 345 / 2 * rpx, 278 * rpx) //  内容
+    ctx.fillText(that.data.invitation_text_1, 345 / 2 * rpx, 260 * rpx) //  内容  不会自己换行 需手动换行
+    ctx.fillText(that.data.invitation_text_2, 345 / 2 * rpx, 278 * rpx) //  内容
 
     ctx.setTextAlign('right') //  位置
     ctx.font = 'normal normal 35px "Courier New"';
     ctx.translate(80 * rpx, 347 * rpx)
     ctx.rotate(90 * Math.PI / 180)
-    ctx.fillText('PM', 0 * rpx, 0 * rpx)
+    ctx.fillText(that.data.am_pm, 0 * rpx, 0 * rpx)
     ctx.rotate(270 * Math.PI / 180)
     ctx.translate(-80 * rpx, -347 * rpx)
 
     ctx.setTextAlign('center') //  位置
     ctx.font = 'normal normal 60px Arial';
-    ctx.fillText('14:00', 345 / 2 * rpx, 350 * rpx)
+    ctx.fillText(that.data.time, 345 / 2 * rpx, 350 * rpx)
 
     ctx.font = 'normal normal 25px monospace';
-    ctx.fillText('2020', 275 * rpx, 325 * rpx)
+    ctx.fillText(that.data.year, 275 * rpx, 325 * rpx)
     ctx.font = 'normal normal 25px monospace';
-    ctx.fillText('5/10', 275 * rpx, 350 * rpx)
+    ctx.fillText(that.data.date, 275 * rpx, 350 * rpx)
 
 
 
     ctx.drawImage('/images/wxacode.jpg', (345 / 2 - 43) * rpx, (430 - 43) * rpx, 86 * rpx, 86 * rpx)
     ctx.draw()
+
+
 
 
 
@@ -502,16 +553,16 @@ Page({
           confirmText: '好的',
           confirmColor: '#333',
           success: function (res) {
-           if (res.confirm) {
+            if (res.confirm) {
               console.log('用户点击确定');
               /* 该隐藏的隐藏 */
               that.setData({
-                hidden:true
+                hidden: true
               })
             }
           }
         })
       }
-  })
+    })
   }
 })
