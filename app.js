@@ -1,6 +1,6 @@
 //app.js
 wx.cloud.init({
-    env: 'cloud-zhiai-8dv2t',
+    env: 'zhiai-0g01wvvc0b5980e9',
     traceUser: true,
 })
 const util = require('./utils/util.js');

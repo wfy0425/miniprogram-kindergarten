@@ -5,7 +5,7 @@
   </view>
   <view class="hairline"></view>
     <view class='blocks'>
-      <block wx:for="{{memberList}}" wx:key="{{item}}">
+      <block wx:for="{{memberList}}" wx:key="{{item._id}}">
         <view class='blocks-item'>
           <view class="blocks-image">
             <image mode='aspectFill' src="{{item.photo}}" />

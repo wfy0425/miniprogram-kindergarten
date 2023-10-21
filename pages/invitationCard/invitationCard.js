@@ -70,12 +70,12 @@ Page({
       name: 'getWXContext',
       data: {},
       success: res => {
-        console.log('[云函数] [getWXContext] user openid: ', res.result.openid)
+        console.log('[云函数] [getWXContext] user openid: ', res.result.OPENID)
 
 
 
         //检查是否已经登记过
-        collection.doc(res.result.openid).get({
+        collection.doc(res.result.OPENID).get({
           success: function (res) {
             console.log(res)
             that.setData({
@@ -129,25 +129,25 @@ Page({
       }
     })
 
-    wx.cloud.downloadFile({
-      fileID: 'cloud://cloud-zhiai-8dv2t.636c-cloud-zhiai-8dv2t-1300754910/img/invitationCard.jpg',
-      success: res => {
-        // get temp file path
-        console.log(res.tempFilePath)
-        that.setData({
-          invitationCardBackgroundPath: res.tempFilePath,
-        })
+    // wx.cloud.downloadFile({
+    //   fileID: 'cloud://cloud-zhiai-8dv2t.636c-cloud-zhiai-8dv2t-1300754910/img/invitationCard.jpg',
+    //   success: res => {
+    //     // get temp file path
+    //     console.log(res.tempFilePath)
+    //     that.setData({
+    //       invitationCardBackgroundPath: res.tempFilePath,
+    //     })
 
-      },
-      fail: err => {
-        // handle error
-        console.log(err)
-        Toast.fail({
-          duration: 2000,
-          message: '生成邀请函失败，请稍后再试',
-        })
-      }
-    })
+    //   },
+    //   fail: err => {
+    //     // handle error
+    //     console.log(err)
+    //     Toast.fail({
+    //       duration: 2000,
+    //       message: '生成邀请函失败，请稍后再试',
+    //     })
+    //   }
+    // })
 
     collection.doc('event_info').get({
       success: function (res) {
