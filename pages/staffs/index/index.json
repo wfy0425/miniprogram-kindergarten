@@ -1,7 +1,0 @@
-{
-    "usingComponents": {
-        "van-notice-bar": "/vant/notice-bar/index",
-        "van-grid": "/vant/grid/index",
-        "van-grid-item": "/vant/grid-item/index"
-    }
-}

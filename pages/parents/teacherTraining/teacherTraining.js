@@ -11,7 +11,7 @@ Page({
      */
     data: {
         logoUrl: '../../../images/logo.jpg',
-        bannerUrl: '../../../images/banner.svg',
+        bannerUrl: '../../../images/banner.png',
         articleList: [],
         page: 0,
         totalCount: 0,

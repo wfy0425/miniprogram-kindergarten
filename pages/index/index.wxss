@@ -1,30 +1,57 @@
+/* pages/parents/index/index.wxss */
 
-pages{
-  width: 100%;
+page {
+    width: 100%;
 }
-
-
 
 .box {
     display: flex;
     flex-direction: column;
     width: 690rpx;
     margin: auto;
-    justify-content: center;
-    
 }
 
-van-button{
-  display: flex;
-  flex-direction: column;
-  padding: 30rpx 20rpx;
-  
-  
-  
-}
 .banner {
-  padding: 20rpx 0;
-  /* border-bottom: solid 1px #efefef; */
-  width: 100%;
-height: 600rpx;
+    padding: 20rpx 0;
+    /* border-bottom: solid 1px #efefef; */
+    width: 100%;
+    height: 600rpx;
+}
+
+.slide-image image {
+    height: 400rpx;
+    width: 100%;
+}
+
+.photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.photo-item {
+    flex-direction: column;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20rpx 0;
+    /* border-bottom: solid 1px #efefef; */
+}
+
+.photo-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.photo-image image {
+    width: 100%;
+}
+
+.photo-desc {
+    font-family: PingFangSC-Regular;
+    font-size: 26rpx;
+    color: var(content-color);
+    margin-top: 10rpx;
 }

@@ -1,15 +1,40 @@
+<!--pages/parents/index/index.wxml-->
+<!-- <van-notice-bar mode="link" text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。" /> -->
 <view class="services_container">
-  <view class="logo-banner" >
-    <image mode='widthFix' src="{{bannerUrl}}"></image>
-  </view>
-  <view class="van-hairline--top"></view>
-  <view class='box'>
-<van-button round color="#82d9d0" plain size="large" bind:click='parents'>我是家长</van-button>
-<van-button round color="#82d9d0" plain size="large" open-type="getUserInfo" bindgetuserinfo="staffs" >我是园丁</van-button>
-<van-button round color="#82d9d0" plain size="large" bind:click='invitationCard'>邀请函</van-button>
-<van-button round color="#82d9d0" plain size="large" bind:click='students'>稚爱教育馆</van-button>
-<van-button round color="#82d9d0" plain size="large" bind:click='on16pf'>卡特尔人格因素测验</van-button>
+	<view class="logo-banner">
+		<image mode='widthFix' src="{{bannerUrl}}"></image>
+	</view>
+	<view class="van-hairline--top"></view>
+	<view class='box'>
+		<swiper class="banner" autoplay="autoplay" interval="2500" duration="500" indicator-dots="true">
+			<block wx:for="{{imgUrls}}" wx:key="item">
+				<swiper-item>
+					<view class="slide-image">
+						<image mode='widthFix' src="{{item}}" />
+					</view>
+				</swiper-item>
+			</block>
+		</swiper>
 
-</view>
-<van-toast id="van-toast" />
+		<van-grid border="{{ false }}" column-num="3">
+			<van-grid-item icon="label-o" text="教育馆" link-type="navigateTo" url="/pages/kidVideo/index/index" />
+			<van-grid-item icon="desktop-o" text="教师培训" link-type="navigateTo" url="/pages/parents/teacherTraining/teacherTraining" />
+			<van-grid-item icon="description" text="绘本故事" link-type="navigateTo" url="/pages/parents/babyQA/babyQA" />
+			<van-grid-item icon="service-o" text="联系我们" link-type="navigateTo" url="/pages/parents/contactus/contactus" />
+			<!-- <van-grid-item icon="user-circle-o" text="账户管理" bind:click='onAccount' /> -->
+			<van-grid-item icon="friends-o" text="了解稚爱" link-type="navigateTo" url="/pages/aboutus/aboutus" />
+		</van-grid>
+		<view class="van-hairline--top"></view>
+		<view class='photo'>
+			<block wx:for="{{photoList}}" wx:key="item">
+				<view class='photo-item'>
+					<view class="photo-image">
+						<image mode='widthFix' src="{{item.url}}" />
+					</view>
+					<view class='photo-desc'>{{item.description}}</view>
+				</view>
+			</block>
+		</view>
+
+	</view>
 </view>
